@@ -39,7 +39,7 @@ Hi there :wave:.
 
 ----------------
 
-## Education Background 🎓
+## Education Background :mortar_board:
 
 **2016~2020 (Bachelor of Science):** Mathematics and Applied Mathematics at [Southern University of Science and Technology (南方科技大学)](https://www.sustech.edu.cn/en/), Shenzhen, China :cn:.
 
