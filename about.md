@@ -37,6 +37,18 @@ Hi there :wave:.
 - My main research interest lies within Machine Learning, particularly Computer Vision.
 - E-mail :e-mail:: [yiming.ma.1@warwick.ac.uk](mailto:yiming.ma.1@warwick.ac.uk).
 
+----------------
+
+## Education Background 🎓
+
+**2016~2020 (Bachelor of Science):** Mathematics and Applied Mathematics at [Southern University of Science and Technology (南方科技大学)](https://www.sustech.edu.cn/en/), Shenzhen, China 🇨🇳.
+
+**2020~2021 (Master of Science):** Mathematics of Systems at [University of Warwick](https://warwick.ac.uk/), Coventry, UK 🇬🇧.
+
+**2021~Now (Ph.D. student):** Mathematics of Systems at [University of Warwick](https://warwick.ac.uk/), Coventry, UK 🇬🇧.
+
+----------------
+
 ## Just for Fun :laughing:
 
 - **Birthday**: :secret: :capricorn:.
