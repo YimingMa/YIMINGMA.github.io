@@ -41,11 +41,11 @@ Hi there :wave:.
 
 ## Education Background 🎓
 
-**2016~2020 (Bachelor of Science):** Mathematics and Applied Mathematics at [Southern University of Science and Technology (南方科技大学)](https://www.sustech.edu.cn/en/), Shenzhen, China 🇨🇳.
+**2016~2020 (Bachelor of Science):** Mathematics and Applied Mathematics at [Southern University of Science and Technology (南方科技大学)](https://www.sustech.edu.cn/en/), Shenzhen, China :cn:.
 
-**2020~2021 (Master of Science):** Mathematics of Systems at [University of Warwick](https://warwick.ac.uk/), Coventry, UK 🇬🇧.
+**2020~2021 (Master of Science):** Mathematics of Systems at [University of Warwick](https://warwick.ac.uk/), Coventry, UK :gb:.
 
-**2021~Now (Ph.D. student):** Mathematics of Systems at [University of Warwick](https://warwick.ac.uk/), Coventry, UK 🇬🇧.
+**2021~Now (Ph.D. student):** Mathematics of Systems at [University of Warwick](https://warwick.ac.uk/), Coventry, UK :gb:.
 
 ----------------
 
