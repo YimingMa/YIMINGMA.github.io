@@ -36,7 +36,7 @@ timezone: "Europe/London" # see https://en.wikipedia.org/wiki/List_of_tz_databas
 author:
   type      : # "person" (default), "organization"
   name      : "Yiming Ma"
-  url       :
+  url       : "https://yimingma.github.io/"
   avatar    : "./assets/images/me.jpg" # path or url of avatar image (square)
   bio       : "Ph.D. student in MathSys at University of Warwick"
   email     : "yiming.ma.1@warwick.ac.uk"

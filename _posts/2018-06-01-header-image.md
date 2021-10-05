@@ -1,5 +1,6 @@
 ---
 title: Post with Header Image
+author: Yiming
 tags: TeXt
 article_header:
   type: cover
