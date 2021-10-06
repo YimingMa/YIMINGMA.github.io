@@ -118,7 +118,7 @@ sharing:
 ## => Comments
 ##############################
 comments:
-  provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
   disqus:
@@ -159,23 +159,22 @@ pageview:
 ## => Search
 ##############################
 search:
-  provider: "google" # "default" (default), false, "google", "custom"
+  provider: "default" # "default" (default), false, "google", "custom"
 
   ## Google Custom Search Engine
   google:
-    custom_search_engine_id: G-12QJJGC9CE # Google Custom Search Engine ID
-    anonymize_ip: true
+    custom_search_engine_id: # Google Custom Search Engine ID
 
 
 ## => Analytics
 ##############################
 analytics:
-  provider: false # false (default), "google", "custom"
+  provider: "google" # false (default), "google", "custom"
 
   ## Google Analytics
   google:
-    tracking_id : # Google Analytics id for the site
-    anonymize_ip: false # Anonymize IP tracking for Analytics
+    tracking_id : G-12QJJGC9CE # Google Analytics id for the site
+    anonymize_ip: true # Anonymize IP tracking for Analytics
 
 
 ## => Build
