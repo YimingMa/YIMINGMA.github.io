@@ -41,12 +41,12 @@ author:
   bio       : "Ph.D. student in MathSys at University of Warwick"
   email     : "yiming.ma.1@warwick.ac.uk"
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name
-  twitter   : # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
+  twitter   : "YIMINGMA9" # "user_name" the last part of your profile url, e.g. https://twitter.com/user_name
   weibo     : # "user_id"   the last part of your profile url, e.g. https://www.weibo.com/user_id/profile?...
   googleplus: # "user_id"   the last part of your profile url, e.g. https://plus.google.com/u/0/user_id
   telegram  : # "user_name" the last part of your profile url, e.g. https://t.me/user_name
   medium    : # "user_name" the last part of your profile url, e.g. https://medium.com/user_name
-  zhihu     : # "user_name" the last part of your profile url, e.g. https://www.zhihu.com/people/user_name
+  zhihu     : "yiming-21-43" # "user_name" the last part of your profile url, e.g. https://www.zhihu.com/people/user_name
   douban    : # "user_name" the last part of your profile url, e.g. https://www.douban.com/people/user_name
   linkedin  : # "user_name" the last part of your profile url, e.g. https://www.linkedin.com/in/user_name
   github    : "YIMINGMA" # "user_name" the last part of your profile url, e.g. https://github.com/user_name
@@ -55,7 +55,7 @@ author:
 
 ## => GitHub Repository (if the site is hosted by GitHub)
 ##############################
-repository: "YIMINGMA/yimingma.github.io"
+repository: YIMINGMA/yimingma.github.io
 repository_tree: master
 
 
@@ -85,7 +85,7 @@ toc:
 ##############################
 ## Mathjax
 mathjax: true # false (default), true
-mathjax_autoNumber: # false (default), true
+mathjax_autoNumber: true # false (default), true
 
 ## Mermaid
 mermaid: true # false (default), true
@@ -108,17 +108,17 @@ sources: # bootcdn (default), unpkg
 ## => Sharing
 ##############################
 sharing:
-  provider: false # false (default), "addtoany", "addthis", "custom"
+  provider: "addthis" # false (default), "addtoany", "addthis", "custom"
 
   ## AddThis
   addthis:
-    id: # AddThis pubid, e.g. ra-5xxxxxxxxxxx
+    id: ra-615dbceea46c2f7b # AddThis pubid, e.g. ra-5xxxxxxxxxxx
 
 
 ## => Comments
 ##############################
 comments:
-  provider: false # false (default), "disqus", "gitalk", "valine", "custom"
+  provider: gitalk # false (default), "disqus", "gitalk", "valine", "custom"
 
   ## Disqus
   disqus:
@@ -127,11 +127,11 @@ comments:
   ## Gitalk
   # please refer to https://github.com/gitalk/gitalk for more info.
   gitalk:
-    clientID    : # GitHub Application Client ID
-    clientSecret: # GitHub Application Client Secret
-    repository  : # GitHub repo
-    owner       : # GitHub repo owner
-    admin: # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
+    clientID    : "aa90706d77f3fc8afad9" # GitHub Application Client ID
+    clientSecret: "88452ecf1dc0c9a75767d088ecd1171accd2b843" # GitHub Application Client Secret
+    repository  : "Comments" # GitHub repo
+    owner       : "YIMINGMA" # GitHub repo owner
+    admin: ["YIMINGMA"] # GitHub repo owner and collaborators, only these guys can initialize GitHub issues, IT IS A LIST.
       # - your GitHub Id
 
   ## Valine
@@ -159,11 +159,12 @@ pageview:
 ## => Search
 ##############################
 search:
-  provider: default # "default" (default), false, "google", "custom"
+  provider: "google" # "default" (default), false, "google", "custom"
 
   ## Google Custom Search Engine
   google:
-    custom_search_engine_id: # Google Custom Search Engine ID
+    custom_search_engine_id: G-12QJJGC9CE # Google Custom Search Engine ID
+    anonymize_ip: true
 
 
 ## => Analytics
