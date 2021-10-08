@@ -119,15 +119,16 @@ $$
 
 of the standard convolution.
 
-#### An Example
+### An Example
 
-##### Standard Convolution
+#### Standard Convolution
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution.png" alt="Standard Convolution" class="center">
 
-##### Depthwise Separable Convolution
+#### Depthwise Separable Convolution
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution.png"
 alt="Depthwise Convolution" class="center">
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center">
+
