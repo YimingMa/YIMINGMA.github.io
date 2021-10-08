@@ -1,6 +1,6 @@
 ---
 key: 2021_10_08_01
-title: Introduction to MobileNet-V1
+title: Introduction to MobileNetV1
 tags: ["Computer Vision", "Image Classifiers", "MobileNets"]
 mathjax: true
 mathjax_autoNumber: true
@@ -13,7 +13,7 @@ aside:
 
 ## Introduction
 
-MobileNet-V1 was proposed by Howard, Andrew G., et al. in [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861) in 2017. In this paper, **depthwise separable convolution** is used to replace standard convolution to reduce computation. Although MobileNet-V1 is smaller than other families of image classifiers, such as VGGs and Inceptions, it can still achieve comparable results on [ImageNet](https://www.image-net.org/).
+MobileNetV1 was proposed by Howard, Andrew G., et al. in [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861) in 2017. In this paper, **depthwise separable convolution** is used to replace standard convolution to reduce computation. Although MobileNetV1 is smaller than other families of image classifiers, such as VGGs and Inceptions, it can still achieve comparable results on [ImageNet](https://www.image-net.org/).
 
 ## Standard Convolution vs. Depthwise Separable Convolution
 
@@ -51,7 +51,7 @@ $$
 }
 </style>
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution_filters.png" alt="Filters Standard Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="Filters Standard Convolution" class="center">
 
 ### Depthwise Separable Convolution
 
@@ -77,7 +77,7 @@ multiplications.
 
 <u>Notice</u>: Depthwise convolution only filters input channels, so it does not combine them to create new features.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center">
 
 #### Pointwise Convolution
 
@@ -95,7 +95,7 @@ $$
 M \cdot N \cdot D_G \cdot D_G
 $$
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center">
 
 Thus, the overall **depthwise separable convolution** can be expressed as
 
@@ -123,23 +123,23 @@ of the standard convolution.
 
 #### Standard Convolution
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution.png" alt="Standard Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution.png" alt="Standard Convolution" class="center">
 
 #### Depthwise Separable Convolution
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution.png"
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution.png"
 alt="Depthwise Convolution" class="center">
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center">
 
-## Architecture of MobileNet-V1
+## Architecture of MobileNetV1
 
-Except that the first layer is a standard convolution, all other convolutions in MobileNet-V1 are depthwise seperable. Batch normalization and ReLU activation are also used after each convolution.
+Except that the first layer is a standard convolution, all other convolutions in MobileNetV1 are depthwise seperable. Batch normalization and ReLU activation are also used after each convolution.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png"
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png"
 alt="Depthwise Convolution" class="center">
 
-The structure of MobileNet-V1 is shown below.
+The structure of MobileNetV1 is shown below.
 
 | Type / Stride 	                | Filter Shape 	               | Input Size 	                |
 |---------------------------------|------------------------------|------------------------------|
@@ -171,6 +171,18 @@ Results from the original paper [_MobileNets: Efficient Convolutional Neural Net
 
 | Model                                            | ImageNet Accuracy | Mult-Adds (M) | Parameters (M) |
 |--------------------------------------------------|-------------------|---------------|----------------|
-| [MobileNet-V1](https://arxiv.org/abs/1704.04861) | $70.6\%$          | 569           | 4.2            |
+| [MobileNetV1](https://arxiv.org/abs/1704.04861) | $70.6\%$          | 569           | 4.2            |
 | [GoogLeNet](https://arxiv.org/abs/1409.4842)     | $69.8\%$          | 1550          | 6.8            |
-| [VGG-16](https://arxiv.org/abs/1409.1556)        | $71.5\%$          | 15300         | 138            | 
+| [VGG16](https://arxiv.org/abs/1409.1556)        | $71.5\%$          | 15300         | 138            |
+
+Rresults on [Keras Applications](https://keras.io/api/applications/):
+
+| Model                                            | Size (MB)         | Top-1 Accuracy | Top-5 Accuracy | Parameters  | Depth | Time (ms) per inference step (CPU) | Time (ms) per inference step (GPU) |
+|--------------------------------------------------|-------------------|----------------|----------------|-------------|-------|------------------------------------|------------------------------------|
+| [Xception](https://arxiv.org/abs/1610.02357)     | 88                | 0.790          | 0.945          | 22,910,480  | 126   | 109.42                             | 8.06                               |
+| [VGG16](https://arxiv.org/abs/1409.1556)         | 528               | 0.713          | 0.901          | 138,357,544 | 23    | 69.50                              | 4.16                               |
+| [VGG19](https://arxiv.org/abs/1409.1556)         | 549               | 0.713          | 0.900          | 143,667,240 | 26    | 84.75                              | 4.38                               |
+| [ResNet50](https://arxiv.org/abs/1512.03385)     | 98                | 0.749          | 0.921          | 25,636,712  | -     | 58.20                              | 4.55                               |
+| [ResNet101](https://arxiv.org/abs/1512.03385)    | 171               | 0.764          | 0.928          | 44,,707,176 | -     | 89.59                              | 5.19                               |
+| [InceptionV3](https://arxiv.org/abs/1512.00567)  | 92                | 0.779          | 0.937          | 23,851,784  | 159   | 42.25                              | 6.86                               |
+| [MobileNetV1](https://arxiv.org/abs/1704.04861)  | 16                | 0.704          | 0.895          | 4,253,864   | 88    | 22.60                              | 3.44                               |
