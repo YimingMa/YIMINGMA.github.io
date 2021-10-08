@@ -119,7 +119,7 @@ $$
 
 of the standard convolution.
 
-### An Example
+### Examples
 
 #### Standard Convolution
 
@@ -132,3 +132,35 @@ alt="Depthwise Convolution" class="center">
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center">
 
+## Architecture of MobileNet-V1
+
+Except that the first layer is a standard convolution, all other convolutions in MobileNet-V1 are depthwise seperable. Batch normalization and ReLU activation are also used after each convolution.
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png"
+alt="Depthwise Convolution" class="center">
+
+The structure of MobileNet-V1 is shown below.
+
+| Type / Stride 	                | Filter Shape 	               | Input Size 	                |
+|---------------------------------|------------------------------|------------------------------|
+| Conv / s2     	                | 3×3×3×32     	               | 224×224×3                    |
+| Conv dw / s1                    | 3×3×32 dw                    | 112×112×32                   |
+| Conv / s1                       | 1×1×32×64                    | 112×112×32                   |
+| Conv dw / s2                    | 3×3×64 dw                    | 112×112×64                   |
+| Conv / s1                       | 1×1×64×128                   | 56×56×64                     |
+| Conv dw / s1                    | 3×3×128 dw                   | 56×56×128                    |
+| Conv / s1                       | 1×1×128×128                  | 56×56×128                    |
+| Conv dw / s2                    | 3×3×128 dw                   | 56×56×128                    |
+| Conv / s1                       | 1×1×128×256                  | 28×28×128                    |
+| Conv dw / s1                    | 3×3×256 dw                   | 28×28×256                    |
+| Conv / s1                       | 1×1×256×256                  | 28×28×256                    |
+| Conv dw / s2                    | 3×3×256 dw                   | 28×28×256                    |
+| Conv / s1                       | 1×1×256×512                  | 14×14×256                    |
+| 5 × (Conv dw / s1 + Conv / s2)  | (3×3×512 dw) + (1×1×512×512) | (14×14×512) + (14×14×512)    |
+| Conv dw / s2                    | 3×3×512 dw                   | 14×14×512                    |
+| Conv / s1                       | 1×1×512×1024                 | 7×7×512                      |
+| Conv dw / s2                    | 3×3×1024 dw                  | 7×7×1024                     |
+| Conv / s1                       | 1×1×1024×1024                | 7×7×1024                     |
+| AvgPool / s1                    | 7×7                          | 7×7×1024                     |
+| FC / s1                         | 1024×1000                    | 1×1×1024                     |
+| Softmax / s1                    | Classifier                   | 1×1×1000                     |
