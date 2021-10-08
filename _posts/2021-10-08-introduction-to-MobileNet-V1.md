@@ -70,7 +70,7 @@ multiplications.
 
 ![Depthwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution_filters.png)
 
-### Pointwise Convolution
+#### Pointwise Convolution
 
 Let $\tilde{\boldsymbol{K}}$: $1 \times 1 \times M \times N$ be the **pointwise convolutional kernel** which takes $\hat{\boldsymbol{G}}$: $D_G \times D_G \times M$ as input and outputs $\tilde{\boldsymbol{G}}$: $D_G \times D_G \times N$. Then
 
@@ -86,8 +86,9 @@ $$
 M \cdot N \cdot D_G \cdot D_G
 $$
 
-Thus, the overall **depthwise separable convolution** can be expressed as
+![Pointwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution_filters.png)
 
+Thus, the overall **depthwise separable convolution** can be expressed as
 $$
 \label{eqn7}
 \tilde{\boldsymbol{G}}_{k, \, l, \, n} = \sum_{m} \tilde{\boldsymbol{K}}_{1, \, 1, \, m, \, n} \cdot \sum_{i, \, j} \hat{\boldsymbol{K}}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k + i - 1, \, l + j - 1, \, m}.
@@ -107,3 +108,15 @@ $$
 $$
 
 of the standard convolution.
+
+#### An Example
+
+##### Standard Convolution
+
+![Standard Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution.png)
+
+##### Depthwise Separable Convolution
+
+![Depthwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution.png)
+
+![Pointwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution.png)
