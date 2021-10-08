@@ -42,7 +42,16 @@ $$
 D_K \cdot D_K \cdot M \cdot N \cdot D_G \cdot D_G.
 $$
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution_filters.png" width="400"/>
+<style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution_filters.png" alt="Filters Standard Convolution" class="center">
 
 ### Depthwise Separable Convolution
 
