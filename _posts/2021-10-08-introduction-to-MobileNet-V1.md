@@ -77,7 +77,7 @@ multiplications.
 
 <u>Notice</u>: Depthwise convolution only filters input channels, so it does not combine them to create new features.
 
-![Depthwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution_filters.png)
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center">
 
 #### Pointwise Convolution
 
@@ -123,10 +123,11 @@ of the standard convolution.
 
 ##### Standard Convolution
 
-![Standard Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution.png)
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution.png" alt="Standard Convolution" class="center">
 
 ##### Depthwise Separable Convolution
 
-![Depthwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution.png)
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/depthwise_convolution.png"
+alt="Depthwise Convolution" class="center">
 
-![Pointwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution.png)
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center">
