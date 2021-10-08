@@ -89,6 +89,7 @@ $$
 ![Pointwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution_filters.png)
 
 Thus, the overall **depthwise separable convolution** can be expressed as
+
 $$
 \label{eqn7}
 \tilde{\boldsymbol{G}}_{k, \, l, \, n} = \sum_{m} \tilde{\boldsymbol{K}}_{1, \, 1, \, m, \, n} \cdot \sum_{i, \, j} \hat{\boldsymbol{K}}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k + i - 1, \, l + j - 1, \, m}.
