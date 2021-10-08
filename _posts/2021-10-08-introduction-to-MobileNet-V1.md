@@ -100,4 +100,10 @@ $$
 D_K \cdot D_k \cdot M \cdot D_G \cdot D_G + M \cdot N \cdot D_G \cdot D_G,
 $$
 
-which is $\frac{1}{N} + \frac{1}{D_K^2}$ of the standard convolution.
+which is
+
+$$
+\frac{1}{N} + \frac{1}{D_K^2} \notag
+$$
+
+of the standard convolution.
