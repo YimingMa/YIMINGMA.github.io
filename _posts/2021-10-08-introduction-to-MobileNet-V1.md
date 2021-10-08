@@ -95,7 +95,7 @@ $$
 M \cdot N \cdot D_G \cdot D_G
 $$
 
-![Pointwise Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution_filters.png)
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center">
 
 Thus, the overall **depthwise separable convolution** can be expressed as
 
