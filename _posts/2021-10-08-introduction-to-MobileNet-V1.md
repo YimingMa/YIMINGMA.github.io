@@ -35,7 +35,7 @@ The number of multiplications involved in computing $\boldsymbol{G}$ is
 $$
 D_K \cdot D_K \cdot M \cdot N \cdot D_F \cdot D_F.
 $$
-![Standard Convolution](\posts.assets\2021-10-08-introduction-to-MobileNet-V1.assets\standard_convolution_filters.png)
+![Standard Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution_filters.png)
 
 ### Depthwise Separable Convolution
 
