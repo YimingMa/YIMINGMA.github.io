@@ -13,7 +13,7 @@ aside:
 
 ## Introduction
 
-MobileNet-V1 was proposed by Howard, Andrew G., et al. in [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861) in 2017. In this paper, **depthwise separable convolution** is used to replace standard convolution to reduce computation. Although MobileNet-V1 is smaller than other families of image classifiers, such as VGGs and Inceptions, it can still achieve comparable results on [ImageNet]([ImageNet (image-net.org)](https://www.image-net.org/)).
+MobileNet-V1 was proposed by Howard, Andrew G., et al. in [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861) in 2017. In this paper, **depthwise separable convolution** is used to replace standard convolution to reduce computation. Although MobileNet-V1 is smaller than other families of image classifiers, such as VGGs and Inceptions, it can still achieve comparable results on [ImageNet](https://www.image-net.org/).
 
 ## Standard Convolution vs. Depthwise Separable Convolution
 
@@ -165,7 +165,7 @@ The structure of MobileNet-V1 is shown below.
 | FC / s1                         | 1024×1000                    | 1×1×1024                     |
 | Softmax / s1                    | Classifier                   | 1×1×1000                     |
 
-## Results
+## Results on [ImageNet](https://www.image-net.org/)
 
 Results from the original paper [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861):
 
