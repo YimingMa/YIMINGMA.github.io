@@ -3,6 +3,7 @@ key: 2021_10_08_01
 title: Introduction to MobileNet-V1
 tags: ["Computer Vision", "Image Classifiers", "MobileNets"]
 mathjax: true
+mathjax_autoNumber: true
 author: Yiming
 comment: false
 pageview: false
@@ -28,15 +29,23 @@ Suppose we are interested in transforming an input feature map $\boldsymbol{F}$ 
 ### Standard Convolution
 
 The **standard convolutional layer** is parametrized by the convolutional kernel $\boldsymbol{K}$: $D_K \times D_K \times M \times N$. Assume the padding is `"valid"` and the stride taken is `1`, then
+
+
 $$
 \label{eqn1}
 \boldsymbol{G}_{k, \, l, \, n} = \sum_{i, \, j, \, m} \boldsymbol{K}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k+i-1, \, l+j-1, \, m}.
 $$
+
+
 The number of multiplications involved in computing $\boldsymbol{G}$ via $\eqref{eqn1}$ is
+
+
 $$
 \label{eqn2}
 D_K \cdot D_K \cdot M \cdot N \cdot D_G \cdot D_G.
 $$
+
+
 ![Standard Convolution](/posts.assets/2021-10-08-introduction-to-MobileNet-V1.assets/standard_convolution_filters.png)
 
 ### Depthwise Separable Convolution
@@ -46,15 +55,23 @@ A **depthwise separable convolutional block** consists of two operations – a *
 #### Depthwise Convolution
 
 Let $\hat{\boldsymbol{K}}$: $D_K \times D_K \times M$ be the **depthwise convolutional kernel** with one filter per channel and $\hat{\boldsymbol{G}}$: $D_G \times D_G \times M$ be the corresponding output feature map. Then
+
+
 $$
 \label{eqn3}
 \hat{\boldsymbol{G}}_{k, \, l, \, m} = \sum_{i, \, j} \hat{\boldsymbol{K}}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k+i-1, \, l+j-1, \, m},
 $$
+
+
 taking
+
+
 $$
 \label{eqn4}
 D_K \cdot D_K \cdot M \cdot D_G \cdot D_G
 $$
+
+
 multiplications.
 
 <u>Notice</u>: Depthwise convolution only filters input channels, so it does not combine them to create new features.
@@ -64,10 +81,14 @@ multiplications.
 ### Pointwise Convolution
 
 Let $\tilde{\boldsymbol{K}}$: $1 \times 1 \times M \times N$ be the **pointwise convolutional kernel** which takes $\hat{\boldsymbol{G}}$: $D_G \times D_G \times M$ as input and outputs $\tilde{\boldsymbol{G}}$: $D_G \times D_G \times N$. Then
+
+
 $$
 \label{eqn5}
 \tilde{\boldsymbol{G}}_{k, \, l, \, n} = \sum_{m} \tilde{\boldsymbol{K}}_{1, \, 1,\, m, \, n} \cdot \hat{G}_{k, \, l, \, m},
 $$
+
+
 which entails multiplications of
 $$
 M \cdot N \cdot D_G \cdot D_G
