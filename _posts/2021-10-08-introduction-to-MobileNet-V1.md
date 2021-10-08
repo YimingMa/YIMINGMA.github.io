@@ -171,6 +171,6 @@ Results from the original paper [_MobileNets: Efficient Convolutional Neural Net
 
 | Model                                            | ImageNet Accuracy | Mult-Adds (M) | Parameters (M) |
 |--------------------------------------------------|-------------------|---------------|----------------|
-| [MobileNet-V1](https://arxiv.org/abs/1704.04861) | 70.6\%            | 569           | 4.2            |
-| [GoogLeNet](https://arxiv.org/abs/1409.4842)     | 69.8\%            | 1550          | 6.8            |
-| [VGG-16](https://arxiv.org/abs/1409.1556)        | 71.5\%            | 15300         | 138            | 
+| [MobileNet-V1](https://arxiv.org/abs/1704.04861) | $70.6\%$          | 569           | 4.2            |
+| [GoogLeNet](https://arxiv.org/abs/1409.4842)     | $69.8\%$          | 1550          | 6.8            |
+| [VGG-16](https://arxiv.org/abs/1409.1556)        | $71.5\%$          | 15300         | 138            | 
