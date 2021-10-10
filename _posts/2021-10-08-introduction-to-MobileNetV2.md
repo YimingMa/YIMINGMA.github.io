@@ -11,7 +11,7 @@ aside:
     toc: true
 ---
 
-1
+12
 
 ## Introduction
 
@@ -19,7 +19,7 @@ Researchers have found that depthwise kernels in [MobileNetV1](https://arxiv.org
 
 ## Linear Bottlenecks
 
-Consider a deep neural network with $n$ layers $\left\{L^{(k)}\right\}_{k=1}^n$, each of which has an output tensor of dimensions $h^{(k)} \times w^{(k)} \times d^{(k)}$. We treat each of them as a container of $h^{(k)} \cdot w^{(k)}$  "pixels" with $d^{(k)}$ dimensions. For a specific layer $k,$ we assume a non-linear transformation is taken after a convolutional operation. Namely, let $\boldsymbol{T}^{(k)} \in \mathbb{R}^{d^{(k)}\times d^{(k-1)}}$, and denote the output from the convolutional operation on the input tensor $\boldsymbol{a}^{(k-1)} \in \mathbb{R}^{d^{(k-1)}}$ as $\boldsymbol{z}^{(k)} \in \mathbb{R}^{d^{(k)}}$, i.e.,
+Consider a deep neural network with $n$ layers $\left\{ L^{(k)} \right\}_{k=1}^n$, each of which has an output tensor of dimensions $h^{(k)} \times w^{(k)} \times d^{(k)}$. We treat each of them as a container of $h^{(k)} \cdot w^{(k)}$  "pixels" with $d^{(k)}$ dimensions. For a specific layer $k,$ we assume a non-linear transformation is taken after a convolutional operation. Namely, let $\boldsymbol{T}^{(k)} \in \mathbb{R}^{d^{(k)}\times d^{(k-1)}}$, and denote the output from the convolutional operation on the input tensor $\boldsymbol{a}^{(k-1)} \in \mathbb{R}^{d^{(k-1)}}$ as $\boldsymbol{z}^{(k)} \in \mathbb{R}^{d^{(k)}}$, i.e.,
 
 $$
 \label{eqn1}
