@@ -186,9 +186,3 @@ Results on [Keras Applications](https://keras.io/api/applications/):
 | [ResNet101](https://arxiv.org/abs/1512.03385)    | 171               | 0.764          | 0.928          | 44,707,176 | -     | 89.59                              | 5.19                               |
 | [InceptionV3](https://arxiv.org/abs/1512.00567)  | 92                | 0.779          | 0.937          | 23,851,784  | 159   | 42.25                              | 6.86                               |
 | [MobileNetV1](https://arxiv.org/abs/1704.04861)  | 16                | 0.704          | 0.895          | 4,253,864   | 88    | 22.60                              | 3.44                               |
-
-## Reading List
-
-- [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861): the original paper is not difficult to understand, but there may be several mistakes or typos.
-- [Review: MobileNetV1 — Depthwise Separable Convolution (Light Weight Model)](https://towardsdatascience.com/review-mobilenetv1-depthwise-separable-convolution-light-weight-model-a382df364b69): a review written by someone else, in which there is a nice illustration of depthwise separable convolution.
-- (For people who can read in Chinese) [轻量级神经网络“巡礼”（二）—— MobileNet，从V1到V3](https://zhuanlan.zhihu.com/p/70703846): a very comprehensive introduction to all three versions of MobileNets.
