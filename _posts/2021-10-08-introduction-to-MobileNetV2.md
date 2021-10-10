@@ -10,6 +10,7 @@ pageview: false
 aside:
     toc: true
 ---
+$\\{\mathcal{I}_i\\}_{i=1}^m$
 
 ## Introduction
 
