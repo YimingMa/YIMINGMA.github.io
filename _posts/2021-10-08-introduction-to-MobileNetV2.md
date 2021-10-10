@@ -13,11 +13,13 @@ aside:
 
 ## Introduction
 
-Researchers have found that depthwise kernels in [MobileNetV1](https://arxiv.org/abs/1704.04861) after training can become very sparse. This problem is caused by information loss after ReLU activation, so in [_MobileNetV2: Inverted Residuals and Linear Bottlenecks_](https://arxiv.org/abs/1801.04381), authors suggest that it is important to remove non-linearities in the narrow layers. A novel layer module – the **inverted residual block** has also been proposed, which takes a low-dimensional feature map as an input, and then it is expanded to be high-dimensional and subsequently filtered depthwise. At last, these filtered features are projected back to the low-dimensional space with a linear convolution, and then concatenated with the original input.
+Researchers have found that depthwise kernels in [MobileNetV1](https://arxiv.org/abs/1704.04861) after training can become very sparse. This problem is caused by information loss after ReLU activation, so in [_MobileNetV2: Inverted Residuals and Linear Bottlenecks_](https://arxiv.org/abs/1801.04381), authors suggest that it is important to remove nonlinearities in the narrow layers. A novel layer module – the **inverted residual block** has also been proposed, which takes a low-dimensional feature map as an input, and then it is expanded to be high-dimensional and subsequently filtered depthwise. At last, these filtered features are projected back to the low-dimensional space with a linear convolution, and then concatenated with the original input.
 
 ## Linear Bottlenecks
 
-Consider a deep neural network with $n$ layers $$\{L^{(k)}\}_{k=1}^n$$, each of which has an output tensor of dimensions $$h^{(k)} \times w^{(k)} \times d^{(k)}$$. We treat each of them as a container of $h^{(k)} \cdot w^{(k)}$  "pixels" with $d^{(k)}$ dimensions. For a specific layer $$L^{(k)}$$, we assume a non-linear transformation is taken after a convolutional operation. Namely, let $\boldsymbol{T}^{(k)} \in \mathbb{R}^{d^{(k)}\times d^{(k-1)}}$, and denote the output from the convolutional operation on the input tensor $\boldsymbol{a}^{(k-1)} \in \mathbb{R}^{d^{(k-1)}}$ as $\boldsymbol{z}^{(k)} \in \mathbb{R}^{d^{(k)}}$, i.e.,
+### Limitations of Nonlinear Transformations
+
+Consider a deep neural network with $n$ layers $$\{L^{(k)}\}_{k=1}^n$$, each of which has an output tensor of dimensions $$h^{(k)} \times w^{(k)} \times d^{(k)}$$. We treat each of them as a container of $h^{(k)} \cdot w^{(k)}$  "pixels" with $d^{(k)}$ dimensions. For a specific layer $$L^{(k)}$$, we assume a nonlinear transformation is taken after a convolutional operation. Namely, let $\boldsymbol{T}^{(k)} \in \mathbb{R}^{d^{(k)}\times d^{(k-1)}}$, and denote the output from the convolutional operation on the input tensor $\boldsymbol{a}^{(k-1)} \in \mathbb{R}^{d^{(k-1)}}$ as $\boldsymbol{z}^{(k)} \in \mathbb{R}^{d^{(k)}}$, i.e.,
 
 $$
 \label{eqn1}
@@ -33,7 +35,7 @@ $$
 
 For an input set of real images $$\{\mathcal{I}_i\}_{i=1}^m$$ and any layer $$L^{(k)}$$, we say that the set of layer activations $$\{\boldsymbol{z}^{(k)}_i\}_{i=1}^m$$ forms a **manifold of interest**. We usually assume the batch size $m$ is no greater than the output dimension $d^{(k)}$, so this manifold of interest can be *imbedded* into a subspace of $\mathbb{R}^{d^{(k)}}$, denoted as $\mathbb{R}^{l}$ with $l \le m$.
 
-At a first glance, such a fact could then be exploited to reduce the dimensionality of a layer, i.e. we can make $d_k = m$ in the ideal case to decrease the number of overall calculations. However, this intuition breaks down when we recall that deep convolutional neural networks actually non-linear per coordinate transformations such as ReLU. To be specific, if $d^{(k)}$ is too small, i.e. $d^{(k)} \approx m$, then a significant fraction of information carried by features $$\{\boldsymbol{a}^{(k-1)}_i\}_{i=1}^m$$ will be lost after such non-linear transformations. For illustration, assume these features $$\{\boldsymbol{a}^{(k-1)}_i\}_{i=1}^m \subset \mathbb{R}^{d^{(k-1)}}$$, which are the input of layer $L^{(k)}$, have a shape of spiral in $\mathbb{R}^2$. Use a random matrix $\boldsymbol{T}^{(k)} \in \mathbb{R}^{ d^{(k)} \times d^{(k-1)} }$ to denote the convolutional operation, so
+At a first glance, such a fact could then be exploited to reduce the dimensionality of a layer, i.e. we can make $d_k = m$ in the ideal case to decrease the number of overall calculations. However, this intuition breaks down when we recall that deep convolutional neural networks actually nonlinear per coordinate transformations such as ReLU. To be specific, if $d^{(k)}$ is too small, i.e. $d^{(k)} \approx m$, then a significant fraction of information carried by features $$\{\boldsymbol{a}^{(k-1)}_i\}_{i=1}^m$$ will be lost after such nonlinear transformations. For illustration, assume these features $$\{\boldsymbol{a}^{(k-1)}_i\}_{i=1}^m \subset \mathbb{R}^{d^{(k-1)}}$$, which are the input of layer $L^{(k)}$, have a shape of spiral in $\mathbb{R}^2$. Use a random matrix $\boldsymbol{T}^{(k)} \in \mathbb{R}^{ d^{(k)} \times d^{(k-1)} }$ to denote the convolutional operation, so
 
 $$
 \label{eqn3}
@@ -59,3 +61,8 @@ The images below illustrate how the amount of information varies with $d^{(k)}$ 
 </style>
 
 ![Effects of ReLU](/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/effects_of_relu.png)
+
+**Conclusion**: we should use nonlinear transformation in layer $L^{(k)}$ *only* when $d^{(k)}$ is large. In other words,
+
+- we can include an expansion layer to increase the number of channels;
+- or we don't use activations for layers with small output dimensions.
