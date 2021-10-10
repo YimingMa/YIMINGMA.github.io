@@ -44,7 +44,7 @@ We then try to transform each $\boldsymbol{a}^{(k)}_i$ back to $\boldsymbol{a}^{
 
 $$
 \label{eqn4}
-\hat{\boldsymbol{a}}^{(k-1)}_i := \boldsymbol{T}^{-1}\boldsymbol{a}^{(k)}_i = \boldsymbol{T}^{-1}\text{ReLU}(\boldsymbol{T}\boldsymbol{a}^{(k-1)}_i).
+\hat{\boldsymbol{a}}^{(k-1)}_i := \boldsymbol{T}^{-1}\boldsymbol{a}^{(k)}_i = \boldsymbol{T}^{-1}\text{ReLU}(\boldsymbol{T}^{(k)}\boldsymbol{a}^{(k-1)}_i).
 $$
 
 The image below illustrate how the amount of information varies with $d^{(k)}$, with $d^{(k)}$ set to be 2, 3, 5, 15 and 30.
