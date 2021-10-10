@@ -11,9 +11,9 @@ aside:
     toc: true
 ---
 
-1
+12
 
-$\{ \mathcal{I}_i \}_{i=1}^m$
+$$\{ \mathcal{I}_i \}_{i=1}^m$$
 
 ## Introduction
 
