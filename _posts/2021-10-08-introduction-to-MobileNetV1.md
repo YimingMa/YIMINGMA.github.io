@@ -169,11 +169,11 @@ The structure of MobileNetV1 is shown below.
 
 Results from the original paper [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861):
 
-| Model                                            | ImageNet Accuracy | Mult-Adds (M) | Parameters (M) |
-|--------------------------------------------------|-------------------|---------------|----------------|
-| [MobileNetV1](https://arxiv.org/abs/1704.04861) | $70.6\%$          | 569           | 4.2            |
-| [GoogLeNet](https://arxiv.org/abs/1409.4842)     | $69.8\%$          | 1550          | 6.8            |
-| [VGG16](https://arxiv.org/abs/1409.1556)        | $71.5\%$          | 15300         | 138            |
+| Model                                           | ImageNet Accuracy | Mult-Adds (M) | Parameters (M) |
+| ----------------------------------------------- | ----------------- | ------------- | -------------- |
+| [MobileNetV1](https://arxiv.org/abs/1704.04861) | 70.6%             | 569           | 4.2            |
+| [GoogLeNet](https://arxiv.org/abs/1409.4842)    | 69.8%             | 1550          | 6.8            |
+| [VGG16](https://arxiv.org/abs/1409.1556)        | 71.5%             | 15300         | 138            |
 
 Results on [Keras Applications](https://keras.io/api/applications/):
 
