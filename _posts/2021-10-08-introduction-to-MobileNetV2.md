@@ -26,7 +26,7 @@ window.MathJax = {
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
-$\\{\mathcal{I}_i\\}_{i=1}^m$
+$\{\mathcal{I}_i\}_{i=1}^m$
 
 ## Introduction
 
