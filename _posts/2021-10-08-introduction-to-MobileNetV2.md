@@ -11,7 +11,12 @@ aside:
     toc: true
 ---
 
-123
+1234
+
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+
 <script type="text/javascript">
 window.MathJax = {
   tex: {
@@ -21,10 +26,6 @@ window.MathJax = {
     load: ['ui/menu', '[tex]/ams']
   }
 };
-</script>
-
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
 
 $\{\mathcal{I}_i\}_{i=1}^m$
