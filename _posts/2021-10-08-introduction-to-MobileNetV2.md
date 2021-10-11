@@ -172,7 +172,52 @@ The expansion layer in the bottleneck is only utilized to facilitate nonlinear t
 - $s$: the **stride**.
 
 There are two types of bottleneck structures, because when $s=2$, the output height and weight will differ from those of the input, so they cannot be concatenated together.
-bottleneck_residual_block
+
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/two_types_of_bottlenecks.png" alt="Two Types of Bottlenecks" class="center1">
 
 ## Experiments
+
+### ImageNet Classification
+
+"CPU" in the table below is the running time in milliseconds for a single core of the Google Pixel 1 phone (using TF-Lite).
+
+| Network                                               | Top 1 Acc | Params   | Mult-Adds | CPU    |
+|-------------------------------------------------------|-----------|----------|-----------|--------|
+| [MobileNetV1](https://arxiv.org/abs/1704.04861)       | 70.6%     | 4.2M     | 575M      | 113 ms |
+| [ShuffleNet](https://arxiv.org/abs/1707.01083) (1.5)  | 71.5%     | **3.4M** | **292M**  | -      |
+| [ShuffleNet](https://arxiv.org/abs/1707.01083) (×2)   | 73.7%     | 5.4M     | 524M      | -      |
+| [NASNetMobile](https://arxiv.org/abs/1707.07012)      | 74.0%     | 5.3M     | 564M      | 183 ms |
+| [MobileNetV2](https://arxiv.org/abs/1801.04381)       | 72.0%     | **3.4M** | 300M      | 75 ms  |
+| [MobileNetV2](https://arxiv.org/abs/1801.04381) (1.4) | **74.7%** | 6.9M     | 585M      | 143 ms |
+
+Results on [Keras Applications](https://keras.io/api/applications/):
+
+| Model                                            | Size (MB)         | Top-1 Accuracy | Top-5 Accuracy | Parameters  | Depth | Time (ms) per inference step (CPU) | Time (ms) per inference step (GPU) |
+|--------------------------------------------------|-------------------|----------------|----------------|-------------|-------|------------------------------------|------------------------------------|
+| [Xception](https://arxiv.org/abs/1610.02357)     | 88                | 0.790          | 0.945          | 22,910,480  | 126   | 109.42                             | 8.06                               |
+| [VGG16](https://arxiv.org/abs/1409.1556)         | 528               | 0.713          | 0.901          | 138,357,544 | 23    | 69.50                              | 4.16                               |
+| [VGG19](https://arxiv.org/abs/1409.1556)         | 549               | 0.713          | 0.900          | 143,667,240 | 26    | 84.75                              | 4.38                               |
+| [ResNet50](https://arxiv.org/abs/1512.03385)     | 98                | 0.749          | 0.921          | 25,636,712  | -     | 58.20                              | 4.55                               |
+| [ResNet101](https://arxiv.org/abs/1512.03385)    | 171               | 0.764          | 0.928          | 44,707,176  | -     | 89.59                              | 5.19                               |
+| [InceptionV3](https://arxiv.org/abs/1512.00567)  | 92                | 0.779          | 0.937          | 23,851,784  | 159   | 42.25                              | 6.86                               |
+| [MobileNetV1](https://arxiv.org/abs/1704.04861)  | 16                | 0.704          | 0.895          | 4,253,864   | 88    | 22.60                              | 3.44                               |
+| [MobileNetV2](https://arxiv.org/abs/1801.04381)  | 14                | 0.713          | 0.901          | 3,538,984   | 88    | 25.90                              | 3.83                               |
+| [NASNetMobile](https://arxiv.org/abs/1707.07012) | 23                | 0.744          | 0.919          | 5,326,716   | -     | 27.04                              | 6.70                               |
+
+- The top-1 and top-5 accuracy refers to the model's performance on the ImageNet validation dataset.
+- Depth refers to the topological depth of the network. This includes activation layers, batch normalization layers etc.
+- Time per inference step is the average of 30 batchs and 10 repetitions.
+  - CPU: AMD EPYC Processor (with IBPB) (92 core)
+  - Ram: 1.7T
+  - GPU: Tesla A100
+  - Batch size: 32
+
+### Ablation Study
+
+#### Impact of Nonlinearity in the Bottleneck Layer
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/ablation_study_1.png" alt="Impact of Nonlinearity in the Bottleneck Layer" class="center3">
+
+#### Impact of Shortcuts in Inverted Residual Blocks
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/ablation_study_2.png" alt="Impact of Variations in Residual Blocks" class="center3">

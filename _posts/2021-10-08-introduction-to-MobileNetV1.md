@@ -186,3 +186,11 @@ Results on [Keras Applications](https://keras.io/api/applications/):
 | [ResNet101](https://arxiv.org/abs/1512.03385)    | 171               | 0.764          | 0.928          | 44,707,176 | -     | 89.59                              | 5.19                               |
 | [InceptionV3](https://arxiv.org/abs/1512.00567)  | 92                | 0.779          | 0.937          | 23,851,784  | 159   | 42.25                              | 6.86                               |
 | [MobileNetV1](https://arxiv.org/abs/1704.04861)  | 16                | 0.704          | 0.895          | 4,253,864   | 88    | 22.60                              | 3.44                               |
+
+- The top-1 and top-5 accuracy refers to the model's performance on the ImageNet validation dataset.
+- Depth refers to the topological depth of the network. This includes activation layers, batch normalization layers etc.
+- Time per inference step is the average of 30 batchs and 10 repetitions.
+  - CPU: AMD EPYC Processor (with IBPB) (92 core)
+  - Ram: 1.7T
+  - GPU: Tesla A100
+  - Batch size: 32
