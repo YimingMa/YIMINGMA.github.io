@@ -141,5 +141,29 @@ The expansion layer in the bottleneck is only utilized to facilitate nonlinear t
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_residual_block.png" alt="Inverted Residual Block" class="center1">
 
-## The Structure of MobileNetV2
+## The Architecture of MobileNetV2
 
+| Input                   | Operator      | $t$ | $c$      | $n$ | $s$ |
+|-------------------------|---------------|-----|----------|-----|-----|
+| 224×224×3               | conv2d        | -   | 32       | 1   | 2   |
+| 112×112×32              | bottleneck    | 1   | 16       | 1   | 1   |
+| 112×112×16              | bottleneck    | 6   | 24       | 2   | 2   |
+| 56×56×24                | bottleneck    | 6   | 32       | 3   | 2   |
+| 28×28×32                | bottleneck    | 6   | 64       | 4   | 2   |
+| 14×14×64                | bottleneck    | 6   | 96       | 3   | 1   |
+| 14×14×96                | bottleneck    | 6   | 160      | 3   | 2   |
+| 7×7×160                 | bottleneck    | 6   | 320      | 1   | 1   |
+| 7×7×320                 | conv2d 1×1    | -   | 1280     | 1   | 1   |
+| 7×7×1280                | avgpool 7×7   | -   | -        | 1   | -   |
+| 1×1×1280                | conv2d 1×1    | -   | k        | -   | -   |
+
+- $t$: the **expansion rate** in the bottleneck;
+- $c$: the **number of output channels**;
+- $n$: the **number of repetitions**;
+- $s$: the **stride**.
+
+There are two types of bottleneck structures, because when $s=2$, the output height and weight will differ from those of the input, so they cannot be concatenated together.
+bottleneck_residual_block
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/two_types_of_bottlenecks.png" alt="Two Types of Bottlenecks" class="center1">
+
+## Experiments
