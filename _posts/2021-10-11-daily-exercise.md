@@ -65,4 +65,14 @@ $$
 and, recursively
 
 $$
-\
+\begin{align*}
+M_2 = & \frac{1}{p} + \frac{1}{p^2}, \\
+M_3 = & \frac{1}{p} + \frac{1}{p^2} + \frac{1}{p^3}
+\end{align*}
+$$
+
+and, in general,
+
+$$
+M_k = \sum_{i=1}^k \frac{1}{p^i}.
+$$
