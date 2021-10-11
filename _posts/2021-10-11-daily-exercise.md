@@ -1,6 +1,6 @@
 ---
 key: 2021_10_11_02
-title: $\textbf{[Daily Exercise]}$ Computing Expectations by Conditioning
+title: Computing Expectations by Conditioning
 tags: ["Probability", "Daily Exercise"]
 mathjax: true
 mathjax_autoNumber: true
