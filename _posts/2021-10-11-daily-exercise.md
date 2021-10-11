@@ -12,7 +12,7 @@ aside:
 ---
 
 
-**Theory**: let $X$ and $Y$ be two random variables; then $$\mathbb{E} [X | Y]$$ is a function of $Y$, whose value at $Y = y$ is $$\mathbb{E} [X | Y = y]$$. Note that $$\mathbb{E} [X | Y]$$ itself is also a random variable, and the following equation holds:
+**Theorem**: let $X$ and $Y$ be two random variables; then $$\mathbb{E} [X | Y]$$ is a function of $Y$, whose value at $Y = y$ is $$\mathbb{E} [X | Y = y]$$. Note that $$\mathbb{E} [X | Y]$$ itself is also a random variable, and the following equation holds:
 
 $$
 \mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X | Y] \right]. \notag
