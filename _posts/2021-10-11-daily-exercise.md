@@ -1,7 +1,7 @@
 ---
 key: 2021_10_11_02
-title: ":clipboard: Computing Expectations by Conditioning"
-tags: ["Probability", "Daily Exercise"]
+title: "[Daily Exercise] Computing Expectations by Conditioning"
+tags: ["Probability", "Exercises"]
 mathjax: true
 mathjax_autoNumber: true
 author: Yiming
