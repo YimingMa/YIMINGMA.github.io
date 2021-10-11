@@ -41,7 +41,7 @@ $$
 \mathbb{E}[A_{k-1, \, k}] = & \mathbb{E} \left[ \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1}]  \right] \notag \\
 = & \mathbb{P} \left\{ X_{N_{k-1} + 1} = 1 \right\} \cdot \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1} = 1] + \mathbb{P} \left\{ X_{N_{k-1} + 1} = 0 \right\} \cdot \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1} = 0] \notag \\
 = & \frac{1}{2} \cdot 1 + \frac{1}{2} \cdot \left( 1 + \mathbb{E}[M_k] \right) \notag \\
-= & 1 + (1-p) M_k \label{eqn3}
+= & 1 + (1-p) M_k. \label{eqn3}
 \end{align}
 $$
 
