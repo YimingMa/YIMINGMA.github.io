@@ -1,6 +1,6 @@
 ---
 key: 2021_10_11_02
-title: \\\[Daily Exercise\\\] Computing Expectations by Conditioning
+title: $\text{[Daily Exercise]}$ Computing Expectations by Conditioning
 tags: ["Probability", "Daily Exercise"]
 mathjax: true
 mathjax_autoNumber: true
@@ -51,3 +51,18 @@ $$
 
 or
 
+$$
+\label{eqn4}
+M_k = \frac{1}{p} + \frac{M_{k-1}}{p}.
+$$
+
+Since $N_1$, which is the time of the first success, follows a geometric distribution with parameter $p$, we see that
+
+$$
+M_1 = \frac{1}{p} \notag
+$$
+
+and, recursively
+
+$$
+\
