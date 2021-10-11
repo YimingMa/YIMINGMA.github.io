@@ -12,11 +12,47 @@ aside:
 ---
 
 <style>
-.center {
+.center1 {
   display: block;
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+}
+</style>
+
+<style>
+.center2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+</style>
+
+<style>
+.center3 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+</style>
+
+<style>
+.center4 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
+
+<style>
+.center5 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }
 </style>
 
@@ -71,8 +107,12 @@ The images below illustrate how the amount of information loss varies with $d^{(
 
 #### Standard Convolution
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/standard_convolution.png" alt="Standard Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/standard_convolution.png" alt="Standard Convolution" class="center1">
 
 #### Depthwise Separable Convolution
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution.png" alt="Depthwise Separable Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution.png" alt="Depthwise Separable Convolution" class="center2">
+
+#### Depthwise Separable Convolution with Linear Bottleneck
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution_with_linear_bottleneck.png" alt="Depthwise Separable Convolution with Linear Bottleneck" class="center3">
