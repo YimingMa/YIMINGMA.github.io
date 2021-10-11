@@ -72,3 +72,7 @@ The images below illustrate how the amount of information loss varies with $d^{(
 #### Standard Convolution
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/standard_convolution.png" alt="Standard Convolution" class="center">
+
+#### Depthwise Separable Convolution
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution.png" alt="Depthwise Separable Convolution" class="center">
