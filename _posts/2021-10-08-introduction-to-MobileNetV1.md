@@ -51,7 +51,7 @@ $$
 }
 </style>
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="Filters Standard Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="Filters of Standard Convolution" class="center">
 
 ### Depthwise Separable Convolution
 
