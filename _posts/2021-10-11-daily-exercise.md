@@ -32,7 +32,7 @@ $$
 N_k = N_{k-1} + A_{k-1, \, k},
 $$
 
-where $N_{k-1}$ is the number of trials needed for $k-1$ consecutive successes, and $A_{k-1, \, k}$ is the number of additional trials needed to go from having $k-1$ successes in a rwo to having $k$ in a row. Taking expectations gives that,
+where $N_{k-1}$ is the number of trials needed for $k-1$ consecutive successes, and $A_{k-1, \, k}$ is the number of additional trials needed to go from having $k-1$ successes in a row to having $k$ in a row. Taking expectations gives that,
 
 $$
 \label{eqn2}
