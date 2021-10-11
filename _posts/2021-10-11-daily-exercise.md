@@ -1,6 +1,6 @@
 ---
 key: 2021_10_11_02
-title: \[Daily Exercise\] Computing Expectations by Conditioning
+title: [Daily Exercise] Computing Expectations by Conditioning
 tags: ["Probability", "Daily Exercise"]
 mathjax: true
 mathjax_autoNumber: true
@@ -35,10 +35,10 @@ $$
 Let $X_{N_{k-1} + 1}$ be the trial after there have been $k-1$ successes in a row. If it is a success ($X_{N_{k-1} + 1}=1$), then that gives $k$ in a row and no additional trials after that are needed; if it is a failure ($X_{N_{k-1} + 1}=0$), then at that point we are starting all over again, so the expected additional number from then on would be $$\mathbb{E}[N_k]$$. Thus,
 
 $$
-\begin{align*}
-\mathbb{E}[A_{k-1, \, k}] = & \mathbb{E} \left[ \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1}]  \right] \\
-= & \mathbb{P} \left\{ X_{N_{k-1} + 1} = 1 \right\} \cdot \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1} = 1] + \mathbb{P} \left\{ X_{N_{k-1} + 1} = 0 \right\} \cdot \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1} = 0] \\
-= & \frac{1}{2} \cdot 1 + \frac{1}{2} \left( 1 + \mathbb{E}[M_k] \right) \\
-= & 1 + (1-p) M_k
-\end{align*}
+\begin{align}
+\mathbb{E}[A_{k-1, \, k}] = & \mathbb{E} \left[ \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1}]  \right] \notag \\
+= & \mathbb{P} \left\{ X_{N_{k-1} + 1} = 1 \right\} \cdot \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1} = 1] + \mathbb{P} \left\{ X_{N_{k-1} + 1} = 0 \right\} \cdot \mathbb{E}[A_{k-1, \, k} | X_{N_{k-1} + 1} = 0] \notag \\
+= & \frac{1}{2} \cdot 1 + \frac{1}{2} \left( 1 + \mathbb{E}[M_k] \right) \notag \\
+= & 1 + (1-p) M_k \label{eqn3}
+\end{align}
 $$
