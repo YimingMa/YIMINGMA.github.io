@@ -1,6 +1,6 @@
 ---
 key: 2021_10_11_02
-title: :clipboard: Computing Expectations by Conditioning
+title: \:clipboard\: Computing Expectations by Conditioning
 tags: ["Probability", "Daily Exercise"]
 mathjax: true
 mathjax_autoNumber: true
