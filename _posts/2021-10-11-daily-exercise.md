@@ -1,6 +1,6 @@
 ---
 key: 2021_10_11_02
-title: [Daily Exercise] Computing Expectations by Conditioning
+title: \\[Daily Exercise\\] Computing Expectations by Conditioning
 tags: ["Probability", "Daily Exercise"]
 mathjax: true
 mathjax_autoNumber: true
@@ -42,3 +42,12 @@ $$
 = & 1 + (1-p) M_k \label{eqn3}
 \end{align}
 $$
+
+Using $\eqref{eqn3}$ in $\eqref{eqn2}$ gives
+
+$$
+M_k = M_{k-1} + 1 + (1 - p) M_k \notag,
+$$
+
+or
+
