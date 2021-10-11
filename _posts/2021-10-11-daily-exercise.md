@@ -1,6 +1,6 @@
 ---
 key: 2021_10_11_02
-title: \:clipboard\: Computing Expectations by Conditioning
+title: Computing Expectations by Conditioning
 tags: ["Probability", "Daily Exercise"]
 mathjax: true
 mathjax_autoNumber: true
@@ -11,12 +11,11 @@ aside:
     toc: true
 ---
 
-
 ## $$\mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X | Y] \right]$$
 
 ### Theorem
 
-Let $$X$$ and $$Y$$ be two random variables; then $$\mathbb{E} [X | Y]$$ is a function of $$Y$$, whose value at $$Y = y$$ is $$\mathbb{E} [X | Y = y]$$. Note that $$\mathbb{E} [X | Y]$$ itself is also a random variable, and the following equation holds:
+Let $$X$$ and $$Y$$ be two random variables. Then $$\mathbb{E} [X | Y]$$ is a function of $$Y$$, whose value at $$Y = y$$ is $$\mathbb{E} [X | Y = y]$$. Note that $$\mathbb{E} [X | Y]$$ itself is also a random variable, and the following equation holds:
 
 $$
 \mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X | Y] \right]. \notag
