@@ -11,15 +11,17 @@ aside:
     toc: true
 ---
 
-## $$\mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X | Y] \right]$$
+## Theorem $$\mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X | Y] \right]$$
 
-**Theorem**: let $X$ and $Y$ be two random variables; then $$\mathbb{E} [X | Y]$$ is a function of $Y$, whose value at $Y = y$ is $$\mathbb{E} [X | Y = y]$$. Note that $$\mathbb{E} [X | Y]$$ itself is also a random variable, and the following equation holds:
+Let $X$ and $Y$ be two random variables; then $$\mathbb{E} [X | Y]$$ is a function of $Y$, whose value at $Y = y$ is $$\mathbb{E} [X | Y = y]$$. Note that $$\mathbb{E} [X | Y]$$ itself is also a random variable, and the following equation holds:
 
 $$
 \mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X | Y] \right]. \notag
 $$
 
-**Exercise**: Independent trials, each of which is a success with probability $p$, are performed until there are $k$ consecutive successes. What is the mean number of necessary trials? (From p.116 of *Introduction to Probability Models* by Sheldon M. Ross, published by Elsevier in 2019.)
+### Exercise
+
+Independent trials, each of which is a success with probability $p$, are performed until there are $k$ consecutive successes. What is the mean number of necessary trials? (From p.116 of *Introduction to Probability Models* by Sheldon M. Ross, published by Elsevier in 2019.)
 **Solution**: Let $N_k$ denote the number of necessary trials to obtain $k$ consecutive successes, and let $$M_k := \mathbb{E}[N_k]$$. We will determine $M_k$ by deriving and then solving a recursive equation that it satisfies. To begin, write
 
 $$
