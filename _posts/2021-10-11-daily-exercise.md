@@ -81,5 +81,5 @@ $$
 and, in general,
 
 $$
-M_k = \sum_{i=1}^k \frac{1}{p^i}.
+M_k = \sum_{i=1}^k \frac{1}{p^i}. \notag
 $$
