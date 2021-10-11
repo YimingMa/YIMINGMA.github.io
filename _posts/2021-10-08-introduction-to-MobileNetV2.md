@@ -12,6 +12,15 @@ aside:
 ---
 
 <style>
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+</style>
+
+<style>
 .center1 {
   display: block;
   margin-left: auto;
@@ -139,7 +148,7 @@ The expansion layer in the bottleneck is only utilized to facilitate nonlinear t
 - The number of channels in residual blocks ([*Deep Residual Learning for Image Recognition*](https://arxiv.org/abs/1512.03385) & [*Aggregated Residual Transformations for Deep Neural Networks*](https://arxiv.org/abs/1611.05431)) drops first and then increases, while the inverted residual block demonstrates a contrary pattern. This is why "inverted" comes from.
 - Features output from each convolutional layer are also batch-normalized.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_residual_block.png" alt="Inverted Residual Block" class="center1">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_residual_block.png" alt="Inverted Residual Block" class="center">
 
 ## The Architecture of MobileNetV2
 
