@@ -15,10 +15,10 @@ aside:
 
 ### Theorem
 
-Let $$X$$ and $$Y$$ be two random variables. Then $$\mathbb{E} [X \vert Y]$$ is a function of $$Y$$, whose value at $$Y = y$$ is $$\mathbb{E} [X | Y = y]$$. Note that $$\mathbb{E} [X | Y]$$ itself is also a random variable, and the following equation holds:
+Let $$X$$ and $$Y$$ be two random variables. Then $$\mathbb{E} [X \vert Y]$$ is a function of $$Y$$, whose value at $$Y = y$$ is $$\mathbb{E} [X \vert Y = y]$$. Note that $$\mathbb{E} [X \vert Y]$$ itself is also a random variable, and the following equation holds:
 
 $$
-\mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X | Y] \right]. \notag
+\mathbb{E} [X] = \mathbb{E} \left[ \mathbb{E} [X \vert Y] \right]. \notag
 $$
 
 ### Exercise
