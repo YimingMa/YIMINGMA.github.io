@@ -81,5 +81,8 @@ $$
 and, in general,
 
 $$
-M_k = \sum_{i=1}^k \frac{1}{p^i}. \notag
+\label{eqn5}
+M_k = \sum_{i=1}^k \frac{1}{p^i}.
 $$
+
+One can use induction to show $\eqref{eqn5}$ is the solution to $\eqref{eqn4}$.
