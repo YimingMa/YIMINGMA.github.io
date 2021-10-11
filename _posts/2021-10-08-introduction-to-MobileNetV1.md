@@ -134,7 +134,7 @@ alt="Depthwise Convolution" class="center">
 
 ## Architecture of MobileNetV1
 
-Except that the first layer is a standard convolution, all other convolutions in MobileNetV1 are depthwise seperable. Batch normalization and ReLU activation are also used after each convolution.
+Except that the first layer is a standard convolution, all other convolutions in MobileNetV1 are depthwise separable. Batch normalization and ReLU activation are also used after each convolution.
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png"
 alt="Depthwise Convolution" class="center">

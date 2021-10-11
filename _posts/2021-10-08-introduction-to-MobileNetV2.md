@@ -121,6 +121,14 @@ The images below illustrate how the amount of information loss varies with $d^{(
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_with_expansion_layer.png" alt="Bottleneck with Expansion Layer" class="center3">
 
+Let $t$ be the **expansion rate**, which indicates by how many times the number of input channels will increase in the expansion layer. Then the structure of a bottleneck with an expansion layer can be summarized in the following table.
+
+| Input                     | Operator               | Output                                       |
+|---------------------------|------------------------|----------------------------------------------|
+| $h \times w \times k$     | 1×1 conv2d, ReLu6      | $h \times w \times (tk)$                     |
+| $h \times w \times (tk)$  | 3×3 dwise s=$s$, ReLU6 | $\frac{h}{s} \times \frac{w}{s} \times (tk)$ |
+| $\frac{h}{s} \times \frac{w}{s} \times (tk)$ | 1×1 conv2d | $\frac{h}{s} \times \frac{w}{s} \times k'$ |
+
 ### The Structure of Inverted Residual Blocks
 
 The expansion layer in the bottleneck is only utilized to facilitate nonlinear transformation. To preserve information and make backpropagation easier, shortcuts can be added between bottlenecks.
@@ -132,3 +140,6 @@ The expansion layer in the bottleneck is only utilized to facilitate nonlinear t
 - Features output from each convolutional layer are also batch-normalized.
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_residual_block.png" alt="Inverted Residual Block" class="center1">
+
+## The Structure of MobileNetV2
+
