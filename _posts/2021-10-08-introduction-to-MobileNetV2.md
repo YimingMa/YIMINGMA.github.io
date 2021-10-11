@@ -60,7 +60,7 @@ aside:
 
 Researchers have found that depthwise kernels in [MobileNetV1](https://arxiv.org/abs/1704.04861) after training can become very sparse. This problem is caused by information loss after ReLU activation, so in [_MobileNetV2: Inverted Residuals and Linear Bottlenecks_](https://arxiv.org/abs/1801.04381), authors suggest that it is important to remove nonlinearity in the narrow layers. A novel layer module – the **inverted residual block** has also been proposed, which takes a low-dimensional feature map as an input, and then it is expanded to be high-dimensional and subsequently filtered depthwise. At last, these filtered features are projected back to the low-dimensional space with a linear convolution, and then concatenated with the original input.
 
-## Linear Bottlenecks
+## Inverted Residual Blocks
 
 ### Limitations of Nonlinear Transformations
 
@@ -120,3 +120,15 @@ The images below illustrate how the amount of information loss varies with $d^{(
 #### Bottleneck with Expansion Layer
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_with_expansion_layer.png" alt="Bottleneck with Expansion Layer" class="center3">
+
+### The Structure of Inverted Residual Blocks
+
+The expansion layer in the bottleneck is only utilized to facilitate nonlinear transformation. To preserve information and make backpropagation easier, shortcuts can be added between bottlenecks.
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/inverted_residual_block.png" alt="Inverted Residual Block" class="center4">
+
+- `ReLU6` is exploited as the nonlinearity due to its robustness in low-precision computation ([*MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications*](https://arxiv.org/abs/1704.04861)).
+- The number of channels in residual blocks ([*Deep Residual Learning for Image Recognition*](https://arxiv.org/abs/1512.03385) & [*Aggregated Residual Transformations for Deep Neural Networks*](https://arxiv.org/abs/1611.05431)) drops first and then increases, while the inverted residual block demonstrates a contrary pattern. This is why "inverted" comes from.
+- Features output from each convolutional layer are also batch-normalized.
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_residual_block.png" alt="Inverted Residual Block" class="center1">
