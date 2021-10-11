@@ -116,3 +116,7 @@ The images below illustrate how the amount of information loss varies with $d^{(
 #### Depthwise Separable Convolution with Linear Bottleneck
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution_with_linear_bottleneck.png" alt="Depthwise Separable Convolution with Linear Bottleneck" class="center3">
+
+#### Bottleneck with Expansion Layer
+
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_with_expansion_layer.png" alt="Bottleneck with Expansion Layer" class="center3">
