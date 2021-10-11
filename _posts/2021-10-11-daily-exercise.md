@@ -48,7 +48,7 @@ $$
 Using $\eqref{eqn3}$ in $\eqref{eqn2}$ gives
 
 $$
-M_k = M_{k-1} + 1 + (1 - p) M_k \notag,
+M_k = M_{k-1} + 1 + (1 - p) M_k, \notag
 $$
 
 or
@@ -61,7 +61,7 @@ $$
 Since $N_1$, which is the time of the first success, follows a geometric distribution with parameter $p$, we see that
 
 $$
-M_1 = \frac{1}{p} \notag
+M_1 = \frac{1}{p}, \notag
 $$
 
 and, recursively
@@ -69,7 +69,7 @@ and, recursively
 $$
 \begin{align*}
 M_2 = & \frac{1}{p} + \frac{1}{p^2}, \\
-M_3 = & \frac{1}{p} + \frac{1}{p^2} + \frac{1}{p^3}
+M_3 = & \frac{1}{p} + \frac{1}{p^2} + \frac{1}{p^3},
 \end{align*}
 $$
 
