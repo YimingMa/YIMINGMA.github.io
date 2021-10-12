@@ -39,7 +39,7 @@ $$
 M_k = M_{k-1} + \mathbb{E} [A_{k-1, \, k}].
 $$
 
-Let $X_{N_{k-1} + 1}$ be the trial after there have been $k-1$ successes in a row. If it is a success ($X_{N_{k-1} + 1}=1$), then that gives $k$ in a row and no additional trials after that are needed; if it is a failure ($X_{N_{k-1} + 1}=0$), then at that point we are starting all over again, so the expected additional number from then on would be $$\mathbb{E}[N_k]$$. Thus,
+Let $X_{N_{k-1} + 1}$ be the $N_{k-1} + 1$-st trial. If it is a success ($X_{N_{k-1} + 1}=1$), then that gives $k$ in a row and no additional trials after that are needed; if it is a failure ($X_{N_{k-1} + 1}=0$), then at that point we are starting all over again, so the expected additional number from then on would be $$\mathbb{E}[N_k]$$. Thus,
 
 $$
 \begin{align}
