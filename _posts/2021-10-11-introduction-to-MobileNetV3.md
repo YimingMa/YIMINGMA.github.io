@@ -75,8 +75,6 @@ MobileNetV3, proposed in [*Searching for MobileNetV3*](https://openaccess.thecvf
 
 ## Hard Swish
 
-### Swish
-
 A nonlinear activation called **swish** was introduced in [*Sigmoid-Weighted Linear Units for Neural Network Function Approximation in Reinforcement Learning*](https://arxiv.org/abs/1702.03118), [*Bridging Nonlinearities and Stochastic Regularizers with Gaussian Error Linear Units*](https://openreview.net/forum?id=Bk0MRI5lg) and [*Searching for Activation Functions*](https://arxiv.org/abs/1710.05941) to replace ReLU, and the accuracy of the resulted neural network can be significantly improved. Swish is defined as
 
 $$
