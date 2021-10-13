@@ -72,3 +72,7 @@ MobileNetV3, proposed in [*Searching for MobileNetV3*](https://openaccess.thecvf
 ## Inverted Residual Blocks with Squeeze-and-Excitation
 
 <img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/inverted_residual_block_with_se.png" alt="Standard Convolution" class="center6">
+
+## Hard Swish
+
+ 
