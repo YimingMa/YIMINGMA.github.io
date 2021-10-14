@@ -231,3 +231,36 @@ MobileNetV3 has a large version and a small version, which are targeted at high 
 
 ## Experiments
 
+### ImageNet Classification
+
+| Network                                      | Top-1     | Mult-Adds (M) | Params (M) | P-1 (ms) | P-2 (ms) | P-3 (ms) |
+|----------------------------------------------|-----------|---------------|------------|----------|----------|----------|
+| V3-Large 1.0                                 | **75.2%** | 219           | 5.4        | 51       | 61       | 44       |
+| V3-Large 0.75                                | 73.3%     | 155           | 4.0        | 39       | 46       | 40       |
+| MnasNet-A1                                   | **75.2%** | 315           | 3.9        | 71       | 86       | 61       |
+| [Proxyless](https://arxiv.org/abs/1812.00332)| 74.6%     | 320           | 4.0        | 72       | 84       | 60       |
+| V2 1.0                                       | 72.0%     | 300           | 3.4        | 64       | 76       | 56       |
+| V3-Small 1.0                                 | 67.4%     | 66            | 2.9        | 15.8     | 19.4     | 14.4     |
+| V3-Small 0.75                                | 65.4%     | 44            | 2.4        | 12.8     | 15.6     | 11.7     |
+| Mnas-small                                   | 64.9%     | 65.1          | 1.9        | 20.3     | 24.2     | 17.2     |
+| V2 0.35                                      | 60.8%     | 59.2          | 1.6        | 16.6     | 19.6     | 13.9     |
+
+- P-$n$: a Pixel-$n$ phone;
+- all latencies are measures using a single large core with a batch size of 1.
+
+The trade-off between the number of mult-adds and top-1 accuracy is shown below. This allows to compare models that were targeted different hardware or software frameworks. All MobileNetV3s are for input resolution 224 and use multipliers 0.35, 0.5, 0.75, 1 and 1.25.
+
+<img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/model_comparison.png" alt="Standard Convolution" class="center4">
+
+#### MobileNetV2 vs. MobileNetV3
+
+| Network      | Top-1 | P-1  | P-2  | P-3  |
+|--------------|-------|------|------|------|
+| V3-Large 1.0 | 73.8% | 44   | 42.5 | 31.7 |
+| V2 1.0       | 70.9% | 52   | 48.3 | 37.0 |
+| V3-Small     | 64.9% | 15.5 | 14.9 | 10.7 |
+| V2 0.35      | 57.2% | 16.7 | 15.6 | 11.9 |
+
+The figure below shows the MobileNetV3 performance trade-offs as a function of multiplier and resolution. Note how MobileNetV3-Small outperforms the MobileNetV3- Large with multiplier scaled to match the performance by nearly 3%. On the other hand, resolution provides an even better trade-offs than multiplier. However, it should be noted that resolution is often determined by the problem (e.g. segmentation and detection problem generally require higher resolution), and thus can’t always be used as a tunable parameter. In this experiment, multipliers are set to be 0.35, 0.5, 0.75, 1.0 and 1.25, with a fixed resolution of 224, and resolutions 96, 128, 160, 192, 224 and 256 with a fixed depth multiplier of 1.0
+
+<img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/v2_vs_v3.png" alt="Standard Convolution" class="center4">
