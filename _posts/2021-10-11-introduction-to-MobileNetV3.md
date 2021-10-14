@@ -102,7 +102,7 @@ $$
 ### Other Findings
 
 - The cost of applying nonlinearity decreases as it goes deeper into the network, since each layer activation memory typically halves every time the resolution drops.
-- Most of the benefits of $$\text{swish}$$ are realized by using them only{:.warning} in the deeper layers. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
+- Most of the benefits of $$\text{swish}$$ are realized by using them `only`{:.warning} in the deeper layers. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
 
 ## The Architecture of MobileNetV3
 
