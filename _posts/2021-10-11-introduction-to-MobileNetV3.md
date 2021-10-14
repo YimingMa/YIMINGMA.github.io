@@ -202,3 +202,32 @@ MobileNetV3 has a large version and a small version, which are targeted at high 
 - $s$: stride.
 
 ### MobileNetV3-Small
+
+| Input                   | Operator         | Expansion Size | Num. of Output Channels | SE                 | NL | $s$ |
+|-------------------------|------------------|----------------|-------------------------|--------------------|----|-----|
+| 224×224×3               | conv2d, 3x3      | -              | 16                      | -                  | HS | 2   |
+| 112×112×16              | bneck, 3x3       | 16             | 16                      | :heavy_check_mark: | RE | 2   |
+| 56×56×16                | bneck, 3×3       | 72             | 24                      | :x:                | RE | 2   |
+| 28x28x24                | bneck, 3x3       | 88             | 24                      | :x:                | RE | 1   |
+| 28x28x24                | bneck, 5x5       | 96             | 40                      | :heavy_check_mark: | HS | 2   |
+| 14x14x40                | bneck, 5x5       | 240            | 40                      | :heavy_check_mark: | HS | 1   |
+| 14x14x40                | bneck, 5x5       | 240            | 40                      | :heavy_check_mark: | HS | 1   |
+| 14x14x40                | bneck, 5x5       | 120            | 48                      | :heavy_check_mark: | HS | 1   |
+| 14x14x48                | bneck, 5x5       | 144            | 48                      | :heavy_check_mark: | HS | 1   |
+| 14x14x48                | bneck, 5x5       | 288            | 96                      | :heavy_check_mark: | HS | 2   |
+| 7x7x96                  | bneck, 5x5       | 576            | 96                      | :heavy_check_mark: | HS | 1   |
+| 7x7x96                  | bneck, 5x5       | 576            | 96                      | :heavy_check_mark: | HS | 1   |
+| 7x7x96                  | conv2d, 1x1      | -              | 576                     | :heavy_check_mark: | HS | 1   |
+| 7x7x576                 | pool, 7x7        | -              | -                       | -                  | -  | 1   |
+| 1x1x576                 | conv2d, 1x1, NBN | -              | 1280                    | -                  | HS | 1   |
+| 1x1x1280                | conv2d, 1x1, NBN | -              | k                       | -                  | -  | 1   |
+
+- SE: whether there is a squeeze-and-excitation in that block;
+- NL: the type of activation used;
+- HS: $$\text{h-swish}$$;
+- RE: $$\text{ReLU}$$;
+- NBN: no batch normalization;
+- $s$: stride.
+
+## Experiments
+
