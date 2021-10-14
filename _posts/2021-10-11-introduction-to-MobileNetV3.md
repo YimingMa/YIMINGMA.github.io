@@ -82,7 +82,7 @@ $$
 \text{swish}(x) := x \cdot \sigma(x) = \frac{x}{1 + e^{-x}}.
 $$
 
-Since $\eqref{eqn1}$ involves a sigmoid function, computation is much `expensive`{:.warning} on mobile devices. Thus, authors of MobileNetV3 proposed **h-swish** by approximating sigmoid with its piecewise linear hard analog $$\frac{\text{ReLU6}(x+3)}{6}$$, which means
+Since $\eqref{eqn1}$ involves a sigmoid function, computation is much expensive on mobile devices. Thus, authors of MobileNetV3 proposed **h-swish** by approximating sigmoid with its piecewise linear hard analog $$\frac{\text{ReLU6}(x+3)}{6}$$, which means
 
 $$
 \label{eqn2}
