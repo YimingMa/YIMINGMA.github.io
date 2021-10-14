@@ -75,7 +75,7 @@ MobileNetV3, proposed in [*Searching for MobileNetV3*](https://openaccess.thecvf
 
 ## Hard Swish
 
-A nonlinear activation called **swish** was introduced in [*Sigmoid-Weighted Linear Units for Neural Network Function Approximation in Reinforcement Learning*](https://arxiv.org/abs/1702.03118), [*Bridging Nonlinearities and Stochastic Regularizers with Gaussian Error Linear Units*](https://openreview.net/forum?id=Bk0MRI5lg) and [*Searching for Activation Functions*](https://arxiv.org/abs/1710.05941) to replace $$\text{ReLU}$$, and the accuracy of the resulted neural network can be significantly <u>improved</u>. Swish is defined as
+A nonlinear activation called **swish** was introduced in [*Sigmoid-Weighted Linear Units for Neural Network Function Approximation in Reinforcement Learning*](https://arxiv.org/abs/1702.03118), [*Bridging Nonlinearities and Stochastic Regularizers with Gaussian Error Linear Units*](https://openreview.net/forum?id=Bk0MRI5lg) and [*Searching for Activation Functions*](https://arxiv.org/abs/1710.05941) to replace $$\text{ReLU}$$, and ==the accuracy of the resulted neural network can be significantly <u>improved</u>==. Swish is defined as
 
 $$
 \label{eqn1}
@@ -102,7 +102,7 @@ $$
 ### Other Findings
 
 - <u>The cost of applying nonlinearity decreases as it goes deeper into the network</u>, since each layer activation memory typically halves every time the resolution drops.
-- Most of the benefits of $$\text{swish}$$ are realized by using them <u>only in the deeper layers</u>. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
+- Most of the benefits of $$\text{swish}$$ are realized by <u>using them only in the deeper layers</u>. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
 
 ## The Architecture of MobileNetV3
 
