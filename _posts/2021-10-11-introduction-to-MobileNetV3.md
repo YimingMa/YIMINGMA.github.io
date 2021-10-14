@@ -131,6 +131,38 @@ The architecture of MobileNetV2, in which the final set of features is computed 
 - $n$: the **number of repetitions**;
 - $s$: the **stride**.
 
+The architecture of MobileNetV3-Large:
+
+| Input                   | Operator         | Expansion Size | Num. of Output Channels | SE                 | NL | $s$ |
+|-------------------------|------------------|----------------|-------------------------|--------------------|----|-----|
+| 224×224×3               | conv2d           | -              | 16                      | -                  | HS | 2   |
+| 112×112×16              | bneck, 3x3       | 16             | 16                      | :x:                | RE | 1   |
+| 112×112×16              | bneck, 3×3       | 64             | 24                      | :x:                | RE | 2   |
+| 56x56x24                | bneck, 3x3       | 72             | 24                      | :x:                | RE | 1   |
+| 56x56x24                | bneck, 5x5       | 72             | 40                      | :heavy_check_mark: | RE | 2   |
+| 28x28x40                | bneck, 5x5       | 120            | 40                      | :heavy_check_mark: | RE | 1   |
+| 28x28x40                | bneck, 5x5       | 120            | 40                      | :heavy_check_mark: | RE | 1   |
+| 28x28x40                | bneck, 3x3       | 240            | 80                      | :x:                | HS | 2   |
+| 14x14x80                | bneck, 3x3       | 200            | 80                      | :x:                | HS | 1   |
+| 14x14x80                | bneck, 3x3       | 184            | 80                      | :x:                | HS | 1   |
+| 14x14x80                | bneck, 3x3       | 184            | 80                      | :x:                | HS | 1   |
+| 14x14x80                | bneck, 3x3       | 480            | 112                     | :heavy_check_mark: | HS | 1   |
+| 14x14x112               | bneck, 3x3       | 672            | 112                     | :heavy_check_mark: | HS | 1   |
+| 14x14x112               | bneck, 5x5       | 672            | 160                     | :heavy_check_mark: | HS | 2   |
+| 7x7x160                 | bneck, 5x5       | 960            | 160                     | :heavy_check_mark: | HS | 1   |
+| 7x7x160                 | bneck, 5x5       | 960            | 160                     | :heavy_check_mark: | HS | 1   |
+| 7x7x160                 | conv2d, 1x1      | -              | 960                     | -                  | HS | 1   |
+| 7x7x960                 | pool, 7x7        | -              | -                       | -                  | -  | 1   |
+| `1x1x960`{:.error}      | conv2d, 1x1, NBN | -              | 1280                    | -                  | HS | 1   |
+| 1x1x1280                | conv2d, 1x1, NBN | -              | k                       | -                  | -  | 1   |
+
+- SE: whether there is a squeeze-and-excitation in that block;
+- NL: the type of activation used;
+- HS: $$\text{h-swish}$$;
+- RE: $$\text{ReLU}$$;
+- NBN: no batch normalization;
+- $s$: stride.
+
 Once the cost of this feature generation layer has been mitigated, the previous bottleneck projection layer is no longer needed to reduce computation. This observation allows us to remove the filtering and projection layers in the previous bottleneck layer, further reducing computational complexity. The efficient last stage reduces the latency by 7 ms which is 11% of the running time and the number of operations by 30 M mult-adds with almost no loss of accuracy.
 
 ## The Architecture of MobileNetV3
@@ -139,27 +171,34 @@ MobileNetV3 has a large version and a small version, which are targeted at high 
 
 ### MobileNetV3-Large
 
-| Input                   | Operator         | Expansion Size | Num. of Output Channels | SE                 | NL | s |
-|-------------------------|------------------|----------------|-------------------------|--------------------|----|---|
-| 224×224×3               | conv2d           | -              | 16                      | -                  | HS | 2 |
-| 112×112×16              | bneck, 3x3       | 16             | 16                      | :x:                | RE | 1 |
-| 112×112×16              | bneck, 3×3       | 64             | 24                      | :x:                | RE | 2 |
-| 56x56x24                | bneck, 3x3       | 72             | 24                      | :x:                | RE | 1 |
-| 56x56x24                | bneck, 5x5       | 72             | 40                      | :heavy_check_mark: | RE | 2 |
-| 28x28x40                | bneck, 5x5       | 120            | 40                      | :heavy_check_mark: | RE | 1 |
-| 28x28x40                | bneck, 5x5       | 120            | 40                      | :heavy_check_mark: | RE | 1 |
-| 28x28x40                | bneck, 3x3       | 240            | 80                      | :x:                | HS | 2 |
-| 14x14x80                | bneck, 3x3       | 200            | 80                      | :x:                | HS | 1 |
-| 14x14x80                | bneck, 3x3       | 184            | 80                      | :x:                | HS | 1 |
-| 14x14x80                | bneck, 3x3       | 184            | 80                      | :x:                | HS | 1 |
-| 14x14x80                | bneck, 3x3       | 480            | 112                     | :heavy_check_mark: | HS | 1 |
-| 14x14x112               | bneck, 3x3       | 672            | 112                     | :heavy_check_mark: | HS | 1 |
-| 14x14x112               | bneck, 5x5       | 672            | 160                     | :heavy_check_mark: | HS | 2 |
-| 7x7x160                 | bneck, 5x5       | 960            | 160                     | :heavy_check_mark: | HS | 1 |
-| 7x7x160                 | bneck, 5x5       | 960            | 160                     | :heavy_check_mark: | HS | 1 |
-| 7x7x160                 | conv2d, 1x1      | -              | 960                     | -                  | HS | 1 |
-| 7x7x960                 | pool, 7x7        | -              | -                       | -                  | -  | 1 |
-| 1x1x960                 | conv2d, 1x1, NBN | -              | 1280                    | -                  | HS | 1 |
-| 1x1x1280                | conv2d, 1x1, NBN | -              | k                       | -                  | -  | 1 |
+| Input                   | Operator         | Expansion Size | Num. of Output Channels | SE                 | NL | $s$ |
+|-------------------------|------------------|----------------|-------------------------|--------------------|----|-----|
+| 224×224×3               | conv2d           | -              | 16                      | -                  | HS | 2   |
+| 112×112×16              | bneck, 3x3       | 16             | 16                      | :x:                | RE | 1   |
+| 112×112×16              | bneck, 3×3       | 64             | 24                      | :x:                | RE | 2   |
+| 56x56x24                | bneck, 3x3       | 72             | 24                      | :x:                | RE | 1   |
+| 56x56x24                | bneck, 5x5       | 72             | 40                      | :heavy_check_mark: | RE | 2   |
+| 28x28x40                | bneck, 5x5       | 120            | 40                      | :heavy_check_mark: | RE | 1   |
+| 28x28x40                | bneck, 5x5       | 120            | 40                      | :heavy_check_mark: | RE | 1   |
+| 28x28x40                | bneck, 3x3       | 240            | 80                      | :x:                | HS | 2   |
+| 14x14x80                | bneck, 3x3       | 200            | 80                      | :x:                | HS | 1   |
+| 14x14x80                | bneck, 3x3       | 184            | 80                      | :x:                | HS | 1   |
+| 14x14x80                | bneck, 3x3       | 184            | 80                      | :x:                | HS | 1   |
+| 14x14x80                | bneck, 3x3       | 480            | 112                     | :heavy_check_mark: | HS | 1   |
+| 14x14x112               | bneck, 3x3       | 672            | 112                     | :heavy_check_mark: | HS | 1   |
+| 14x14x112               | bneck, 5x5       | 672            | 160                     | :heavy_check_mark: | HS | 2   |
+| 7x7x160                 | bneck, 5x5       | 960            | 160                     | :heavy_check_mark: | HS | 1   |
+| 7x7x160                 | bneck, 5x5       | 960            | 160                     | :heavy_check_mark: | HS | 1   |
+| 7x7x160                 | conv2d, 1x1      | -              | 960                     | -                  | HS | 1   |
+| 7x7x960                 | pool, 7x7        | -              | -                       | -                  | -  | 1   |
+| 1x1x960                 | conv2d, 1x1, NBN | -              | 1280                    | -                  | HS | 1   |
+| 1x1x1280                | conv2d, 1x1, NBN | -              | k                       | -                  | -  | 1   |
+
+- SE: whether there is a squeeze-and-excitation in that block;
+- NL: the type of activation used;
+- HS: $$\text{h-swish}$$;
+- RE: $$\text{ReLU}$$;
+- NBN: no batch normalization;
+- $s$: stride.
 
 ### MobileNetV3-Small
