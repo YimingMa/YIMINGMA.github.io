@@ -245,8 +245,8 @@ MobileNetV3 has a large version and a small version, which are targeted at high 
 | Mnas-small                                   | 64.9%     | 65.1          | 1.9        | 20.3     | 24.2     | 17.2     |
 | V2 0.35                                      | 60.8%     | 59.2          | 1.6        | 16.6     | 19.6     | 13.9     |
 
-- P-$n$: a Pixel-$n$ phone;
-- all latencies are measures using a single large core with a batch size of 1.
+- P-$n$: a Pixel-$n$ phone.
+- All latencies are measures using a single large core with a batch size of 1.
 
 The trade-off between the number of mult-adds and top-1 accuracy is shown below. This allows to compare models that were targeted different hardware or software frameworks. All MobileNetV3s are for input resolution 224 and use multipliers 0.35, 0.5, 0.75, 1 and 1.25.
 
@@ -261,6 +261,24 @@ The trade-off between the number of mult-adds and top-1 accuracy is shown below.
 | V3-Small     | 64.9% | 15.5 | 14.9 | 10.7 |
 | V2 0.35      | 57.2% | 16.7 | 15.6 | 11.9 |
 
-The figure below shows the MobileNetV3 performance trade-offs as a function of multiplier and resolution. Note how MobileNetV3-Small outperforms the MobileNetV3- Large with multiplier scaled to match the performance by nearly 3%. On the other hand, resolution provides an even better trade-offs than multiplier. However, it should be noted that resolution is often determined by the problem (e.g. segmentation and detection problem generally require higher resolution), and thus can’t always be used as a tunable parameter. In this experiment, multipliers are set to be 0.35, 0.5, 0.75, 1.0 and 1.25, with a fixed resolution of 224, and resolutions 96, 128, 160, 192, 224 and 256 with a fixed depth multiplier of 1.0
+The figure below shows the MobileNetV3 performance trade-offs as a function of multiplier and resolution. Note how MobileNetV3-Small outperforms the MobileNetV3- Large with multiplier scaled to match the performance by nearly 3%. On the other hand, resolution provides an even better trade-offs than multiplier. However, it should be noted that resolution is often determined by the problem (e.g. segmentation and detection problem generally require higher resolution), and thus can’t always be used as a tunable parameter. In this experiment, multipliers are set to be 0.35, 0.5, 0.75, 1.0 and 1.25, with a fixed resolution of 224, and resolutions 96, 128, 160, 192, 224 and 256 with a fixed depth multiplier of 1.0.
 
 <img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/v2_vs_v3.png" alt="Standard Convolution" class="center3">
+
+### Ablation Study
+
+#### Impact of Nonlinearities
+
+Effects of nonlinearities on MobileNetV3-Large is shown in the table below.
+
+| Model         | Top-1                      | P-1 (ms)                | P-1 (no-opt; ms) |
+|---------------|----------------------------|-------------------------|------------------|
+| V3-Large 1.0  | 75.2%                      | 51.4                    | 57.5             |
+| ReLU          | 74.5% (`-0.7%`{:.error})   | 50.5 (`-1%`{:.success}) | 50.5             |
+| h-swish @16   | 75.4% (`+0.2%`{:.success}) | 53.4 (`+4%`{:.error})   | 68.9             |
+| h-swish @112  | 75.0% (`-0.3%`{:.error})   | 51.0 (`0.5%`{:.success})| 54.4             |
+
+- In $$\text{h-swish} \, @ N$$, $N$ denotes the number of channels in the first layer that has $$\text{h-swish}$$ enabled.
+- Top-1 accuracy is measured on ImageNet.
+- The third column shows the runtime without optimized $$\text{h-swish}$$.
+
