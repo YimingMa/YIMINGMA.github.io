@@ -108,7 +108,9 @@ $$
 
 Those current models which are based on MobileNetV2's inverted residual blocks use $1\times1$ convolution as a final layer in order to expand to a higher-dimensional feature space. Although this layer is of crucial importance in enriching features for prediction, it also has a high computational cost. To reduce latency and preserve the high-dimensional features, this layer is moved after the final average pooling. This final set of features is now computed at $1 \times 1$ spatial resolution instead of $7 \times 7$. The resulted design brings nearly free computation and latency.
 
-The architecture of MobileNetV2:
+<img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/last_stage.png" alt="Standard Convolution" class="center6">
+
+The architecture of MobileNetV2, in which the final set of features is computed at $7 \times 7$ resolution:
 
 | Input                   | Operator      | $t$ | $c$      | $n$ | $s$ |
 |-------------------------|---------------|-----|----------|-----|-----|
@@ -123,8 +125,6 @@ The architecture of MobileNetV2:
 | 7×7×320                 | conv2d 1×1    | -   | 1280     | 1   | 1   |
 | `7×7×1280`{:.error}     | avgpool 7×7   | -   | -        | 1   | -   |
 | 1×1×1280                | conv2d 1×1    | -   | k        | -   | -   |
-
-(The final set of features is computed at $7 \times 7$ resolution.)
 
 - $t$: the **expansion rate** in the bottleneck;
 - $c$: the **number of output channels**;
