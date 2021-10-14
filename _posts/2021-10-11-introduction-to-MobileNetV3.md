@@ -92,3 +92,20 @@ $$
 <img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/sigmoid_vs_hsigmoid.png" alt="Standard Convolution" class="center4">
 
 <img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/swish_vs_hswish.png" alt="Standard Convolution" class="center4">
+
+### Advantages of Hard Swish
+
+- Optimized implementations of $$\text{ReLU6}$$ are available on virtually all software and hardware frameworks.
+- In quantized mode, it eliminates potential numerical precision loss caused by different implementations of the approximate sigmoid.
+- In practice, $$\text{h-swish}$$ can be implemented as a piece-wise function to reduce the number of memory accesses driving the latency cost down substantially.
+
+### Other Findings
+
+- The cost of applying nonlinearity decreases as it goes deeper into the network, since each layer activation memory typically halves every time the resolution drops.
+- Most of the benefits of $$\text{swish}$$ are realized by using them <u>only</u> in the deeper layers. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
+
+## The Architecture of MobileNetV3
+
+### MobileNetV3-Large
+
+### MobileNetV3-Small
