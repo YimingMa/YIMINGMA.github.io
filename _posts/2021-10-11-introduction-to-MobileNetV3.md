@@ -139,5 +139,10 @@ MobileNetV3 has a large version and a small version, which are targeted at high 
 
 ### MobileNetV3-Large
 
-| Input                   | Operator       |
+| Input                   | Operator       | Expansion Size | Num. of Output Channels | SE  | NL | s |
+|-------------------------|----------------|----------------|-------------------------|-----|----|---|
+| 224×224×3               | conv2d         | -              | 16                      | -   | HS | 2 |
+| 112×112×16              | bneck, 3x3     | 16             | 16                      | :x: | RE | 1 |
+| 112×112×16              | bneck, 3×3     | 64             | 24                      | :x: | RE | 2 |
+
 ### MobileNetV3-Small
