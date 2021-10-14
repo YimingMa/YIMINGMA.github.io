@@ -263,4 +263,4 @@ The trade-off between the number of mult-adds and top-1 accuracy is shown below.
 
 The figure below shows the MobileNetV3 performance trade-offs as a function of multiplier and resolution. Note how MobileNetV3-Small outperforms the MobileNetV3- Large with multiplier scaled to match the performance by nearly 3%. On the other hand, resolution provides an even better trade-offs than multiplier. However, it should be noted that resolution is often determined by the problem (e.g. segmentation and detection problem generally require higher resolution), and thus can’t always be used as a tunable parameter. In this experiment, multipliers are set to be 0.35, 0.5, 0.75, 1.0 and 1.25, with a fixed resolution of 224, and resolutions 96, 128, 160, 192, 224 and 256 with a fixed depth multiplier of 1.0
 
-<img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/v2_vs_v3.png" alt="Standard Convolution" class="center4">
+<img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/v2_vs_v3.png" alt="Standard Convolution" class="center3">
