@@ -104,8 +104,40 @@ $$
 - The cost of applying nonlinearity decreases as it goes deeper into the network, since each layer activation memory typically halves every time the resolution drops.
 - Most of the benefits of $$\text{swish}$$ are realized by using them `only`{:.warning} in the deeper layers. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
 
+## Redesigning Expensive Layers
+
+Those current models which are based on MobileNetV2's inverted residual blocks use $1\times1$ convolution as a final layer in order to expand to a higher-dimensional feature space. Although this layer is of crucial importance in enriching features for prediction, it also has a high computational cost. To reduce latency and preserve the high-dimensional features, this layer is moved after the final average pooling. This final set of features is now computed at $1 \times 1$ spatial resolution instead of $7 \times 7$. The resulted design brings nearly free computation and latency.
+
+The architecture of MobileNetV2:
+
+| Input                   | Operator      | $t$ | $c$      | $n$ | $s$ |
+|-------------------------|---------------|-----|----------|-----|-----|
+| 224×224×3               | conv2d        | -   | 32       | 1   | 2   |
+| 112×112×32              | bottleneck    | 1   | 16       | 1   | 1   |
+| 112×112×16              | bottleneck    | 6   | 24       | 2   | 2   |
+| 56×56×24                | bottleneck    | 6   | 32       | 3   | 2   |
+| 28×28×32                | bottleneck    | 6   | 64       | 4   | 2   |
+| 14×14×64                | bottleneck    | 6   | 96       | 3   | 1   |
+| 14×14×96                | bottleneck    | 6   | 160      | 3   | 2   |
+| 7×7×160                 | bottleneck    | 6   | 320      | 1   | 1   |
+| 7×7×320                 | conv2d 1×1    | -   | 1280     | 1   | 1   |
+| `7×7×1280`{:.error}     | avgpool 7×7   | -   | -        | 1   | -   |
+| 1×1×1280                | conv2d 1×1    | -   | k        | -   | -   |
+
+(The final set of features is computed at $7 \times 7$ resolution.)
+
+- $t$: the **expansion rate** in the bottleneck;
+- $c$: the **number of output channels**;
+- $n$: the **number of repetitions**;
+- $s$: the **stride**.
+
+Once the cost of this feature generation layer has been mitigated, the previous bottleneck projection layer is no longer needed to reduce computation. This observation allows us to remove the filtering and projection layers in the previous bottleneck layer, further reducing computational complexity. The efficient last stage reduces the latency by 7 ms which is 11% of the running time and the number of operations by 30 M mult-adds with almost no loss of accuracy.
+
 ## The Architecture of MobileNetV3
+
+MobileNetV3 has a large version and a small version, which are targeted at high and low resource use cases, respectively.
 
 ### MobileNetV3-Large
 
+| Input                   | Operator       |
 ### MobileNetV3-Small
