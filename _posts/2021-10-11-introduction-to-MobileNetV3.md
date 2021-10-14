@@ -276,9 +276,12 @@ Effects of nonlinearities on MobileNetV3-Large is shown in the table below.
 | V3-Large 1.0  | 75.2%                      | 51.4                    | 57.5             |
 | ReLU          | 74.5% (`-0.7%`{:.error})   | 50.5 (`-1%`{:.success}) | 50.5             |
 | h-swish @16   | 75.4% (`+0.2%`{:.success}) | 53.4 (`+4%`{:.error})   | 68.9             |
-| h-swish @112  | 75.0% (`-0.3%`{:.error})   | 51.0 (`0.5%`{:.success})| 54.4             |
+| h-swish @112  | 75.0% (`-0.3%`{:.error})   | 51.0 (`-0.5%`{:.success})| 54.4             |
 
 - In $$\text{h-swish} \, @ N$$, $N$ denotes the number of channels in the first layer that has $$\text{h-swish}$$ enabled.
 - Top-1 accuracy is measured on ImageNet.
 - The third column shows the runtime without optimized $$\text{h-swish}$$.
 
+#### Impact of Other Components
+
+<img src="/posts.assets/2021-10-11-introduction-to-MobileNetV3.assets/progression.png" alt="Standard Convolution" class="center4">
