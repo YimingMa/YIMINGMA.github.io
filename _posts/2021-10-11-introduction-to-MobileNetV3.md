@@ -75,14 +75,14 @@ MobileNetV3, proposed in [*Searching for MobileNetV3*](https://openaccess.thecvf
 
 ## Hard Swish
 
-A nonlinear activation called **swish** was introduced in [*Sigmoid-Weighted Linear Units for Neural Network Function Approximation in Reinforcement Learning*](https://arxiv.org/abs/1702.03118), [*Bridging Nonlinearities and Stochastic Regularizers with Gaussian Error Linear Units*](https://openreview.net/forum?id=Bk0MRI5lg) and [*Searching for Activation Functions*](https://arxiv.org/abs/1710.05941) to replace $$\text{ReLU}$$, and `the accuracy of the resulted neural network can be significantly improved`{:.warning}. Swish is defined as
+A nonlinear activation called **swish** was introduced in [*Sigmoid-Weighted Linear Units for Neural Network Function Approximation in Reinforcement Learning*](https://arxiv.org/abs/1702.03118), [*Bridging Nonlinearities and Stochastic Regularizers with Gaussian Error Linear Units*](https://openreview.net/forum?id=Bk0MRI5lg) and [*Searching for Activation Functions*](https://arxiv.org/abs/1710.05941) to replace $$\text{ReLU}$$, and the accuracy of the resulted neural network can be significantly improved. Swish is defined as
 
 $$
 \label{eqn1}
 \text{swish}(x) := x \cdot \sigma(x) = \frac{x}{1 + e^{-x}}.
 $$
 
-Since $\eqref{eqn1}$ involves a sigmoid function, computation is much <u>expensive</u> on mobile devices. Thus, authors of MobileNetV3 proposed **h-swish** by approximating sigmoid with its piecewise linear hard analog $$\frac{\text{ReLU6}(x+3)}{6}$$, which means
+Since $\eqref{eqn1}$ involves a sigmoid function, computation is much `expensive`{:.warning} on mobile devices. Thus, authors of MobileNetV3 proposed **h-swish** by approximating sigmoid with its piecewise linear hard analog $$\frac{\text{ReLU6}(x+3)}{6}$$, which means
 
 $$
 \label{eqn2}
@@ -95,14 +95,14 @@ $$
 
 ### Advantages of Hard Swish
 
-- <u>Optimized implementations</u> of $$\text{ReLU6}$$ are available on virtually all software and hardware frameworks.
-- In quantized mode, it <u>eliminates potential numerical precision loss</u> caused by different implementations of the approximate sigmoid.
-- In practice, $$\text{h-swish}$$ can be implemented as a piece-wise function to reduce the number of memory accesses <u>driving the latency cost down substantially</u>.
+- Optimized implementations of $$\text{ReLU6}$$ are available on virtually all software and hardware frameworks.
+- In quantized mode, it eliminates potential numerical precision loss caused by different implementations of the approximate sigmoid.
+- In practice, $$\text{h-swish}$$ can be implemented as a piece-wise function to reduce the number of memory accesses driving the latency cost down substantially.
 
 ### Other Findings
 
-- <u>The cost of applying nonlinearity decreases as it goes deeper into the network</u>, since each layer activation memory typically halves every time the resolution drops.
-- Most of the benefits of $$\text{swish}$$ are realized by <u>using them only in the deeper layers</u>. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
+- The cost of applying nonlinearity decreases as it goes deeper into the network, since each layer activation memory typically halves every time the resolution drops.
+- Most of the benefits of $$\text{swish}$$ are realized by using them only{:.warning} in the deeper layers. Thus, the authors of MobileNetV3 only use $$\text{h-swish}$$ at the second half of the model.
 
 ## The Architecture of MobileNetV3
 
