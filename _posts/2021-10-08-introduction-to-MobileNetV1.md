@@ -108,7 +108,7 @@ The number of multiplications in $\eqref{eqn7}$ is
 
 $$
 \label{eqn8}
-D_K \cdot D_k \cdot M \cdot D_G \cdot D_G + M \cdot N \cdot D_G \cdot D_G,
+D_K \cdot D_K \cdot M \cdot D_G \cdot D_G + M \cdot N \cdot D_G \cdot D_G,
 $$
 
 which is
