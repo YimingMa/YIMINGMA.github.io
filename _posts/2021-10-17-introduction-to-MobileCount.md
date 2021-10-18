@@ -129,7 +129,22 @@ $$
 \end{align*}
 $$
 
-where $$C^\text{GT}_i$$ is the $i$-th ground-truth total count and $$C^\text{Pred}_i$$ is its estimation. 
+where $$C^\text{GT}_i$$ is the $i$-th ground-truth total count and $$C^\text{Pred}_i$$ is its estimation.
 
 ## Experiments
 
+The comparison of MobileNets against state-of-the-art algorithms on five benchmark datasets is shown below.
+
+| Model                                                | FLOPs (G) | Params (MB) | ShanghaiTech A (MAE) | ShanghaiTech A (MSE) | ShanghaiTech B (MAE) | ShanghaiTech B (MSE) | UCF-QNRF (MAE) | UCF-QNRF (MSE) | UCF_CC_50 (MAE) | UCF_CC_50 (MSE) | WorldExpo'10 (MAE) |
+|------------------------------------------------------|-----------|-------------|----------------------|----------------------|----------------------|----------------------|----------------|----------------|-----------------|-----------------|-------------------|
+| [MCNN](https://ieeexplore.ieee.org/document/7780439) | 56.21     | 0.13        | 110.2                | 173.2                | 26.4                 | 41.4                 | 277.0          | 426.0          | 377.6           | 509.1           | 11.6 |
+| [CMTL](https://ieeexplore.ieee.org/document/8078491) | 243.80    | 2.46        | 101.3                | 152.4                | 20.0                 | 31.1                 | 252.0          | 514.0          | 322.8           | 397.9           | -    |
+| [CSRNet](https://arxiv.org/abs/1802.10062)           | 857.84    | 16.26       | 68.2                 | 115.0                | 10.6                 | 16.0                 | -              | -              | 266.1           | 397.5           | 8.6  |
+| [SANet](https://openaccess.thecvf.com/content_ECCV_2018/papers/Xinkun_Cao_Scale_Aggregation_Network_ECCV_2018_paper.pdf) | 182.26 | 1.39 | 67.0 | 104.5 | 8.4 | 13.6 | - | - | 258.4 | 334.9 | 8.2 |
+| MobileCount                                          | 16.49     | 3.40        | 89.4                 | 146.0                | 9.0                  | 15.4                 | 131.1          | 222.6          | 284.8           | 392.8           | 11.1  |
+| MobileCount (1.25)                                   | 34.07     | 5.47        | 82.9                 | 137.9                | 8.2                  | 13.2                 | 124.5          | 207.6          | 283.1           | 382.6           | 11.1  |
+| MobileCount (2)                                      | 63.03     | 13.39       | 81.4                 | 133.3                | 8.1                  | 12.7                 | 117.9          | 207.5          | 284.5           | 421.2           | 11.5  |
+
+The following table tests the effect of knowledge distillation.
+
+| Model          | FLOPs (G) | Params (MB) | ShanghaiTech A (MAE) | ShanghaiTech A (MSE) | ShanghaiTech B (MAE) | 
