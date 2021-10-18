@@ -95,3 +95,9 @@ aside:
 ## Introduction
 
 In [*MobileCount: An efficient encoder-decoder framework for real-time crowd counting*](https://www.sciencedirect.com/science/article/abs/pii/S0925231220308912), the authors proposed a light-weight crowd counting model – MobileCount, whose structure follows an autoencoder pattern. It uses [MobileNetV2](https://arxiv.org/abs/1801.04381) as the encoder and [RefineNet](https://arxiv.org/abs/1611.06612) as the decoder. A multi-layer knowledge distillation method was also employed to improve its performance without increasing computation.
+
+## The Architecture of MobileCount
+
+The image below shows the structure of MobileCount. Its encoder is adapted from [MobileNetV2](https://yimingma.github.io/2021/10/08/introduction-to-MobileNetV2.html) by reducing the number of inverted residual blocks from 7 to 4. The authors claimed that this reduction can improve the performance while decrease the number of FLOPs. And to make the model even lighter, a $3\times3$ max pooling layer with the stride of 2 is added before this encoder part to reduce the input resolution. 
+
+<img src="/posts.assets/2021-10-17-introduction-to-MobileCount.assets/architecture_of_mobile_count.png" alt="The Structure of MobileCount" class="center9">
