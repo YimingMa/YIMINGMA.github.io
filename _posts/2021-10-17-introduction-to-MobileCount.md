@@ -98,6 +98,6 @@ In [*MobileCount: An efficient encoder-decoder framework for real-time crowd cou
 
 ## The Architecture of MobileCount
 
-The image below shows the structure of MobileCount. Its encoder is adapted from [MobileNetV2](https://yimingma.github.io/2021/10/08/introduction-to-MobileNetV2.html) by reducing the number of inverted residual blocks from 7 to 4. The authors claimed that this reduction can improve the performance while decrease the number of FLOPs. And to make the model even lighter, a $3\times3$ max pooling layer with the stride of 2 is added before this encoder part to reduce the input resolution. 
+The image below shows the structure of MobileCount. Its encoder is adapted from [MobileNetV2](https://yimingma.github.io/2021/10/08/introduction-to-MobileNetV2.html) by reducing the number of inverted residual blocks from 7 to 4. The authors claimed that this reduction can improve the performance while decrease the number of FLOPs. And to make the model even lighter, a 3×3 max pooling layer with the stride of 2 is added before this encoder part to reduce the input resolution. 
 
 <img src="/posts.assets/2021-10-17-introduction-to-MobileCount.assets/architecture_of_mobile_count.png" alt="The Structure of MobileCount" class="center9">
