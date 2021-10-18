@@ -119,7 +119,7 @@ For evaluation, the mean absolute error and the mean squared error between the g
 $$
 \begin{align*}
 \text{MAE} (\boldsymbol{C}^{\text{GT}}, \, \boldsymbol{C}^{\text{Pred}}) := & \frac{1}{N} \sum_{i=1}^N \left| C^\text{GT}_i - C^\text{Pred}_i \right| \\
-\text{MSE} (\boldsymbol{C}^{\text{GT}}, \, \boldsymbol{C}^{\text{Pred}}) := \sqrt{ \frac{1}{N} \sum_{i=1}^N \left( C^\text{GT}_i - C^\text{Pred}_i \right)^2}, \notag
+\text{MSE} (\boldsymbol{C}^{\text{GT}}, \, \boldsymbol{C}^{\text{Pred}}) := & \sqrt{ \frac{1}{N} \sum_{i=1}^N \left( C^\text{GT}_i - C^\text{Pred}_i \right)^2}, \notag
 \end{align*}
 $$
 
