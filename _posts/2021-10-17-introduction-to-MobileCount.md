@@ -147,4 +147,7 @@ The comparison of MobileNets against state-of-the-art algorithms on five benchma
 
 The following table tests the effect of knowledge distillation.
 
-| Model          | FLOPs (G) | Params (MB) | ShanghaiTech A (MAE) | ShanghaiTech A (MSE) | ShanghaiTech B (MAE) | 
+| Model          | FLOPs (G) | Params (MB) | ShanghaiTech A (MAE) | ShanghaiTech A (MSE) | ShanghaiTech B (MAE) | ShanghaiTech B (MSE) | UCF-QNRF (MAE) | UCF-QNRF (MSE) |
+| LW-Resnet50    | 249.24    | 27.31       | 75.0                 | 135.4                | 6.8                  | 10.8                 | 106.8          | 188.6          |
+| MobileCount    | 16.49     | 3.40        | 89.4                 | 146.0                | 9.0                  | 15.4                 | 131.1          | 222.6          |
+| MobileCount (KD) | 16.49   | 3.40        | 84.8                 | 135.1                | 8.6                  | 13.8                 | 127.7          | 216.5          |
