@@ -108,10 +108,10 @@ Regarding the prediction layer, 1×1 convolution will again be utilized to reduc
 
 ## Loss Functions
 
-The ground-truth dot annotations are smoothed with Gaussian kernels first, and the pixel-wise mean squared loss between density maps are used for training. Let $$\mathcal{D}^{\text{GT}}_i$$ be the $i$-th ground-truth density map and $$\mathcal{D}^{\text{Pred}}_i$$ be its prediction. Then the loss function for training is defined as
+The ground-truth dot annotations are smoothed with Gaussian kernels first, and the pixel-wise mean squared loss between density maps are used for training. Let $$\boldsymbol{D}^{\text{GT}}_i$$ be the $i$-th ground-truth density map and $$\boldsymbol{D}^{\text{Pred}}_i$$ be its prediction. Then the loss function for training is defined as
 
 $$
-L(\boldsymbol{\mathcal{D}}^{\text{GT}}, \, \boldsymbol{\mathcal{D}}^{\text{Pred}}) := \frac{1}{N} \sum_{i=1}^N \| \mathcal{D}^{\text{GT}}_i - \mathcal{D}^{\text{Pred}}_i \|_2^2. \notag
+L(\mathcal{\boldsymbol{D}}^{\text{GT}}, \, \boldsymbol{\mathcal{D}}^{\text{Pred}}) := \frac{1}{N} \sum_{i=1}^N \| \mathcal{D}^{\text{GT}}_i - \mathcal{D}^{\text{Pred}}_i \|_2^2. \notag
 $$
 
 For evaluation, the mean absolute error and the mean squared error between the ground-truth total count and the predicted total count are used:
@@ -125,3 +125,6 @@ $$
 $$
 
 where $$C^\text{GT}_i$$ is the $i$-th ground-truth total count and $$C^\text{Pred}_i$$ is its estimation. 
+
+## Experiments
+
