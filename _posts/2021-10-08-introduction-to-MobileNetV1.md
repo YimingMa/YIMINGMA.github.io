@@ -418,7 +418,7 @@ $$
 
 which is $$\frac{1}{N} + \frac{1}{D_K^2}$$ of $$\eqref{eqn2}$$.
 
-### Examples
+### Illustrations
 
 #### Standard Convolution
 
@@ -466,11 +466,9 @@ The structure of MobileNetV1 is shown below.
 
 ## Experiments
 
-### Results on [ImageNet](https://www.image-net.org/)
-
 Results from the original paper [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861):
 
-| Model                                           | ImageNet Accuracy | Mult-Adds (M) | Parameters (M) |
+| Model                                           | [ImageNet](https://www.image-net.org/) Accuracy | Mult-Adds (M) | Parameters (M) |
 | ----------------------------------------------- | ----------------- | ------------- | -------------- |
 | [MobileNetV1](https://arxiv.org/abs/1704.04861) | 70.6%             | 569           | 4.2            |
 | [GoogLeNet](https://arxiv.org/abs/1409.4842)    | 69.8%             | 1550          | 6.8            |
