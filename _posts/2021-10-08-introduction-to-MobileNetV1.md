@@ -188,7 +188,7 @@ And similarly, $$\boldsymbol{G}_{1, \, 1, \, 2}$$ is given by
 
 $$
 \begin{align*}
-    & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 1:\,2, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 2} + F_{1:\,2, \, 1:\,2, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 2} + F_{1:\,2, \, 1:\,2, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 2} \right) \boldsymbol{e} \\
+    & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 1:\,2, \, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 2} + F_{1:\,2, \, 1:\,2, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 2} + F_{1:\,2, \, 1:\,2, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 2} \right) \boldsymbol{e} \\
     = & \boldsymbol{e}^\intercal \left( 
         \begin{bmatrix}
             0 & 3 \\
@@ -320,21 +320,21 @@ $$
 
 ### Depthwise Separable Convolution
 
-A **depthwise separable convolutional block** consists of two operations – a **depthwise convolution** and a **pointwise convolution**.
+In standard convolution, to tranform $$\boldsymbol{F} \in \mathbb{R}^{D_F \times D_F \times M}$$ into $$\boldsymbol{G} \in \mathbb{R}^{D_G \times D_G \times N}$$, we need $$N$$ separate kernels, each of which has $$M$$ filters. Thus, in total, there are $$N \times M$$ different filters, and each of them requires $$D_K^2 \times D_G^2$$ multiplications. One idea to reduce computation is to let each input channel to share one filter, and the resulted number of filters required can be reduced to $M$. Then, we use pointwise convolution to combine these filtered features into new ones. This idea is called **depthwise separable convolution**, which consists of two operations – a **depthwise convolution** and a **pointwise convolution**.
 
 #### Depthwise Convolution
 
-Let $\hat{\boldsymbol{K}}$: $D_K \times D_K \times M$ be the **depthwise convolutional kernel** with one filter per channel and $\hat{\boldsymbol{G}}$: $D_G \times D_G \times M$ be the corresponding output feature map. Then
+Let $$\hat{\boldsymbol{K}}$$: $$D_K \times D_K \times M$$ be the depthwise convolutional kernel with one filter per channel and $$\hat{\boldsymbol{G}}$$: $$D_G \times D_G \times M$$ be the corresponding output feature map. Then
 
 $$
-\label{eqn3}
+\label{eqn4}
 \hat{\boldsymbol{G}}_{k, \, l, \, m} = \sum_{i, \, j} \hat{\boldsymbol{K}}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k+i-1, \, l+j-1, \, m},
 $$
 
 taking
 
 $$
-\label{eqn4}
+\label{eqn5}
 D_K \cdot D_K \cdot M \cdot D_G \cdot D_G
 $$
 
@@ -344,45 +344,79 @@ multiplications.
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center">
 
-#### Pointwise Convolution
-
-Let $\tilde{\boldsymbol{K}}$: $1 \times 1 \times M \times N$ be the **pointwise convolutional kernel** which takes $\hat{\boldsymbol{G}}$: $D_G \times D_G \times M$ as input and outputs $\tilde{\boldsymbol{G}}$: $D_G \times D_G \times N$. Then
+Let's use $$\eqref{eqn3}$$ as an example again. Recall that in $$\eqref{eqn3}$$, but now this time, assume
 
 $$
-\label{eqn5}
+\hat{\boldsymbol{K}}_{:, \, :, \, 1} = 
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 0
+\end{bmatrix},
+\hat{\boldsymbol{K}}_{:, \, :, \, 2} = 
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+\end{bmatrix},
+\hat{\boldsymbol{K}}_{:, \, :, \, 3} = 
+\begin{bmatrix}
+    0 & 0 \\
+    0 & 1
+\end{bmatrix}.
+$$
+
+Notice that there is no summation across the channel in depthwise convolution, so $$\hat{\boldsymbol{G}}_{1, \, 1, \, 1}$$ is simply given by
+
+$$
+\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 1: \, 2, \, 1} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 1} \cdot \boldsymbol{e} = 0.
+$$
+
+Similarly, $$\hat{\boldsymbol{G}}_{1, \, 2, \, 1}$$ is given by
+
+$$
+\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 2: \, 3, \, 1} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 1} \cdot \boldsymbol{e} = 7,
+$$
+
+and $$\hat{\boldsymbol{G}}_{1, \, 1, \, 2}$$ is given by
+
+$$
+\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 1: \, 2, \, 2} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 2} \cdot \boldsymbol{e} = 7.
+$$
+
+#### Pointwise Convolution
+
+Pointwise convolution is a special case of standard convolution, in which the kernel size is set to be $$1 \times 1$$. Let $$\tilde{\boldsymbol{K}}$$: $$1 \times 1 \times M \times N$$ be the **pointwise convolutional kernel** which takes $$\hat{\boldsymbol{G}}$$: $$D_G \times D_G \times M$$ as input and outputs $$\tilde{\boldsymbol{G}}$$: $$D_G \times D_G \times N$$. Then
+
+$$
+\label{eqn6}
 \tilde{\boldsymbol{G}}_{k, \, l, \, n} = \sum_{m} \tilde{\boldsymbol{K}}_{1, \, 1,\, m, \, n} \cdot \hat{G}_{k, \, l, \, m},
 $$
 
 which entails multiplications of
 
 $$
-\label{eqn6}
+\label{eqn7}
 M \cdot N \cdot D_G \cdot D_G
 $$
 
+times.
+
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center">
 
-Thus, the overall **depthwise separable convolution** can be expressed as
-
-$$
-\label{eqn7}
-\tilde{\boldsymbol{G}}_{k, \, l, \, n} = \sum_{m} \tilde{\boldsymbol{K}}_{1, \, 1, \, m, \, n} \cdot \sum_{i, \, j} \hat{\boldsymbol{K}}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k + i - 1, \, l + j - 1, \, m}.
-$$
-
-The number of multiplications in $\eqref{eqn7}$ is
+Thus, the overall depthwise separable convolution can be expressed as
 
 $$
 \label{eqn8}
+\tilde{\boldsymbol{G}}_{k, \, l, \, n} = \sum_{m} \tilde{\boldsymbol{K}}_{1, \, 1, \, m, \, n} \cdot \sum_{i, \, j} \hat{\boldsymbol{K}}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k + i - 1, \, l + j - 1, \, m}.
+$$
+
+By $$\eqref{eqn5}$$ and $$\eqref{eqn7}$$, the total number of multiplications required in $$\eqref{eqn8}$$ is 
+
+$$
+\label{eqn9}
 D_K \cdot D_K \cdot M \cdot D_G \cdot D_G + M \cdot N \cdot D_G \cdot D_G,
 $$
 
-which is
-
-$$
-\frac{1}{N} + \frac{1}{D_K^2} \notag
-$$
-
-of the standard convolution.
+which is $$\frac{1}{N} + \frac{1}{D_K^2}$$ of $$\eqref{eqn2}$$.
 
 ### Examples
 
