@@ -117,6 +117,139 @@ $$
 \end{bmatrix}.
 $$
 
+Using no paddings and the stride of 1, we know $$\boldsymbol{G} \in \mathbb{R}^{2 \times 2 \times 2}$$, and $$\boldsymbol{G}_{1, \, 1, \, 1}$$ is given by
+
+$$
+\begin{align*}
+    & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 1:\,2, \, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 1} + F_{1:\,2, \, 1:\,2, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 1} + F_{1:\,2, \, 1:\,2, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 1} \right) \boldsymbol{e} \\
+    = & \boldsymbol{e}^\intercal \left( 
+        \begin{bmatrix}
+            0 & 3 \\
+            0 & 4
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            1 & 0 \\
+            0 & 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 & 1 \\
+            2 & 4
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            4 & 4 \\
+            2 & 1
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            0 & 0 \\
+            0 & 1
+        \end{bmatrix}
+    \right) \boldsymbol{e} \\
+    = & \boldsymbol{e}^\intercal \left(
+        \begin{bmatrix}
+            0 & 0 \\
+            0 & 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 & 1 \\
+            2 & 4
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 & 4 \\
+            0 & 1
+        \end{bmatrix}
+    \right) \boldsymbol{e} \\
+    = & \begin{bmatrix}
+            1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            0 & 5 \\
+            2 & 5
+        \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        1
+    \end{bmatrix} \\
+    = & 12.
+\end{align*}
+$$
+
+And similarly, $$\boldsymbol{G}_{1, \, 1, \, 2}$$ is given by
+
+$$
+\begin{align*}
+    & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 1:\,2, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 2} + F_{1:\,2, \, 1:\,2, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 2} + F_{1:\,2, \, 1:\,2, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 2} \right) \boldsymbol{e} \\
+    = & \boldsymbol{e}^\intercal \left( 
+        \begin{bmatrix}
+            0 & 3 \\
+            0 & 4
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            0 & 1 \\
+            0 & 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 & 1 \\
+            2 & 4
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            0 & 1 \\
+            1 & 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            4 & 4 \\
+            2 & 1
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            0 & 0 \\
+            1 & 0
+        \end{bmatrix}
+    \right) \boldsymbol{e} \\
+    = & \boldsymbol{e}^\intercal \left(
+        \begin{bmatrix}
+            0 & 0 \\
+            0 & 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            1 & 0 \\
+            4 & 2
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            4 & 0 \\
+            1 & 0
+        \end{bmatrix}
+    \right) \boldsymbol{e} \\
+    = & \begin{bmatrix}
+            1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            5 & 0 \\
+            5 & 2
+        \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        1
+    \end{bmatrix} \\
+    = & 12.
+\end{align*}
+$$
 
 ### Depthwise Separable Convolution
 
