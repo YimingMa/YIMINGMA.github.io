@@ -414,7 +414,7 @@ multiplications.
 
 <u>Notice</u>: Depthwise convolution only filters input channels, so it does not combine them to create new features.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center4">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center3">
 
 Let's use $$\eqref{eqn3}$$ as an example again. Recall that in $$\eqref{eqn3}$$, but now this time, assume
 
@@ -472,7 +472,7 @@ $$
 
 times.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center4">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center3">
 
 Thus, the overall depthwise separable convolution can be expressed as
 
