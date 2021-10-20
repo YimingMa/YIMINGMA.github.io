@@ -251,6 +251,73 @@ $$
 \end{align*}
 $$
 
+As for $$\boldsymbol{G}_{1, \, 2, \, 1}$$, we need to move the first filter $$\boldsymbol{K}_{:, \, :, \, :, \, 1}$$ 1 step right, which means $$\boldsymbol{G}_{1, \, 2, \, 1}$$ is given by
+
+$$
+\begin{align*}
+    & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 2:\,3, \, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 1} + F_{1:\,2, \, 2:\,3, \, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 1} + F_{1:\,2, \, 2:\,3, \, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 1} \right) \boldsymbol{e} \\
+    = & \boldsymbol{e}^\intercal \left( 
+        \begin{bmatrix}
+            3 & 2 \\
+            4 & 1
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            1 & 0 \\
+            0 & 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            1 & 4 \\
+            4 & 2
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            1 & 0 \\
+            0 & 1
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            4 & 0 \\
+            1 & 1
+        \end{bmatrix}
+        \cdot
+        \begin{bmatrix}
+            0 & 0 \\
+            0 & 1
+        \end{bmatrix}
+    \right) \boldsymbol{e} \\
+    = & \boldsymbol{e}^\intercal \left(
+        \begin{bmatrix}
+            3 & 0 \\
+            4 & 0
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            1 & 4 \\
+            4 & 2
+        \end{bmatrix}
+        +
+        \begin{bmatrix}
+            0 & 0 \\
+            0 & 1
+        \end{bmatrix}
+    \right) \boldsymbol{e} \\
+    = & \begin{bmatrix}
+            1 & 1
+        \end{bmatrix}
+        \begin{bmatrix}
+            4 & 4 \\
+            8 & 3
+        \end{bmatrix}
+    \begin{bmatrix}
+        1 \\
+        1
+    \end{bmatrix} \\
+    = & 19.
+\end{align*}
+$$
+
 ### Depthwise Separable Convolution
 
 A **depthwise separable convolutional block** consists of two operations – a **depthwise convolution** and a **pointwise convolution**.
