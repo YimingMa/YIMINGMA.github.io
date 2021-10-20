@@ -53,6 +53,69 @@ $$
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="Filters of Standard Convolution" class="center">
 
+For example, let $$\boldsymbol{F} \in \mathbb{R}^{3 \times 3 \times 3}$$, and its channelwise elements are given by
+
+$$
+\label{eqn3}
+\boldsymbol{F}_{:, \, :, \, 1} = 
+\begin{bmatrix}
+    0 & 3 & 2 \\
+    0 & 4 & 1 \\
+    1 & 0 & 1
+\end{bmatrix}, \,
+\boldsymbol{F}_{:, \, :, \, 2} = 
+\begin{bmatrix}
+    0 & 1 & 4 \\
+    2 & 4 & 2 \\
+    1 & 3 & 4
+\end{bmatrix}, \,
+\boldsymbol{F}_{:, \, :, \, 3} = 
+\begin{bmatrix}
+    4 & 4 & 0 \\
+    2 & 1 & 1 \\
+    1 & 4 & 3
+\end{bmatrix}.
+$$
+
+Assume $$\boldsymbol{K} \in \mathbb{R}^{2 \times 2 \times 3 \times 2}$$, and the elements of its first filter are given by
+
+$$
+\boldsymbol{K}_{:, \, :, \, 1, \, 1} = 
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 0
+\end{bmatrix},
+\boldsymbol{K}_{:, \, :, \, 2, \, 1} = 
+\begin{bmatrix}
+    1 & 0 \\
+    0 & 1
+\end{bmatrix},
+\boldsymbol{K}_{:, \, :, \, 3, \, 1} = 
+\begin{bmatrix}
+    0 & 0 \\
+    0 & 1
+\end{bmatrix},
+\end{equation*}
+and those of the second filter are given by
+\begin{equation*}
+\boldsymbol{K}_{:, \, :, \, 1, \, 2} = 
+\begin{bmatrix}
+    0 & 1 \\
+    0 & 0
+\end{bmatrix},
+\boldsymbol{K}_{:, \, :, \, 2, \, 2} = 
+\begin{bmatrix}
+    0 & 1 \\
+    1 & 0
+\end{bmatrix},
+\boldsymbol{K}_{:, \, :, \, 3, \, 2} = 
+\begin{bmatrix}
+    0 & 0 \\
+    1 & 0
+\end{bmatrix}.
+$$
+
+
 ### Depthwise Separable Convolution
 
 A **depthwise separable convolutional block** consists of two operations – a **depthwise convolution** and a **pointwise convolution**.
