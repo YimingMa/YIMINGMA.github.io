@@ -95,9 +95,11 @@ $$
     0 & 0 \\
     0 & 1
 \end{bmatrix},
-\end{equation*}
+$$
+
 and those of the second filter are given by
-\begin{equation*}
+
+$$
 \boldsymbol{K}_{:, \, :, \, 1, \, 2} = 
 \begin{bmatrix}
     0 & 1 \\
