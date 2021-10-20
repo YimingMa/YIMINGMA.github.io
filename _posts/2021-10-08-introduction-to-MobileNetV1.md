@@ -11,6 +11,87 @@ aside:
     toc: true
 ---
 
+<style>
+.center1 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 10%;
+}
+</style>
+
+<style>
+.center2 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 20%;
+}
+</style>
+
+<style>
+.center3 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 30%;
+}
+</style>
+
+<style>
+.center4 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+</style>
+
+<style>
+.center5 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+</style>
+
+<style>
+.center6 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 60%;
+}
+</style>
+
+<style>
+.center7 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 70%;
+}
+</style>
+
+<style>
+.center8 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 80%;
+}
+</style>
+
+<style>
+.center9 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+}
+</style>
+
 ## Introduction
 
 MobileNetV1 was proposed by Howard, Andrew G., et al. in [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861) in 2017. In this paper, **depthwise separable convolution** is used to replace standard convolution to reduce computation. Although MobileNetV1 is smaller than other families of image classifiers, such as VGGs and Inceptions, it can still achieve comparable results on [ImageNet](https://www.image-net.org/).
@@ -42,16 +123,7 @@ $$
 D_K \cdot D_K \cdot M \cdot N \cdot D_G \cdot D_G.
 $$
 
-<style>
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-</style>
-
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="Filters of Standard Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="Filters of Standard Convolution" class="center5">
 
 For example, let $$\boldsymbol{F} \in \mathbb{R}^{3 \times 3 \times 3}$$, and its channelwise elements are given by
 
@@ -342,7 +414,7 @@ multiplications.
 
 <u>Notice</u>: Depthwise convolution only filters input channels, so it does not combine them to create new features.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center4">
 
 Let's use $$\eqref{eqn3}$$ as an example again. Recall that in $$\eqref{eqn3}$$, but now this time, assume
 
@@ -400,7 +472,7 @@ $$
 
 times.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center4">
 
 Thus, the overall depthwise separable convolution can be expressed as
 
@@ -422,21 +494,20 @@ which is $$\frac{1}{N} + \frac{1}{D_K^2}$$ of $$\eqref{eqn2}$$.
 
 #### Standard Convolution
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution.png" alt="Standard Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution.png" alt="Standard Convolution" class="center5">
 
 #### Depthwise Separable Convolution
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution.png"
 alt="Depthwise Convolution" class="center">
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center5">
 
 ## The Architecture of MobileNetV1
 
 Except that the first layer is a standard convolution, all other convolutions in MobileNetV1 are depthwise separable. Batch normalization and ReLU activation are also used after each convolution.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png"
-alt="Depthwise Convolution" class="center">
+<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png" alt="Depthwise Convolution" class="center5">
 
 The structure of MobileNetV1 is shown below.
 
