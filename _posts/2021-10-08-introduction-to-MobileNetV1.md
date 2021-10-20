@@ -94,7 +94,7 @@ $$
 \begin{bmatrix}
     0 & 0 \\
     0 & 1
-\end{bmatrix},
+\end{bmatrix}, \notag
 $$
 
 and those of the second filter are given by
@@ -114,7 +114,7 @@ $$
 \begin{bmatrix}
     0 & 0 \\
     1 & 0
-\end{bmatrix}.
+\end{bmatrix}. \notag
 $$
 
 Using no paddings and the stride of 1, we know $$\boldsymbol{G} \in \mathbb{R}^{2 \times 2 \times 2}$$, and $$\boldsymbol{G}_{1, \, 1, \, 1}$$ is given by
@@ -361,25 +361,25 @@ $$
 \begin{bmatrix}
     0 & 0 \\
     0 & 1
-\end{bmatrix}.
+\end{bmatrix}. \notag
 $$
 
 Notice that there is no summation across the channel in depthwise convolution, so $$\hat{\boldsymbol{G}}_{1, \, 1, \, 1}$$ is simply given by
 
 $$
-\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 1: \, 2, \, 1} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 1} \cdot \boldsymbol{e} = 0.
+\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 1: \, 2, \, 1} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 1} \cdot \boldsymbol{e} = 0. \notag
 $$
 
 Similarly, $$\hat{\boldsymbol{G}}_{1, \, 2, \, 1}$$ is given by
 
 $$
-\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 2: \, 3, \, 1} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 1} \cdot \boldsymbol{e} = 7,
+\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 2: \, 3, \, 1} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 1} \cdot \boldsymbol{e} = 7, \notag
 $$
 
 and $$\hat{\boldsymbol{G}}_{1, \, 1, \, 2}$$ is given by
 
 $$
-\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 1: \, 2, \, 2} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 2} \cdot \boldsymbol{e} = 7.
+\boldsymbol{e}^\intercal \cdot \boldsymbol{F}_{1: \, 2, \, 1: \, 2, \, 2} \cdot \hat{\boldsymbol{K}}_{:, \, :, \, 2} \cdot \boldsymbol{e} = 7. \notag
 $$
 
 #### Pointwise Convolution
@@ -409,7 +409,7 @@ $$
 \tilde{\boldsymbol{G}}_{k, \, l, \, n} = \sum_{m} \tilde{\boldsymbol{K}}_{1, \, 1, \, m, \, n} \cdot \sum_{i, \, j} \hat{\boldsymbol{K}}_{i, \, j, \, m} \cdot \boldsymbol{F}_{k + i - 1, \, l + j - 1, \, m}.
 $$
 
-By $$\eqref{eqn5}$$ and $$\eqref{eqn7}$$, the total number of multiplications required in $$\eqref{eqn8}$$ is 
+By $$\eqref{eqn5}$$ and $$\eqref{eqn7}$$, the total number of multiplications required in $$\eqref{eqn8}$$ is
 
 $$
 \label{eqn9}
