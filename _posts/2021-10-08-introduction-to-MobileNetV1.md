@@ -132,7 +132,7 @@ alt="Depthwise Convolution" class="center">
 
 <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center">
 
-## Architecture of MobileNetV1
+## The Architecture of MobileNetV1
 
 Except that the first layer is a standard convolution, all other convolutions in MobileNetV1 are depthwise separable. Batch normalization and ReLU activation are also used after each convolution.
 
@@ -165,7 +165,9 @@ The structure of MobileNetV1 is shown below.
 | FC / s1                         | 1024×1000                    | 1×1×1024                     |
 | Softmax / s1                    | Classifier                   | 1×1×1000                     |
 
-## Results on [ImageNet](https://www.image-net.org/)
+## Experiments
+
+### Results on [ImageNet](https://www.image-net.org/)
 
 Results from the original paper [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861):
 
