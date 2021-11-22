@@ -71,6 +71,3 @@ Hi there :wave:.
 - **Birthday**: :secret: :capricorn:.
 - **Nationality**: Chinese :cn:.
 - **Residence**: Coventry, England :uk:.
-- **Religion**: Atheism :atom_symbol:.
-- **Hobbies**: workout :weight_lifting_man: & reading :battery:.
-
