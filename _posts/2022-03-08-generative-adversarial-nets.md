@@ -99,3 +99,6 @@ But for now, let’s start with the direct method and GMNs.
 
 ### Distance of Two Probability Distributions Based on Samples
 
+As mentioned, the idea of GMNs is to train the generative network by directly comparing the generated distribution with the true one. However, we do not know how to express them explicitly, so comparisons based on explicit expressions are not possible. On the other hand,  we can estimate the distance between distributions based on samples. Indeed, we have a sample of real dog images, and we can produce a sample of generated data at each iteration of the training process.
+
+In theory, any distance (or similarity measure) able to compare effectively two distributions based on samples can be used, and here we exploit the **Maximum Mean Discrepancy** (**MMD**) approach. Although it is not fully out of the scope of this article, we have decided not to spend much more time describing the MMD. The readers that would like to know more about MMD right now can refer to [these slides](http://www.gatsby.ucl.ac.uk/~gretton/papers/testing_workshop.pdf), [this article](http://www.gatsby.ucl.ac.uk/~gretton/papers/GreBorRasSchSmo07.pdf) or [this article](http://www.jmlr.org/papers/volume13/gretton12a/gretton12a.pdf).
