@@ -75,7 +75,7 @@ At this point, we can mention two important issues. First the “dog probability
 
 ### Fit the “Inverse Transform Function”
 
-Suppose the random vector of dogs’ images, denoted by $$\boldsymbol{X} \in \mathbb{R}^N$$, can be expressed as a function of an $$N$$-dimensional uniform random vector. Thus, to generate a new dog image, we only need to draw a sample from the $$N$$-dimensional uniform distribution and feed it to the function to acquire an observation of $$\boldsymbol{X}$$. Finally, we reshape the vector into a desired $$n \times n$$ image. However, due to the extremely complicated form of the transform function (the close form may even not exist), we have to use neural networks to fit the inverse. 
+Suppose the random vector of dogs’ images, denoted by $$\boldsymbol{X} \in \mathbb{R}^N$$, can be expressed as a function of an $$N$$-dimensional uniform random vector. Thus, to generate a new dog image, we only need to draw a sample from the $$N$$-dimensional uniform distribution and feed it to the function to acquire an observation of $$\boldsymbol{X}$$. Finally, we reshape the vector into a desired $$n \times n$$ image. However, due to the extremely complicated form of the transform function (the close form may even not exist), we have to use neural networks to fit the inverse.
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/generative_models.png" alt="visualisations" style="width:100%">
@@ -85,3 +85,17 @@ Suppose the random vector of dogs’ images, denoted by $$\boldsymbol{X} \in \ma
 ## Generative Matching Networks
 
 **Disclaimer**: The denomination of “Generative Matching Networks” is not a standard one. However, we can find in the literature, for example, “Generative Moments Matching Networks” or also “Generative Features Matching Networks”. We just want here to use a slightly more general denomination for what we describe bellow.
+
+### Training Generative models
+
+So far, we have shown that our problem of generating a new image of a dog can be rephrased into a problem of generating a random vector in the $$N$$-dimensional vector space that follows the “dog probability distribution”. We have also suggested that the random vector can be generated via the transform method, with a neural network modelling the transform function.
+
+Now, we still need to train (optimise) the network to express the right transform function. To this purpose, we can suggest two different training methods: a direct one and an indirect one.
+
+- <span style="color:RoyalBlue;">In the direct training method, there are predefined metrics estimating the distance between the ground-truth distribution and the generated one, so that the error can be directly back-propagated through the network. This is the idea that rules Generative Matching Networks (GMNs).<span>
+- <span style="color:RoyalBlue;">In the indirect training method, we do not defined metrics for distribution distances. Instead, we also train a downstream network which differentiates samples from the ground-truth distribution and those from the generated distribution. The optimisation process of the overall network with respect to the downstream task will enforce the generated distribution to be close to the true distribution. This idea is the one behind Generative Adversarial Networks (GANs).<span>
+
+But for now, let’s start with the direct method and GMNs.
+
+### Distance of Two Probability Distributions Based on Samples
+
