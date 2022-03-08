@@ -36,7 +36,7 @@ Computers are fundamentally deterministic, so theoretically, it is impossible to
 
 Let $$X$$ be a random variable with the cumulative distribution function $$F_X( \cdot )$$, and we would like to draw samples from this distribution. Let $$U$$ be a uniform random variable over $$[0, \; 1]$$, and we know its CDF can be expressed as
 
-$$F_U(x) = \mathbb{P}(U \le x) = x.$$
+$$F_U(x) = \mathbb{P}(U \le x) = x. \notag$$
 
 For simplicity, we suppose that the function $$F_X$$ is invertible and its inverse is denoted as $$F_X^{-1}$$. (If $$F_X$$ is not invertible, then we can modify the pseudo-inverse’s values on a zero-measure subset to make it a proper function.) Then we have $$Y := F_X(X) \sim U(0, \; 1)$$, because
 
@@ -53,7 +53,7 @@ $$
 Thus, to sample from the distribution of $$X$$, we can first draw samples $$\{ u_1, \, u_2, \, \cdots, u_n\}$$ from $$U(0, \; 1)$$, then transform them with the inverse $$F_X^{-1}$$:
 
 $$
-\left\{ F_X^{-1} (u_1), \, F_X^{-1} (u_2), \, \cdots, F_X^{-1} (u_n) \right\}.
+\left\{ F_X^{-1} (u_1), \, F_X^{-1} (u_2), \, \cdots, F_X^{-1} (u_n) \right\}. \notag
 $$
 
 To summarise, the inverse transform method is a way to generate samples of a distribution that leverages uniform random numbers going through a well designed “transform function” (the inverse CDF). This notion can be extended to a more generalised idea, in which complicated random variables can be expressed as some simpler random variables (not necessarily uniform and then the transform functions are no longer the inverse CDF). Conceptually, the purpose of the “transform function” is to deform/reshape the initial probability distribution: the transform function takes from where the initial distribution is too high compared to the targeted distribution and puts it where it is too low.
@@ -72,3 +72,16 @@ Suppose that we are interested in generating black and white square images of do
 <p style="color:Crimson;">Then, the problem of generating a new image of dog is equivalent to the problem of generating a new vector following the “dog probability distribution” over the $N$-dimensional vector space. So we are, in fact, facing a problem of sampling a random variable with respect to a specific probability distribution.</p>
 
 At this point, we can mention two important issues. First the “dog probability distribution” we mentioned is a very complex distribution over a very large space. Second, even if we can assume the existence of such underlying distribution (there actually exist images that look like dogs and others that don’t), we obviously don’t know how to express it explicitly. These two problems mean that we can’t directly utilise classic sampling approaches, such as the inverse transform method.
+
+### Fit the “Inverse Transform Function”
+
+Suppose the random vector of dogs’ images, denoted by $$\boldsymbol{X} \in \mathbb{R}^N$$, can be expressed as a function of an $$N$$-dimensional uniform random vector. Thus, to generate a new dog image, we only need to draw a sample from the $$N$$-dimensional uniform distribution and feed it to the function to acquire an observation of $$\boldsymbol{X}$$. Finally, we reshape the vector into a desired $$n \times n$$ image. However, due to the extremely complicated form of the transform function (the close form may even not exist), we have to use neural networks to fit the inverse. 
+
+<figure>
+  <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/generative_models.png" alt="visualisations" style="width:100%">
+  <figcaption>Illustration of the notion of generative models using neural networks. Obviously, the dimensionality we are really talking about are much higher than represented here.</figcaption>
+</figure>
+
+## Generative Matching Networks
+
+**Disclaimer**: The denomination of “Generative Matching Networks” is not a standard one. However, we can find in the literature, for example, “Generative Moments Matching Networks” or also “Generative Features Matching Networks”. We just want here to use a slightly more general denomination for what we describe bellow.
