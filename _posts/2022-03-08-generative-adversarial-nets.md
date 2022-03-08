@@ -1,6 +1,6 @@
 ---
 key: 2022_03_08_01
-title: Introduction to MobileCount
+title: Introduction to Generative Adversarial Networks
 tags: ["Computer Vision", "Self-Supervised Learning"]
 mathjax: true
 mathjax_autoNumber: true
