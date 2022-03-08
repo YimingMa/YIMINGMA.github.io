@@ -15,9 +15,9 @@ aside:
 
 ## Introduction
 
-Yann LeCun described it as “the most interesting idea in the last 10 years in Machine Learning”. Of course, such a compliment coming from such a prominent researcher in the deep learning area is always a great advertisement for the subject we are talking about! And, indeed, **Generative Adversarial Networks** (**GANs** for short) have had a huge success since they were introduced in 2014 by Ian J. Goodfellow and co-authors in the article [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf).
+Yann LeCun described it as "the most interesting idea in the last 10 years in Machine Learning". Of course, such a compliment coming from such a prominent researcher in the deep learning area is always a great advertisement for the subject we are talking about! And, indeed, **Generative Adversarial Networks** (**GANs** for short) have had a huge success since they were introduced in 2014 by Ian J. Goodfellow and co-authors in the article [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf).
 
-Before going into the details, let’s give a quick overview of what GANs are made for. Generative adversarial networks belong to the set of **generative** models, which are able to generate new content. To illustrate this notion of “generative models”, we can take a look at some well known examples of results obtained with GANs.
+Before going into the details, let's give a quick overview of what GANs are made for. Generative adversarial networks belong to the set of **generative** models, which are able to generate new content. To illustrate this notion of "generative models", we can take a look at some well known examples of results obtained with GANs.
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/visualisations.png" alt="visualisations" style="width:100%">
@@ -56,7 +56,7 @@ $$
 \left\{ F_X^{-1} (u_1), \, F_X^{-1} (u_2), \, \cdots, F_X^{-1} (u_n) \right\}. \notag
 $$
 
-To summarise, the inverse transform method is a way to generate samples of a distribution that leverages uniform random numbers going through a well designed “transform function” (the inverse CDF). This notion can be extended to a more generalised idea, in which complicated random variables can be expressed as some simpler random variables (not necessarily uniform and then the transform functions are no longer the inverse CDF). Conceptually, the purpose of the “transform function” is to deform/reshape the initial probability distribution: the transform function takes from where the initial distribution is too high compared to the targeted distribution and puts it where it is too low.
+To summarise, the inverse transform method is a way to generate samples of a distribution that leverages uniform random numbers going through a well designed "transform function" (the inverse CDF). This notion can be extended to a more generalised idea, in which complicated random variables can be expressed as some simpler random variables (not necessarily uniform and then the transform functions are no longer the inverse CDF). Conceptually, the purpose of the "transform function" is to deform/reshape the initial probability distribution: the transform function takes from where the initial distribution is too high compared to the targeted distribution and puts it where it is too low.
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/inverse_transform_method.png" alt="visualisations" style="width:100%">
@@ -69,13 +69,13 @@ To summarise, the inverse transform method is a way to generate samples of a dis
 
 Suppose that we are interested in generating black and white square images of dogs with the size of $$n$$ by $$n$$ pixels. We can reshape each image as an $$N = n \times n$$ dimensional vector.  However, it doesn’t mean that all $$N$$-dimensional vectors represent dogs once shaped back to a square! So, we can say that only some $$N$$-dimensional vectors are associated with images of dogs, and they follow certain distribution over the $$N$$-dimensional vector space. In the same spirit, there exist, over this $$N$$-dimensional vector space, probability distributions for images of cats, birds and so on.
 
-<p style="color:Crimson;">Then, the problem of generating a new image of dog is equivalent to the problem of generating a new vector following the “dog probability distribution” over the $N$-dimensional vector space. So we are, in fact, facing a problem of sampling a random variable with respect to a specific probability distribution.</p>
+<p style="color:Crimson;">Then, the problem of generating a new image of dog is equivalent to the problem of generating a new vector following the "dog probability distribution" over the $$N$$-dimensional vector space. So we are, in fact, facing a problem of sampling a random variable with respect to a specific probability distribution.</p>
 
-At this point, we can mention two important issues. First the “dog probability distribution” we mentioned is a very complex distribution over a very large space. Second, even if we can assume the existence of such underlying distribution (there actually exist images that look like dogs and others that don’t), we obviously don’t know how to express it explicitly. These two problems mean that we can’t directly utilise classic sampling approaches, such as the inverse transform method.
+At this point, we can mention two important issues. First the "dog probability distribution" we mentioned is a very complex distribution over a very large space. Second, even if we can assume the existence of such underlying distribution (there actually exist images that look like dogs and others that don’t), we obviously don’t know how to express it explicitly. These two problems mean that we can’t directly utilise classic sampling approaches, such as the inverse transform method.
 
-### Fit the “Inverse Transform Function”
+### Fit the "Inverse Transform Function"
 
-Suppose the random vector of dogs’ images, denoted by $$\boldsymbol{X} \in \mathbb{R}^N$$, can be expressed as a function of an $$N$$-dimensional uniform random vector. Thus, to generate a new dog image, we only need to draw a sample from the $$N$$-dimensional uniform distribution and feed it to the function to acquire an observation of $$\boldsymbol{X}$$. Finally, we reshape the vector into a desired $$n \times n$$ image. However, due to the extremely complicated form of the transform function (the close form may even not exist), we have to use neural networks to fit the inverse.
+Suppose the random vector of dogs' images, denoted by $$\boldsymbol{X} \in \mathbb{R}^N$$, can be expressed as a function of an $$N$$-dimensional uniform random vector. Thus, to generate a new dog image, we only need to draw a sample from the $$N$$-dimensional uniform distribution and feed it to the function to acquire an observation of $$\boldsymbol{X}$$. Finally, we reshape the vector into a desired $$n \times n$$ image. However, due to the extremely complicated form of the transform function (the close form may even not exist), we have to use neural networks to fit the inverse.
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/generative_models.png" alt="visualisations" style="width:100%">
@@ -84,21 +84,37 @@ Suppose the random vector of dogs’ images, denoted by $$\boldsymbol{X} \in \ma
 
 ## Generative Matching Networks
 
-**Disclaimer**: The denomination of “Generative Matching Networks” is not a standard one. However, we can find in the literature, for example, “Generative Moments Matching Networks” or also “Generative Features Matching Networks”. We just want here to use a slightly more general denomination for what we describe bellow.
+**Disclaimer**: The denomination of "Generative Matching Networks" is not a standard one. However, we can find in the literature, for example, "Generative Moments Matching Networks" or also "Generative Features Matching Networks". We just want here to use a slightly more general denomination for what we describe bellow.
 
 ### Training Generative models
 
-So far, we have shown that our problem of generating a new image of a dog can be rephrased into a problem of generating a random vector in the $$N$$-dimensional vector space that follows the “dog probability distribution”. We have also suggested that the random vector can be generated via the transform method, with a neural network modelling the transform function.
+So far, we have shown that our problem of generating a new image of a dog can be rephrased into a problem of generating a random vector in the $$N$$-dimensional vector space that follows the "dog probability distribution". We have also suggested that the random vector can be generated via the transform method, with a neural network modelling the transform function.
 
 Now, we still need to train (optimise) the network to express the right transform function. To this purpose, we can suggest two different training methods: a direct one and an indirect one.
 
 - <span style="color:RoyalBlue;">In the direct training method, there are predefined metrics estimating the distance between the ground-truth distribution and the generated one, so that the error can be directly back-propagated through the network. This is the idea that rules Generative Matching Networks (GMNs).<span>
 - <span style="color:RoyalBlue;">In the indirect training method, we do not defined metrics for distribution distances. Instead, we also train a downstream network which differentiates samples from the ground-truth distribution and those from the generated distribution. The optimisation process of the overall network with respect to the downstream task will enforce the generated distribution to be close to the true distribution. This idea is the one behind Generative Adversarial Networks (GANs).<span>
 
-But for now, let’s start with the direct method and GMNs.
+But for now, let's start with the direct method and GMNs.
 
 ### Distance of Two Probability Distributions Based on Samples
 
 As mentioned, the idea of GMNs is to train the generative network by directly comparing the generated distribution with the true one. However, we do not know how to express them explicitly, so comparisons based on explicit expressions are not possible. On the other hand,  we can estimate the distance between distributions based on samples. Indeed, we have a sample of real dog images, and we can produce a sample of generated data at each iteration of the training process.
 
 In theory, any distance (or similarity measure) able to compare effectively two distributions based on samples can be used, and here we exploit the **Maximum Mean Discrepancy** (**MMD**) approach. Although it is not fully out of the scope of this article, we have decided not to spend much more time describing the MMD. The readers that would like to know more about MMD right now can refer to [these slides](http://www.gatsby.ucl.ac.uk/~gretton/papers/testing_workshop.pdf), [this article](http://www.gatsby.ucl.ac.uk/~gretton/papers/GreBorRasSchSmo07.pdf) or [this article](http://www.jmlr.org/papers/volume13/gretton12a/gretton12a.pdf).
+
+### Back Propagation of MMD
+
+So, once we have defined a metric to estimate the distance between two distributions based on samples, we can design the training process of the generative network in GMNs. Given samples from the $$N$$-dimensional uniform distribution as input, we would like the probability distribution of the generated output to follow the "dog probability distribution". The idea of GMNs is then to optimise the network by repeating the following steps:
+
+1. Generate some $$N$$-dimensional vectors that follow the uniform distribution.
+2. Feed these vectors to the network and collect the generated output vectors, which are the generated dog vectors.
+3. Estimate the distance between distributions based on the real dog data with the generated ones by some metrics (e.g., MMD).
+4. Use back propagation to make one step of gradient descent to lower the distance (e.g., MMD) between true and generated distributions
+
+As written above, when following these steps we are applying a gradient descent over the network with a loss function that is the distance between the true and the generated distributions at the current iteration.
+
+<figure>
+  <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/GMN.png" alt="visualisations" style="width:100%">
+  <figcaption>Generative matching networks take simple random inputs, generate new data, directly compare the distribution of the generated data to the distribution of the true data and backpropagate the matching error to train the network. In short, it tries to fit the transform function.</figcaption>
+</figure>
