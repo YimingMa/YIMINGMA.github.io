@@ -118,3 +118,9 @@ As written above, when following these steps we are applying a gradient descent 
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/GMN.png" alt="visualisations" style="width:100%">
   <figcaption>Generative matching networks take simple random inputs, generate new data, directly compare the distribution of the generated data to the distribution of the true data and backpropagate the matching error to train the network. In short, it tries to fit the transform function.</figcaption>
 </figure>
+
+## Generative Adversarial Networks
+
+### The "Indirect" Training Method
+
+During training, GMNs compare the distribution of generated samples with that of the ground-truth samples directly, since we are using some pre-defined methods to estimate the distance between distributions based on samples. GANs instead replace these sample-based metrics by a downstream task. Since our goal is to generate a dog image that looks like real images, the downstream task is to discriminate between the real ones and synthesised ones. Or, we could say a “non-discrimination” task as we want the discrimination to fail as much as possible. <span style="color:RoyalBlue;">So, in a GAN architecture, we have a discriminator, that takes samples of true and generated data and that try to classify them as well as possible, and a generator that is trained to fool the discriminator as much as possible.</span> Let’s see on a simple example why the direct and indirect approaches we mentioned should, in theory, lead to the same optimal generator.
