@@ -35,8 +35,11 @@ Computers are fundamentally deterministic, so theoretically, it is impossible to
 ### The Inverse Transform Method
 
 Let $$X$$ be a random variable with the cumulative distribution function $$F_X( \cdot )$$, and we would like to draw samples from this distribution. Let $$U$$ be a uniform random variable over $$[0, \; 1]$$, and we know its CDF can be expressed as
+
 $$F_U(x) = \mathbb{P}(U \le x) = x.$$
+
 For simplicity, we suppose that the function $$F_X$$ is invertible and its inverse is denoted as $$F_X^{-1}$$. (If $$F_X$$ is not invertible, then we can modify the pseudo-inverse’s values on a zero-measure subset to make it a proper function.) Then we have $$Y := F_X(X) \sim U(0, \; 1)$$, because
+
 $$
 \begin{align*}
 F_Y(x) & = \mathbb{P}\left( Y \le x\right) \\
@@ -46,13 +49,26 @@ F_Y(x) & = \mathbb{P}\left( Y \le x\right) \\
 & = x
 \end{align*}
 $$
+
 Thus, to sample from the distribution of $$X$$, we can first draw samples $$\{ u_1, \, u_2, \, \cdots, u_n\}$$ from $$U(0, \; 1)$$, then transform them with the inverse $$F_X^{-1}$$:
+
 $$
 \left\{ F_X^{-1} (u_1), \, F_X^{-1} (u_2), \, \cdots, F_X^{-1} (u_n) \right\}.
 $$
+
 To summarise, the inverse transform method is a way to generate samples of a distribution that leverages uniform random numbers going through a well designed “transform function” (the inverse CDF). This notion can be extended to a more generalised idea, in which complicated random variables can be expressed as some simpler random variables (not necessarily uniform and then the transform functions are no longer the inverse CDF). Conceptually, the purpose of the “transform function” is to deform/reshape the initial probability distribution: the transform function takes from where the initial distribution is too high compared to the targeted distribution and puts it where it is too low.
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/inverse_transform_method.png" alt="visualisations" style="width:100%">
   <figcaption>Illustration of the inverse transform method. In blue: the uniform distribution over [0,1]. In orange: the the standard Gaussian distribution. In grey: the mapping from the uniform to the gaussian distribution (inverse CDF).</figcaption>
 </figure>
+
+## Generative Models
+
+### Problem Formulation
+
+Suppose that we are interested in generating black and white square images of dogs with the size of $$n$$ by $$n$$ pixels. We can reshape each image as an $$N = n \times n$$ dimensional vector.  However, it doesn’t mean that all $$N$$-dimensional vectors represent dogs once shaped back to a square! So, we can say that only some $$N$$-dimensional vectors are associated with images of dogs, and they follow certain distribution over the $$N$$-dimensional vector space. In the same spirit, there exist, over this $$N$$-dimensional vector space, probability distributions for images of cats, birds and so on.
+
+<p style="color:Crimson;">Then, the problem of generating a new image of dog is equivalent to the problem of generating a new vector following the “dog probability distribution” over the $N$-dimensional vector space. So we are, in fact, facing a problem of sampling a random variable with respect to a specific probability distribution.</p>
+
+At this point, we can mention two important issues. First the “dog probability distribution” we mentioned is a very complex distribution over a very large space. Second, even if we can assume the existence of such underlying distribution (there actually exist images that look like dogs and others that don’t), we obviously don’t know how to express it explicitly. These two problems mean that we can’t directly utilise classic sampling approaches, such as the inverse transform method.
