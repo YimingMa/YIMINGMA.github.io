@@ -97,3 +97,7 @@ aside:
 ## Introduction
 
 Yann LeCun described it as “the most interesting idea in the last 10 years in Machine Learning”. Of course, such a compliment coming from such a prominent researcher in the deep learning area is always a great advertisement for the subject we are talking about! And, indeed, **Generative Adversarial Networks** (**GANs** for short) have had a huge success since they were introduced in 2014 by Ian J. Goodfellow and co-authors in the article [Generative Adversarial Nets](https://proceedings.neurips.cc/paper/2014/file/5ca3e9b122f61f8f06494c97b1afccf3-Paper.pdf).
+
+Before going into the details, let’s give a quick overview of what GANs are made for. Generative adversarial networks belong to the set of **generative** models, which are able to generate new content. To illustrate this notion of “generative models”, we can take a look at some well known examples of results obtained with GANs.
+
+<img src="posts.assets/2022-03-08-generative-adversarial-nets.assets/visualisations.png" alt="Illustration of GANs abilities by Ian Goodfellow and co-authors." class="center9">
