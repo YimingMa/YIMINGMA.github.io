@@ -149,3 +149,6 @@ At this point, it seems legitimate to wonder whether this indirect method is rea
 - Also, the indirect method requires a discriminator that we consider here as a given oracle but that is, in reality, neither known nor perfect. However, it can be learned!
 
 ### The Approximation: Adversarial Neural Networks
+
+Let’s now describe the specific forms that the generator and the discriminator in the GAN architecture take. The generator is a neural network that models a transform function. It takes a simple random vector (in our dog example a $N$-dimensional vector) as input and must return, once trained, another random vector that approximately follows the targeted distribution. As we choose to use learn to differentiate between the true and the generated distributions, the discriminator is modelled by another neural network. It takes a random vector (either generated or from a real image) as input and returns the probability of this point to be a “true” one as output.
+
