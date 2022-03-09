@@ -38,7 +38,7 @@ Let $$X$$ be a random variable with the cumulative distribution function $$F_X( 
 
 $$F_U(x) = \mathbb{P}(U \le x) = x. \notag$$
 
-For simplicity, we suppose that the function $$F_X$$ is invertible and its inverse is denoted as $$F_X^{-1}$$. (If $$F_X$$ is not invertible, then we can modify the pseudo-inverse’s values on a zero-measure subset to make it a proper function.) Then we have $$Y := F_X(X) \sim U(0, \; 1)$$, because
+For simplicity, we suppose that the function $$F_X$$ is invertible and its inverse is denoted as $$F_X^{-1}$$. (If $$F_X$$ is not invertible, then we can modify the pseudo-inverse's values on a zero-measure subset to make it a proper function.) Then we have $$Y := F_X(X) \sim U(0, \; 1)$$, because
 
 $$
 \begin{align*}
@@ -67,11 +67,11 @@ To summarise, the inverse transform method is a way to generate samples of a dis
 
 ### Problem Formulation
 
-Suppose that we are interested in generating black and white square images of dogs with the size of $$n$$ by $$n$$ pixels. We can reshape each image as an $$N = n \times n$$ dimensional vector.  However, it doesn’t mean that all $$N$$-dimensional vectors represent dogs once shaped back to a square! So, we can say that only some $$N$$-dimensional vectors are associated with images of dogs, and they follow certain distribution over the $$N$$-dimensional vector space. In the same spirit, there exist, over this $$N$$-dimensional vector space, probability distributions for images of cats, birds and so on.
+Suppose that we are interested in generating black and white square images of dogs with the size of $$n$$ by $$n$$ pixels. We can reshape each image as an $$N = n \times n$$ dimensional vector.  However, it doesn't mean that all $$N$$-dimensional vectors represent dogs once shaped back to a square! So, we can say that only some $$N$$-dimensional vectors are associated with images of dogs, and they follow certain distribution over the $$N$$-dimensional vector space. In the same spirit, there exist, over this $$N$$-dimensional vector space, probability distributions for images of cats, birds and so on.
 
 <p style="color:Crimson;">Then, the problem of generating a new image of dog is equivalent to the problem of generating a new vector following the "dog probability distribution" over the $N$-dimensional vector space. So we are, in fact, facing a problem of sampling a random variable with respect to a specific probability distribution.</p>
 
-At this point, we can mention two important issues. First the "dog probability distribution" we mentioned is a very complex distribution over a very large space. Second, even if we can assume the existence of such underlying distribution (there actually exist images that look like dogs and others that don’t), we obviously don’t know how to express it explicitly. These two problems mean that we can’t directly utilise classic sampling approaches, such as the inverse transform method.
+At this point, we can mention two important issues. First the "dog probability distribution" we mentioned is a very complex distribution over a very large space. Second, even if we can assume the existence of such underlying distribution (there actually exist images that look like dogs and others that don't), we obviously don't know how to express it explicitly. These two problems mean that we can't directly utilise classic sampling approaches, such as the inverse transform method.
 
 ### Fit the "Inverse Transform Function"
 
@@ -123,7 +123,7 @@ As written above, when following these steps we are applying a gradient descent 
 
 ### The "Indirect" Training Method
 
-During training, GMNs compare the distribution of generated samples with that of the ground-truth samples directly, since we are using some pre-defined methods to estimate the distance between distributions based on samples. GANs instead replace these sample-based metrics by a downstream task. Since our goal is to generate a dog image that looks like real images, the downstream task is to discriminate between the real ones and synthesised ones. Or, we could say a “non-discrimination” task as we want the discrimination to fail as much as possible. <span style="color:RoyalBlue;">So, in a GAN architecture, we have a **discriminator**, that takes samples of true and generated data and that try to classify them as well as possible, and a **generator** that is trained to fool the discriminator as much as possible.</span> Let’s see on a simple example why the direct and indirect approaches we mentioned should, in theory, lead to the same optimal generator.
+During training, GMNs compare the distribution of generated samples with that of the ground-truth samples directly, since we are using some pre-defined methods to estimate the distance between distributions based on samples. GANs instead replace these sample-based metrics by a downstream task. Since our goal is to generate a dog image that looks like real images, the downstream task is to discriminate between the real ones and synthesised ones. Or, we could say a "non-discrimination" task as we want the discrimination to fail as much as possible. <span style="color:RoyalBlue;">So, in a GAN architecture, we have a **discriminator**, that takes samples of true and generated data and that try to classify them as well as possible, and a **generator** that is trained to fool the discriminator as much as possible.</span> Let's see on a simple example why the direct and indirect approaches we mentioned should, in theory, lead to the same optimal generator.
 
 ### The Ideal Case: Perfect Generator and Discriminator
 
@@ -133,14 +133,14 @@ Suppose that we have a ground-truth distribution, for example a 1-D Gaussian and
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/direct_matching_method.png" alt="Direct Matching Method" style="width:100%">
-  <figcaption>Illustration of the concept of "direct" matching method. The distribution in blue is the true one while the generated distribution is depicted in orange. Iteration by iteration, we compare the two distributions and adjust the networks weights through gradient descent steps. Here the comparison is done over the mean and the variance (similar to a truncated moments matching method). Notice that (obviously) this example is so simple that it doesn’t require an iterative approach: the purpose is only to illustrate the intuition given above.</figcaption>
+  <figcaption>Illustration of the concept of "direct" matching method. The distribution in blue is the true one while the generated distribution is depicted in orange. Iteration by iteration, we compare the two distributions and adjust the networks weights through gradient descent steps. Here the comparison is done over the mean and the variance (similar to a truncated moments matching method). Notice that (obviously) this example is so simple that it doesn't require an iterative approach: the purpose is only to illustrate the intuition given above.</figcaption>
 </figure>
 
 For the "indirect" approach, we have to consider also a discriminator. We assume for now that this discriminator is a kind of oracle that knows exactly what are the true and generated distribution and that is able, based on this information, to predict a class (`"true"` or `"generated"`) for any given sample point. If the two distributions are far apart, the discriminator will be able to classify most of the points we present to it easily and with a high level of confidence. If we want to fool the discriminator, we have to bring the generated distribution close to the true one. The discriminator then will have the most difficulty in predicting the class when the two distributions will be equal in all points: in this case, for each point there are equal chances for it to be `"true"` or `"generated"` and then the discriminator can't do better than being true in one case out of two in average.
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/indirect_matching_method.png" alt="Indirect Matching Method" style="width:100%">
-  <figcaption>Intuition for the adversarial method. The blue distribution is the true one, the orange is the generated one. In grey, with corresponding y-axis on the right, we displayed the probability to be true for the discriminator if it chooses the class with the higher density in each point (assuming "true" and "generated" data are in equal proportions). The closer the two distributions are, the more often the discriminator is wrong. When training, the goal is to “move the green area” (generated distribution is too high) towards the red area (generated distribution is too low).</figcaption>
+  <figcaption>Intuition for the adversarial method. The blue distribution is the true one, the orange is the generated one. In grey, with corresponding y-axis on the right, we displayed the probability to be true for the discriminator if it chooses the class with the higher density in each point (assuming "true" and "generated" data are in equal proportions). The closer the two distributions are, the more often the discriminator is wrong. When training, the goal is to "move the green area" (generated distribution is too high) towards the red area (generated distribution is too low).</figcaption>
 </figure>
 
 At this point, it seems legitimate to wonder whether this indirect method is really a good idea.
@@ -166,26 +166,36 @@ So, at each iteration of the training process, the weights of the generative net
   <figcaption>Generative Adversarial Networks representation. The generator takes simple random variables as inputs and generate new data. The discriminator takes "true" and "generated" data and try to discriminate them, building a classifier. The goal of the generator is to fool the discriminator (increase the classification error by mixing up as much as possible generated data with true data) and the goal of the discriminator is to distinguish between true and generated data.</figcaption>
 </figure>
 
-These opposite goals and the adversarial training of the two networks explain the name of “adversarial networks”: both networks try to beat each other and, doing so, they are both becoming better and better. The competition between them makes these two networks “progress” with respect to their respective goals. From a game-theory point of view, we can think of this setting as a minimax two-players game where the equilibrium state corresponds to the situation where the generator produces data from the exact targeted distribution and where the discriminator predicts “true” or “generated” with probability $\frac{1}{2}$ for any point it receives.
+These opposite goals and the adversarial training of the two networks explain the name of "adversarial networks": both networks try to beat each other and, doing so, they are both becoming better and better. The competition between them makes these two networks "progress" with respect to their respective goals. From a game-theory point of view, we can think of this setting as a minimax two-players game where the equilibrium state corresponds to the situation where the generator produces data from the exact targeted distribution and where the discriminator predicts "true" or "generated" with probability $\frac{1}{2}$ for any point it receives.
 
-> **Note**: This section is a little bit more technical and not absolutely necessary for the overall understanding of GANs. So, the readers that don’t want to read some mathematics right now can skip this section for the moment. For the others, let’s see how the intuitions given above are mathematically formalised.
+> **Note**: This section is a little bit more technical and not absolutely necessary for the overall understanding of GANs. So, the readers that don't want to read some mathematics right now can skip this section for the moment. For the others, let's see how the intuitions given above are mathematically formalised.
 > **Disclaimer**: The equations in the following are not the ones of the article of Ian Goodfellow. We propose here an other mathematical formalisation for two reasons: first, to stay a little bit closer to the intuitions given above and, second, because the equations of the original paper are already so clear that it would not have been useful to just rewrite them. Notice also that we absolutely do not enter into the practical considerations (vanishing gradient or other) related to the different possible loss functions. We highly encourage the reader to also take a look at the equations of the original paper: the main difference is that Ian Goodfellow and co-authors have worked with cross-entropy error instead of absolute error (as we do bellow). Moreover, in the following we assume a generator and a discriminator with unlimited capacity.
 
 Neural network models essentially require to define two things: an architecture and a loss function. We have already described the architecture of GANs. It comprises two networks:
 
 - <span style="color:RoyalBlue;">A **generative network** $\boldsymbol{G}(\cdot)$ that takes a random vector $\boldsymbol{z}$ with density $p_{\boldsymbol{z}}$ as input and returns an output $\boldsymbol{x}_g = G ( \boldsymbol{z})$ that should approximately follow (after training) the targeted probability distribution.</span>
-- <span style="color:RoyalBlue;">A **discriminative network** $D(\cdot)$ that takes an input $\boldsymbol{x}$ that can be a “true” one ($\boldsymbol{x}_t$, whose density is denoted by $p_t$) or a “generated” one ($\boldsymbol{x}_g$, whose density $p_g$ is the density induced by the density $p_{\boldsymbol{z}}$ going through $\boldsymbol{G}$) and that returns the probability $D(\boldsymbol{x})$ of $\boldsymbol{x}$ to be a “true” sample.</span>
+- <span style="color:RoyalBlue;">A **discriminative network** $D(\cdot)$ that takes an input $\boldsymbol{x}$ that can be a "true" one ($\boldsymbol{x}_t$, whose density is denoted by $p_t$) or a "generated" one ($\boldsymbol{x}_g$, whose density $p_g$ is the density induced by the density $p_{\boldsymbol{z}}$ going through $\boldsymbol{G}$) and that returns the probability $D(\boldsymbol{x})$ of $\boldsymbol{x}$ to be a "true" sample.</span>
 
 During each iteration:
 
 1. Randomly select a real dog image $\boldsymbol{x}_t$.
-2. Generate a random vector $\boldsymbol{z}$, and derive $\boldsymbol{x}_g$ via the “transform function” $\boldsymbol{G}$:
+2. Generate a random vector $\boldsymbol{z}$, and derive $\boldsymbol{x}_g$ via the "transform function" $\boldsymbol{G}$:
     $$\boldsymbol{x}_g: =\boldsymbol{G}(\boldsymbol{z})$$
 3. Feed both $\boldsymbol{x}_t$ and $\boldsymbol{x}_g$ to the discriminative network $D$.
 4. Calculate the loss function:
     $$\left( 1 - D(\boldsymbol{x}_t) \right) + D(\boldsymbol{x}_g) = \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right)$$
-    For $D$, we expect it to classify $\boldsymbol{x}_t$ to as “true” and $\boldsymbol{x}_g$ as “generated”, so we expect $D(\boldsymbol{x}_t) \approx 1$ and $D(\boldsymbol{x}_g) \approx 0$.
+    For $D$, we expect it to classify $\boldsymbol{x}_t$ to as "true" and $\boldsymbol{x}_g$ as "generated", so we expect $D(\boldsymbol{x}_t) \approx 1$ and $D(\boldsymbol{x}_g) \approx 0$.
 5. Optimisation:
     $$\max_{\boldsymbol{G}}\min_{D} \left[ \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right) \right].$$
-    - Minimise the loss function with respect to $D$: $D(\boldsymbol{x}_t) \to 1$ and $D (\boldsymbol{G}(\boldsymbol{z})) \to 0$, i.e., both “true” and “generated” data can be classified correctly.
-    - Maximise the loss function with respect to $\boldsymbol{G}$: $D (\boldsymbol{G}(\boldsymbol{z})) \to 1$, i.e., the discriminator regards the “generated” data as “true”, which means the generated distribution is very similar to the true one.
+    - Minimise the loss function with respect to $D$: $D(\boldsymbol{x}_t) \to 1$ and $D (\boldsymbol{G}(\boldsymbol{z})) \to 0$, i.e., both "true" and "generated" data can be classified correctly.
+    - Maximise the loss function with respect to $\boldsymbol{G}$: $D (\boldsymbol{G}(\boldsymbol{z})) \to 1$, i.e., the discriminator regards the "generated" data as "true", which means the generated distribution is very similar to the true one.
+
+## Takeaways
+
+The main takeaways of this article are:
+
+- Computers can basically generate simple pseudo-random numbers. For example they can generate numbers that approximately follow $U(0, \, 1)$.
+- There exist different ways to sample from more complex distributions based on simpler ones, such as the inverse transform method. However, the inverse CDF sometimes cannot be expressed explicitly, and the simple distribution is not always uniform. In these cases, we can use neural networks to fit the transform function.
+- Since in real-world applications, we don't know the close forms of the ground-truth distribution and the generated one, we can only estimate the distance between them via samples. Such estimation is usually not 100% accurate. GMNs leverage some pre-defined metrics, while GANs learn to discriminate.
+
+Even if the "hype" that surrounds GANs is maybe a little bit exaggerated, we can say that the idea of adversarial training suggested by Ian Goodfellow and its co-authors is really a great one. This way to twist the loss function to go from a direct comparison to an indirect one is really something that can be very inspiring for further works in the deep learning area. To conclude, let's say that we don't know if the idea of GANs is really "the most interesting idea in the last 10 years in Machine Learning"… but it's pretty obvious that it is, at least, one of the most interesting!
