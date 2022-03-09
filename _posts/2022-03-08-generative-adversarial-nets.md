@@ -182,17 +182,17 @@ During each iteration:
 1. Randomly select a real dog image $$\boldsymbol{x}_t$$.
 2. Generate a random vector $$\boldsymbol{z}$$, and derive $$\boldsymbol{x}_g$$ via the "transform function" $$\boldsymbol{G}$$:
 
-    $$\boldsymbol{x}_g: =\boldsymbol{G}(\boldsymbol{z})$$
+    $$\boldsymbol{x}_g: =\boldsymbol{G}(\boldsymbol{z})\notag$$
 
 3. Feed both $$\boldsymbol{x}_t$$ and $$\boldsymbol{x}_g$$ to the discriminative network $$D$$.
 4. Calculate the loss function:
 
-    $$\left( 1 - D(\boldsymbol{x}_t) \right) + D(\boldsymbol{x}_g) = \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right)$$
+    $$\left( 1 - D(\boldsymbol{x}_t) \right) + D(\boldsymbol{x}_g) = \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right)\notag$$
 
     For $$D$$, we expect it to classify $$\boldsymbol{x}_t$$ to as "true" and $$\boldsymbol{x}_g$$ as "generated", so we expect $$D(\boldsymbol{x}_t) \approx 1$$ and $$D(\boldsymbol{x}_g) \approx 0$$.
 5. Optimisation:
 
-    $$\max_{\boldsymbol{G}}\min_{D} \left[ \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right) \right].$$
+    $$\max_{\boldsymbol{G}}\min_{D} \left[ \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right) \right].\notag$$
 
     - Minimise the loss function with respect to $$D$$: $$D(\boldsymbol{x}_t) \to 1$$ and $$D (\boldsymbol{G}(\boldsymbol{z})) \to 0$$, i.e., both "true" and "generated" data can be classified correctly.
     - Maximise the loss function with respect to $$\boldsymbol{G}$$: $$D (\boldsymbol{G}(\boldsymbol{z})) \to 1$$, i.e., the discriminator regards the "generated" data as "true", which means the generated distribution is very similar to the true one.
