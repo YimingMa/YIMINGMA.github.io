@@ -174,24 +174,18 @@ These opposite goals and the adversarial training of the two networks explain th
 Neural network models essentially require to define two things: an architecture and a loss function. We have already described the architecture of GANs. It comprises two networks:
 
 - <span style="color:RoyalBlue;">A **generative network** $\boldsymbol{G}(\cdot)$ that takes a random vector $\boldsymbol{z}$ with density $p_{\boldsymbol{z}}$ as input and returns an output $\boldsymbol{x}_g = G ( \boldsymbol{z})$ that should approximately follow (after training) the targeted probability distribution.</span>
-- <span style="color:RoyalBlue;">A **discriminative network** $D(\cdot) $ that takes an input $\boldsymbol{x}$ that can be a “true” one ($\boldsymbol{x}_t$, whose density is denoted by $p_t$) or a “generated” one ($\boldsymbol{x}_g$, whose density $p_g$ is the density induced by the density $p_{\boldsymbol{z}}$ going through $\boldsymbol{G}$) and that returns the probability $D(\boldsymbol{x})$ of $\boldsymbol{x}$ to be a “true” sample.</span>
+- <span style="color:RoyalBlue;">A **discriminative network** $D(\cdot)$ that takes an input $\boldsymbol{x}$ that can be a “true” one ($\boldsymbol{x}_t$, whose density is denoted by $p_t$) or a “generated” one ($\boldsymbol{x}_g$, whose density $p_g$ is the density induced by the density $p_{\boldsymbol{z}}$ going through $\boldsymbol{G}$) and that returns the probability $D(\boldsymbol{x})$ of $\boldsymbol{x}$ to be a “true” sample.</span>
 
 During each iteration:
 
 1. Randomly select a real dog image $\boldsymbol{x}_t$.
 2. Generate a random vector $\boldsymbol{z}$, and derive $\boldsymbol{x}_g$ via the “transform function” $\boldsymbol{G}$:
-    $$
-    \boldsymbol{x}_g: =\boldsymbol{G}(\boldsymbol{z})
-    $$
+    $$\boldsymbol{x}_g: =\boldsymbol{G}(\boldsymbol{z})$$
 3. Feed both $\boldsymbol{x}_t$ and $\boldsymbol{x}_g$ to the discriminative network $D$.
 4. Calculate the loss function:
-    $$
-    \left( 1 - D(\boldsymbol{x}_t) \right) + D(\boldsymbol{x}_g) = \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right)
-    $$
+    $$\left( 1 - D(\boldsymbol{x}_t) \right) + D(\boldsymbol{x}_g) = \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right)$$
     For $D$, we expect it to classify $\boldsymbol{x}_t$ to as “true” and $\boldsymbol{x}_g$ as “generated”, so we expect $D(\boldsymbol{x}_t) \approx 1$ and $D(\boldsymbol{x}_g) \approx 0$.
 5. Optimisation:
-    $$
-    \max_{\boldsymbol{G}}\min_{D} \left[ \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right) \right].
-    $$
+    $$\max_{\boldsymbol{G}}\min_{D} \left[ \left( 1 - D(\boldsymbol{x}_t) \right) + D \left( \boldsymbol{G}(\boldsymbol{z}) \right) \right].$$
     - Minimise the loss function with respect to $D$: $D(\boldsymbol{x}_t) \to 1$ and $D (\boldsymbol{G}(\boldsymbol{z})) \to 0$, i.e., both “true” and “generated” data can be classified correctly.
     - Maximise the loss function with respect to $\boldsymbol{G}$: $D (\boldsymbol{G}(\boldsymbol{z})) \to 1$, i.e., the discriminator regards the “generated” data as “true”, which means the generated distribution is very similar to the true one.
