@@ -132,6 +132,6 @@ In order to better understand why training a generator to fool a discriminator w
 Suppose that we have a ground-truth distribution, for example a 1-D Gaussian and that we want a generator that samples from this probability distribution. In the "direct" method GMNs, the generator is iteratively adjusted to correct the measured distance between the true and the generated distributions. If we assume that the optimisation process is perfect, then theoretically, the generated distribution in the end should exactly match the true one.
 
 <figure>
-  <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/direct_matching_method.png.png" alt="Direct Matching Method" style="width:100%">
+  <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/direct_matching_method.png" alt="Direct Matching Method" style="width:100%">
   <figcaption>Illustration of the concept of "direct" matching method. The distribution in blue is the true one while the generated distribution is depicted in orange. Iteration by iteration, we compare the two distributions and adjust the networks weights through gradient descent steps. Here the comparison is done over the mean and the variance (similar to a truncated moments matching method). Notice that (obviously) this example is so simple that it doesn’t require an iterative approach: the purpose is only to illustrate the intuition given above.</figcaption>
 </figure>
