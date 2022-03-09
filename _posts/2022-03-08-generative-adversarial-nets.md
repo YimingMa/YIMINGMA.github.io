@@ -135,3 +135,17 @@ Suppose that we have a ground-truth distribution, for example a 1-D Gaussian and
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/direct_matching_method.png" alt="Direct Matching Method" style="width:100%">
   <figcaption>Illustration of the concept of "direct" matching method. The distribution in blue is the true one while the generated distribution is depicted in orange. Iteration by iteration, we compare the two distributions and adjust the networks weights through gradient descent steps. Here the comparison is done over the mean and the variance (similar to a truncated moments matching method). Notice that (obviously) this example is so simple that it doesn’t require an iterative approach: the purpose is only to illustrate the intuition given above.</figcaption>
 </figure>
+
+For the "indirect" approach, we have to consider also a discriminator. We assume for now that this discriminator is a kind of oracle that knows exactly what are the true and generated distribution and that is able, based on this information, to predict a class (`"true"` or `"generated"`) for any given sample point. If the two distributions are far apart, the discriminator will be able to classify most of the points we present to it easily and with a high level of confidence. If we want to fool the discriminator, we have to bring the generated distribution close to the true one. The discriminator then will have the most difficulty in predicting the class when the two distributions will be equal in all points: in this case, for each point there are equal chances for it to be `"true"` or `"generated"` and then the discriminator can't do better than being true in one case out of two in average.
+
+<figure>
+  <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/indirect_matching_method.png" alt="Indirect Matching Method" style="width:100%">
+  <figcaption>Intuition for the adversarial method. The blue distribution is the true one, the orange is the generated one. In grey, with corresponding y-axis on the right, we displayed the probability to be true for the discriminator if it chooses the class with the higher density in each point (assuming “true” and “generated” data are in equal proportions). The closer the two distributions are, the more often the discriminator is wrong. When training, the goal is to “move the green area” (generated distribution is too high) towards the red area (generated distribution is too low).</figcaption>
+</figure>
+
+At this point, it seems legitimate to wonder whether this indirect method is really a good idea.
+
+- We have to optimise the generator based on a downstream task other than directly based on the estimation of distribution distances. However, estimating distribution distances based on samples is also computationally complex.
+- Also, the indirect method requires a discriminator that we consider here as a given oracle but that is, in reality, neither known nor perfect. However, it can be learned!
+
+### The Approximation: Adversarial Neural Networks
