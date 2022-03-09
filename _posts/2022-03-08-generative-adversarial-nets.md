@@ -11,7 +11,7 @@ aside:
     toc: true
 ---
 
-**Claim**: This post refers to many materials of [Understanding Generative Adversarial Networks (GANs)](https://towardsdatascience.com/understanding-generative-adversarial-networks-gans-cd6e4651a29) by Joseph Rocca and Baptiste Rocca. The original paper in which GANs are proposed is called *Generative Adversarial Nets* by Ian Goodfellow et al.
+> This post refers to many materials of [Understanding Generative Adversarial Networks (GANs)](https://towardsdatascience.com/understanding-generative-adversarial-networks-gans-cd6e4651a29) by Joseph Rocca and Baptiste Rocca. The original paper in which GANs are proposed is called *Generative Adversarial Nets* by Ian Goodfellow et al.
 
 ## Introduction
 
@@ -84,7 +84,7 @@ Suppose the random vector of dogs' images, denoted by $$\boldsymbol{X} \in \math
 
 ## Generative Matching Networks
 
-**Disclaimer**: The denomination of "Generative Matching Networks" is not a standard one. However, we can find in the literature, for example, "Generative Moments Matching Networks" or also "Generative Features Matching Networks". We just want here to use a slightly more general denomination for what we describe bellow.
+> **Disclaimer**: The denomination of "Generative Matching Networks" is not a standard one. However, we can find in the literature, for example, "Generative Moments Matching Networks" or also "Generative Features Matching Networks". We just want here to use a slightly more general denomination for what we describe bellow.
 
 ### Training Generative models
 
@@ -140,7 +140,7 @@ For the "indirect" approach, we have to consider also a discriminator. We assume
 
 <figure>
   <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/indirect_matching_method.png" alt="Indirect Matching Method" style="width:100%">
-  <figcaption>Intuition for the adversarial method. The blue distribution is the true one, the orange is the generated one. In grey, with corresponding y-axis on the right, we displayed the probability to be true for the discriminator if it chooses the class with the higher density in each point (assuming “true” and “generated” data are in equal proportions). The closer the two distributions are, the more often the discriminator is wrong. When training, the goal is to “move the green area” (generated distribution is too high) towards the red area (generated distribution is too low).</figcaption>
+  <figcaption>Intuition for the adversarial method. The blue distribution is the true one, the orange is the generated one. In grey, with corresponding y-axis on the right, we displayed the probability to be true for the discriminator if it chooses the class with the higher density in each point (assuming "true" and "generated" data are in equal proportions). The closer the two distributions are, the more often the discriminator is wrong. When training, the goal is to “move the green area” (generated distribution is too high) towards the red area (generated distribution is too low).</figcaption>
 </figure>
 
 At this point, it seems legitimate to wonder whether this indirect method is really a good idea.
@@ -150,5 +150,24 @@ At this point, it seems legitimate to wonder whether this indirect method is rea
 
 ### The Approximation: Adversarial Neural Networks
 
-Let’s now describe the specific forms that the generator and the discriminator in the GAN architecture take. The generator is a neural network that models a transform function. It takes a simple random vector (in our dog example a $N$-dimensional vector) as input and must return, once trained, another random vector that approximately follows the targeted distribution. As we choose to use learn to differentiate between the true and the generated distributions, the discriminator is modelled by another neural network. It takes a random vector (either generated or from a real image) as input and returns the probability of this point to be a “true” one as output.
+Let's now describe the specific forms that the generator and the discriminator in the GAN architecture take. The generator is a neural network that models a transform function. It takes a simple random vector (in our dog example a $N$-dimensional vector) as input and must return, once trained, another random vector that approximately follows the targeted distribution. As we choose to use learn to differentiate between the true and the generated distributions, the discriminator is modelled by another neural network. It takes a random vector (either generated or from a real image) as input and returns the probability of this point to be a "true" one as output.
+
+Notice that the fact that we impose now parametrised models to express both the generator and the discriminator (instead of the idealised versions in the previous subsection) has, in practice, no huge impact on the theoretical argument/intuition given above. We just then work in some parametrised spaces instead of ideal full spaces, so the optimal points that we should reach in the ideal case can then be seen as "rounded" by the precision capacity of the parametrised models.
+
+Once defined, the two networks can then be trained jointly (at the same time) with opposite goals:
+
+- The goal of the generator is to fool the discriminator. Thus, the generative neural network is trained to maximise the final classification error (between true and generated data), so that the discriminator confuses between true images and generated ones.
+- The goal of the discriminator is to detect fake generated data, so the discriminative neural network is trained to minimise the final classification error.
+
+So, at each iteration of the training process, the weights of the generative network are updated in order to increase the classification error (error gradient ascent over the generator's parameters) whereas the weights of the discriminative network are updated so that to decrease this error (error gradient descent over the discriminator's parameters).
+
+<figure>
+  <img src="/posts.assets/2022-03-08-generative-adversarial-nets.assets/GAN.png" alt="GAN" style="width:100%">
+  <figcaption>Generative Adversarial Networks representation. The generator takes simple random variables as inputs and generate new data. The discriminator takes "true" and "generated" data and try to discriminate them, building a classifier. The goal of the generator is to fool the discriminator (increase the classification error by mixing up as much as possible generated data with true data) and the goal of the discriminator is to distinguish between true and generated data.</figcaption>
+</figure>
+
+These opposite goals and the adversarial training of the two networks explain the name of “adversarial networks”: both networks try to beat each other and, doing so, they are both becoming better and better. The competition between them makes these two networks “progress” with respect to their respective goals. From a game-theory point of view, we can think of this setting as a minimax two-players game where the equilibrium state corresponds to the situation where the generator produces data from the exact targeted distribution and where the discriminator predicts “true” or “generated” with probability $\frac{1}{2}$ for any point it receives.
+
+> **Note**: This section is a little bit more technical and not absolutely necessary for the overall understanding of GANs. So, the readers that don’t want to read some mathematics right now can skip this section for the moment. For the others, let’s see how the intuitions given above are mathematically formalised.
+> **Disclaimer**: The equations in the following are not the ones of the article of Ian Goodfellow. We propose here an other mathematical formalisation for two reasons: first, to stay a little bit closer to the intuitions given above and, second, because the equations of the original paper are already so clear that it would not have been useful to just rewrite them. Notice also that we absolutely do not enter into the practical considerations (vanishing gradient or other) related to the different possible loss functions. We highly encourage the reader to also take a look at the equations of the original paper: the main difference is that Ian Goodfellow and co-authors have worked with cross-entropy error instead of absolute error (as we do bellow). Moreover, in the following we assume a generator and a discriminator with unlimited capacity.
 
