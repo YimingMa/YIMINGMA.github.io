@@ -48,13 +48,13 @@ In this section we will discuss some concepts related to **dimensionality reduct
 
 ## What Is Dimensionality Reduction?
 
-<span style="color:RoyalBlue;">In machine learning, [**dimensionality reduction**](https://en.wikipedia.org/wiki/Dimensionality_reduction) is the process of reducing the number of features that describe some data. This reduction is done either by 
+<span style="color:RoyalBlue;">In machine learning, [**dimensionality reduction**](https://en.wikipedia.org/wiki/Dimensionality_reduction) is the process of reducing the number of features that describe some data. This reduction is done either by</span>
 
-- **selection** (only some existing features are conserved)
+- <span style="color:RoyalBlue;">**selection** (only some existing features are conserved)</span>
 
-or by
+<span style="color:RoyalBlue;">or by</span>
 
-- **extraction** (a reduced number of new features are created based on the old ones).</span>
+- <span style="color:RoyalBlue;">**extraction** (a reduced number of new features are created based on the old ones).</span>
 
 Dimensionality reduction can be useful in many situations that require low-dimensional data (e.g., data visualisation, data storage, heavy computation). Although there exist many different methods to reduce dimensionality, we can set a global framework that is matched by most of these methods.
 
