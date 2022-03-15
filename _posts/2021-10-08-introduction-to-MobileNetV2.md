@@ -11,63 +11,9 @@ aside:
     toc: true
 ---
 
-<style>
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-}
-</style>
-
-<style>
-.center1 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-</style>
-
-<style>
-.center2 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
-}
-</style>
-
-<style>
-.center3 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
-}
-</style>
-
-<style>
-.center4 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
-</style>
-
-<style>
-.center5 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
-</style>
-
 ## Introduction
 
-Researchers have found that depthwise kernels in [MobileNetV1](https://arxiv.org/abs/1704.04861) after training can become very sparse. This problem is caused by information loss after ReLU activation, so in [_MobileNetV2: Inverted Residuals and Linear Bottlenecks_](https://arxiv.org/abs/1801.04381), authors suggest that it is important to remove nonlinearity in the narrow layers. A novel layer module – the **inverted residual block** has also been proposed, which takes a low-dimensional feature map as an input, and then it is expanded to be high-dimensional and subsequently filtered depthwise. At last, these filtered features are projected back to the low-dimensional space with a linear convolution, and then concatenated with the original input.
+Researchers have found that depthwise kernels in [MobileNetV1](https://arxiv.org/abs/1704.04861) after training can become very sparse. This problem is caused by information loss after ReLU activation, so in [*MobileNetV2: Inverted Residuals and Linear Bottlenecks*](https://arxiv.org/abs/1801.04381), authors suggest that it is important to remove nonlinearity in the narrow layers. A novel layer module – the **inverted residual block** has also been proposed, which takes a low-dimensional feature map as an input, and then it is expanded to be high-dimensional and subsequently filtered depthwise. At last, these filtered features are projected back to the low-dimensional space with a linear convolution, and then concatenated with the original input.
 
 ## Inverted Residual Blocks
 
@@ -114,21 +60,25 @@ The images below illustrate how the amount of information loss varies with $d^{(
 
 ### The Structure of Linear Bottlenecks
 
-#### Standard Convolution
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/standard_convolution.png" alt="standard convolution" style="width:10%">
+  <figcaption>Standard convolution.</figcaption>
+</figure>
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/standard_convolution.png" alt="Standard Convolution" class="center1">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution.png" alt="depthwise separable convolution" style="width:20%">
+  <figcaption>Depthwise separable convolution.</figcaption>
+</figure>
 
-#### Depthwise Separable Convolution
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution_with_linear_bottleneck.png" alt="depthwise separable convolution with linear bottleneck" style="width:30%">
+  <figcaption>Depthwise separable convolution with linear bottleneck.</figcaption>
+</figure>
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution.png" alt="Depthwise Separable Convolution" class="center2">
-
-#### Depthwise Separable Convolution with Linear Bottleneck
-
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/depthwise_separable_convolution_with_linear_bottleneck.png" alt="Depthwise Separable Convolution with Linear Bottleneck" class="center3">
-
-#### Bottleneck with Expansion Layer
-
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_with_expansion_layer.png" alt="Bottleneck with Expansion Layer" class="center3">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_with_expansion_layer.png" alt="bottleneck with an expansion layer" style="width:30%">
+  <figcaption>Bottleneck with an expansion layer.</figcaption>
+</figure>
 
 Let $t$ be the **expansion rate**, which indicates by how many times the number of input channels will increase in the expansion layer. Then the structure of a bottleneck with an expansion layer can be summarized in the following table.
 
@@ -142,13 +92,19 @@ Let $t$ be the **expansion rate**, which indicates by how many times the number 
 
 The expansion layer in the bottleneck is only utilized to facilitate nonlinear transformation. To preserve information and make backpropagation easier, shortcuts can be added between bottlenecks.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/inverted_residual_block.png" alt="Inverted Residual Block" class="center4">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/inverted_residual_block.png" alt="inverted residual block" style="width:40%">
+  <figcaption>Inverted residual block.</figcaption>
+</figure>
 
 - `ReLU6` is exploited as the nonlinearity due to its robustness in low-precision computation ([*MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications*](https://arxiv.org/abs/1704.04861)).
 - The number of channels in residual blocks ([*Deep Residual Learning for Image Recognition*](https://arxiv.org/abs/1512.03385) & [*Aggregated Residual Transformations for Deep Neural Networks*](https://arxiv.org/abs/1611.05431)) drops first and then increases, while the inverted residual block demonstrates a contrary pattern. This is why "inverted" comes from.
 - Features output from each convolutional layer are also batch-normalized.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_residual_block.png" alt="Inverted Residual Block" class="center">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/bottleneck_residual_block.png" alt="bottleneck" style="width:40%">
+  <figcaption>The structure of the bottleneck.</figcaption>
+</figure>
 
 ## The Architecture of MobileNetV2
 
@@ -173,7 +129,10 @@ The expansion layer in the bottleneck is only utilized to facilitate nonlinear t
 
 There are two types of bottleneck structures, because when $s=2$, the output height and weight will differ from those of the input, so they cannot be concatenated together.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/two_types_of_bottlenecks.png" alt="Two Types of Bottlenecks" class="center1">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/two_types_of_bottlenecks.png" alt="two types of bottlenecks" style="width:10%">
+  <figcaption>Two types of bottlenecks.</figcaption>
+</figure>
 
 ## Experiments
 
@@ -214,10 +173,12 @@ Results on [Keras Applications](https://keras.io/api/applications/):
 
 ### Ablation Study
 
-#### Impact of Nonlinearity in the Bottleneck Layer
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/ablation_study_1.png" alt="impact of nonlinearity in the bottleneck" style="width:30%">
+  <figcaption>Impact of nonlinearity in the bottleneck.</figcaption>
+</figure>
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/ablation_study_1.png" alt="Impact of Nonlinearity in the Bottleneck Layer" class="center3">
-
-#### Impact of Shortcuts in Inverted Residual Blocks
-
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/ablation_study_2.png" alt="Impact of Variations in Residual Blocks" class="center3">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV2.assets/ablation_study_2.png" alt="impact of variations in the residual block" style="width:30%">
+  <figcaption>Impact of variations in the residual block.</figcaption>
+</figure>
