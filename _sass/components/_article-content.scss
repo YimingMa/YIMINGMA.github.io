@@ -57,7 +57,8 @@
   img:not(.emoji) {
     max-width: 100%;
     vertical-align: middle;
-    text-align: center;
+    display: grid;
+	  justify-content: center;
   }
   .emoji {
     display: inline-block;
@@ -93,7 +94,8 @@
         }
         display: none;
         &[data-processed] {
-          display: block;
+          display: grid;
+	        justify-content: center;
         }
       }
     }
@@ -111,11 +113,12 @@
   }
   figure.highlight {
     &::before {
-      display: block;
+      display: grid;
+	    justify-content: center;
       padding: map-get($spacers, 2) map-get($spacers, 3) map-get($spacers, 2) 0;
       font-weight: map-get($base, font-weight-bold);
       color: $decorate-color;
-      text-align: right;
+      text-align: center;
       text-transform: uppercase;
       content: attr(data-lang);
       background-color: $text-background-color;
@@ -204,7 +207,8 @@
     }
   }
   table {
-    display: block;
+    display: grid;
+	  justify-content: center;
     width: 100%;
     border-collapse: collapse;
     @include overflow(auto);
