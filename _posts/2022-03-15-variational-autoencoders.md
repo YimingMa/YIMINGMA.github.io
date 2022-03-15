@@ -13,7 +13,7 @@ aside:
 
 > This post refers to many materials of [Understanding Variational Autoencoders (VAEs)](https://towardsdatascience.com/understanding-variational-autoencoders-vaes-f70510919f73) by Joseph Rocca and Baptiste Rocca. The original paper in which VAEs are proposed is called *Auto-Encoding Variational Bayes* by Diederik Kingma et al.
 
-## Introduction
+# Introduction
 
 In the last few years, deep-learning-based generative models have gained more and more interest due to some amazing improvements in the field. Relying on
 
@@ -93,3 +93,12 @@ In the following sections, we will denote
 - $N$: the size of data;
 - $n_d$: the dimension of the initial (decoded) space;
 - $n_e$: the dimension of the reduced (encoded) space.
+
+## Autoencoders
+
+Let’s now discuss autoencoders and see how we can use neural networks for dimensionality reduction. The general idea of autoencoders is pretty simple and consists in setting an encoder and a decoder as *neural networks* whose parameters can be learned iteratively. In each iteration, we first feed the autoencoder (the encoder followed by the decoder) with some data. Then we compare the encoded-decoded output with the initial data and backpropagate the error to update parameters.
+Thus, intuitively, the overall autoencoder architecture creates a *bottleneck* for data that ensures only the main structured part of the information can go through and be reconstructed. Looking at our general framework, 
+
+- the family $\mathcal{E}$ of considered encoders is defined by the encoder network architecture;
+- the family $\mathcal{D}$ of considered decoders is defined by the decoder network architecture;
+- the search of encoder and decoder that minimise the reconstruction error is done by gradient descent over the parameters of these networks.
