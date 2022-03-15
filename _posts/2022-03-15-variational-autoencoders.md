@@ -96,9 +96,14 @@ In the following sections, we will denote
 
 ## Autoencoders
 
-Let’s now discuss autoencoders and see how we can use neural networks for dimensionality reduction. The general idea of autoencoders is pretty simple and consists in setting an encoder and a decoder as *neural networks* whose parameters can be learned iteratively. In each iteration, we first feed the autoencoder (the encoder followed by the decoder) with some data. Then we compare the encoded-decoded output with the initial data and backpropagate the error to update parameters.
-Thus, intuitively, the overall autoencoder architecture creates a *bottleneck* for data that ensures only the main structured part of the information can go through and be reconstructed. Looking at our general framework, 
+Let’s now discuss autoencoders and see how we can use neural networks for dimensionality reduction. <span style="color:Crimson;">The general idea of autoencoders is pretty simple and consists in setting an encoder and a decoder as *neural networks* whose parameters can be learned iteratively.</span> In each iteration, we first feed the autoencoder (the encoder followed by the decoder) with some data. Then we compare the encoded-decoded output with the initial data and backpropagate the error to update parameters.
+<span style="color:Coral;">Thus, intuitively, the overall autoencoder architecture creates a *bottleneck* for data that ensures only the main structured part of the information can go through and be reconstructed.</span> Looking at our general framework, 
 
 - the family $\mathcal{E}$ of considered encoders is defined by the encoder network architecture;
 - the family $\mathcal{D}$ of considered decoders is defined by the decoder network architecture;
 - the search of encoder and decoder that minimise the reconstruction error is done by gradient descent over the parameters of these networks.
+
+<figure>
+  <img src="/posts.assets/2022-03-15-variational-autoencoders/autoencoder_structure.png" alt="autoencoder structure" style="width:100%">
+  <figcaption>Illustration of an autoencoder with its loss function.</figcaption>
+</figure>
