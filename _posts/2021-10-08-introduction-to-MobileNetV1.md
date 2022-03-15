@@ -10,6 +10,8 @@ comment: false
 pageview: false
 sidebar:
   nav: Introduction to MobileNetV1
+aside:
+  toc: false
 ---
 
 ## Introduction
