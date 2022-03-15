@@ -107,3 +107,18 @@ Let’s now discuss autoencoders and see how we can use neural networks for dime
   <img src="/posts.assets/2022-03-15-variational-autoencoders/autoencoder_structure.png" alt="autoencoder structure" style="width:100%">
   <figcaption>Illustration of an autoencoder with its loss function.</figcaption>
 </figure>
+
+### Overfitting in Autoencoders
+
+Now, let’s assume that both the encoder and the decoder are very deep and nonlinear. In such case, the more complex the architecture is, the more the autoencoder can proceed to a high dimensionality reduction while keeping reconstruction loss low. Ideally, if our encoder and our decoder have enough degrees of freedom, we can reduce any initial dimensionality to $1$: we can encodes the $N$ different data points as $1, \, 2, \, \cdots, \, N$ (or more generally any different $N$ integers), and the associated decoder could make the reverse transformation, with no loss during the process.
+Here, we should however keep two things in mind:
+
+- dimensionality reduction with no reconstruction loss often comes with a price: the *lack of interpretability* of features in the latent space (*lack of regularity*);
+- for most of the time, the final purpose of dimensionality reduction is not to only reduce the number of dimensions of the data but also to *keep the majority of the data structure information in the reduced representations*.
+    
+<figure>
+  <img src="/posts.assets/2022-03-15-variational-autoencoders/autoencoder_overfitting.png" alt="autoencoder structure" style="width:100%">
+  <figcaption>When reducing dimensionality, we want to keep the main structure there exists among the data.</figcaption>
+</figure>
+
+For these two reasons, the dimension of the latent space and the “depth” of the autoencoder (that defines the degree and quality of compression) have to be carefully controlled and adjusted depending on the final purpose of the dimensionality reduction.
