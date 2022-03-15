@@ -52,7 +52,7 @@ In this section we will discuss some concepts related to **dimensionality reduct
 
 - **selection** (only some existing features are conserved)
 
-or by 
+or by
 
 - **extraction** (a reduced number of new features are created based on the old ones).</span>
 
