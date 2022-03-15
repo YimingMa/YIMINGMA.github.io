@@ -41,3 +41,29 @@ If the last two sentences summarise pretty well the notion of VAEs, they can als
 - What is the link between VAEs and variational inference?
 
 To describe VAEs as well as possible, we will try to answer all this questions (and many others!) and to provide the reader with as many insights as we can (ranging from basic intuitions to more advanced mathematical details). Without further ado, let’s (re)discover VAEs together!
+
+# Dimensionality Reduction
+
+In this section we will discuss some concepts related to **dimensionality reduction**. In particular, we will briefly review **principal component analysis** (**PCA**) and **autoencoders**, showing how both ideas are related to each others.
+
+## What Is Dimensionality Reduction?
+
+<span style="color:RoyalBlue;">In machine learning, [**dimensionality reduction**](https://en.wikipedia.org/wiki/Dimensionality_reduction) is the process of reducing the number of features that describe some data. This reduction is done either by 
+
+- **selection** (only some existing features are conserved)
+
+or by 
+
+- **extraction** (a reduced number of new features are created based on the old ones).</span>
+
+Dimensionality reduction can be useful in many situations that require low-dimensional data (e.g., data visualisation, data storage, heavy computation). Although there exist many different methods to reduce dimensionality, we can set a global framework that is matched by most of these methods.
+
+First, let’s call **encoder** the process that produce the new features from the “old-feature” representation (by selection or by extraction) and **decoder** the reverse process. 
+Dimensionality reduction can then be interpreted as *data* *compression* where the encoder compress the data (from the initial space to the **encoded space**, also called **latent space**) whereas the decoder decompress them. Of course, depending on
+
+- the initial data distribution
+- the latent space dimension
+- the encoder definition
+
+this compression can be *lossy*, meaning that some information is lost during encoding and cannot be recovered after decoding.
+
