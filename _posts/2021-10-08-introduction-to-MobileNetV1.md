@@ -8,10 +8,8 @@ mathjax_autoNumber: true
 author: Yiming
 comment: false
 pageview: false
-sidebar:
-  nav: Introduction to MobileNetV1
 aside:
-  toc: false
+  toc: true
 ---
 
 ## Introduction
@@ -44,6 +42,8 @@ $$
 \label{eqn2}
 D_K \cdot D_K \cdot M \cdot N \cdot D_G \cdot D_G.
 $$
+
+![Filters of standard convolution.](/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png"){:width="256px"}
 
 <figure>
   <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="filters of standard convolution" style="width:50%">
