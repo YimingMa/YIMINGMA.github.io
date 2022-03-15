@@ -78,13 +78,13 @@ $$
 \usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
-(\hat{\boldsymbol{E}}, \, \hat{\boldsymbol{D}}) = \argmin_{(\boldsymbol{E}, \,\boldsymbol{D}) \in \boldsymbol{\mathcal{E}} \times \boldsymbol{\mathcal{D}}} \epsilon \left(\boldsymbol{X}, \, \boldsymbol{D}\left(\boldsymbol{E}(\boldsymbol{X})\right)\right),
+(\hat{\boldsymbol{E}}, \, \hat{\boldsymbol{D}}) = \argmin_{(\boldsymbol{E}, \,\boldsymbol{D}) \in \boldsymbol{\mathcal{E}} \times \boldsymbol{\mathcal{D}}} \epsilon \left(\boldsymbol{X}, \, \boldsymbol{D}\left(\boldsymbol{E}(\boldsymbol{X})\right)\right), \notag
 $$
 
 where
 
 $$
-\epsilon \left(\boldsymbol{X}, \, \boldsymbol{D}\left(\boldsymbol{E}(\boldsymbol{X})\right)\right)
+\epsilon \left(\boldsymbol{X}, \, \boldsymbol{D}\left(\boldsymbol{E}(\boldsymbol{X})\right)\right) \notag
 $$
 
 defines the reconstruction error measured between the input data $\boldsymbol{X}$ and the encoded-decoded data $\boldsymbol{D} ( \boldsymbol{E} ( \boldsymbol{X} ))$.
