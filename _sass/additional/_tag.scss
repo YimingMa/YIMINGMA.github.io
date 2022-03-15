@@ -1,20 +1,20 @@
 .article__content {
-  code.success {
+  code.green {
     color: $text-color-function;
     background-color: $green;
   }
 
-  code.info {
+  code.blue {
     color: $text-color-function;
     background-color: $blue;
   }
 
-  code.warning {
+  code.orange {
     color: $text-color-function;
     background-color: $yellow;
   }
 
-  code.error {
+  code.red {
     color: $text-color-function;
     background-color: $red;
   }
