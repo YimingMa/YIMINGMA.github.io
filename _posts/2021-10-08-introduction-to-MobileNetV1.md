@@ -9,7 +9,7 @@ author: Yiming
 comment: false
 pageview: false
 sidebar:
-  nav: layouts
+  nav: Introduction to MobileNetV1
 ---
 
 ## Introduction
