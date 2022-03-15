@@ -43,12 +43,7 @@ $$
 D_K \cdot D_K \cdot M \cdot N \cdot D_G \cdot D_G.
 $$
 
-![Filters of standard convolution.](/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png){:width="50%"}
-
-<figure>
-  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="filters of standard convolution" style="width:50%">
-  <figcaption>Filters of standard convolution.</figcaption>
-</figure>
+![Filters of standard convolution.](/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png "Filters of standard convolution."){:width="50%"}
 
 For example, let $$\boldsymbol{F} \in \mathbb{R}^{3 \times 3 \times 3}$$, and its channelwise elements are given by
 
