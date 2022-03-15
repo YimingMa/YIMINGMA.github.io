@@ -58,12 +58,36 @@ In this section we will discuss some concepts related to **dimensionality reduct
 
 Dimensionality reduction can be useful in many situations that require low-dimensional data (e.g., data visualisation, data storage, heavy computation). Although there exist many different methods to reduce dimensionality, we can set a global framework that is matched by most of these methods.
 
-First, let’s call **encoder** the process that produce the new features from the “old-feature” representation (by selection or by extraction) and **decoder** the reverse process. 
-Dimensionality reduction can then be interpreted as *data* *compression* where the encoder compress the data (from the initial space to the **encoded space**, also called **latent space**) whereas the decoder decompress them. Of course, depending on
+First, let’s call <span style="color:RoyalBlue;">**encoder** the process that produce the new features from the “old-feature” representation (by selection or by extraction)</span> and <span style="color:RoyalBlue;">**decoder** the reverse process</span>. 
+<span style="color:Coral;">Dimensionality reduction can then be interpreted as *data* *compression* where the encoder compress the data (from the initial space to the **encoded space**, also called **latent space**) whereas the decoder decompress them. Of course, depending on</span>
 
-- the initial data distribution
-- the latent space dimension
-- the encoder definition
+- <span style="color:Coral;">the initial data distribution</span>
+- <span style="color:Coral;">the latent space dimension</span>
+- <span style="color:Coral;">the encoder definition</span>
 
-this compression can be *lossy*, meaning that some information is lost during encoding and cannot be recovered after decoding.
+<span style="color:Coral;">this compression can be *lossy*, meaning that some information is lost during encoding and cannot be recovered after decoding.</span>
 
+<figure>
+  <img src="/posts.assets/2022-03-15-variational-autoencoders/autoencoder_structure.png" alt="autoencoder structure" style="width:100%">
+  <figcaption>Illustration of the dimensionality reduction principle with the encoder and the decoder.</figcaption>
+</figure>
+
+<span style="color:Crimson;">The main purpose of a dimensionality reduction method is to find the best encoder & decoder pair among a given family. In other words, for a given set of possible encoders and decoders, we are looking for the pair that *keeps the maximum of information when encoding (so the reconstruction error of decoding is also minimum).*</span> If we denote respectively $\mathcal{E}$ and $\mathcal{D}$ the families of encoders and decoders we are considering, then the dimensionality reduction problem can be written
+
+$$
+(\hat{\boldsymbol{E}}, \, \hat{\boldsymbol{D}}) = \argmin_{(\boldsymbol{E}, \,\boldsymbol{D}) \in \boldsymbol{\mathcal{E}} \times \boldsymbol{\mathcal{D}}} \epsilon \left(\boldsymbol{X}, \, \boldsymbol{D}\left(\boldsymbol{E}(\boldsymbol{X})\right)\right),
+$$
+
+where
+
+$$
+\epsilon \left(\boldsymbol{X}, \, \boldsymbol{D}\left(\boldsymbol{E}(\boldsymbol{X})\right)\right)
+$$
+
+defines the reconstruction error measured between the input data $\boldsymbol{X}$ and the encoded-decoded data $\boldsymbol{D} ( \boldsymbol{E} ( \boldsymbol{X} ))$.
+
+In the following sections, we will denote
+
+- $N$: the size of data;
+- $n_d$: the dimension of the initial (decoded) space;
+- $n_e$: the dimension of the reduced (encoded) space.
