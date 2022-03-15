@@ -1,100 +1,20 @@
 ---
 key: 2021_10_08_01
 title: Introduction to MobileNetV1
+layout: article
 tags: ["Computer Vision", "Image Classifiers", "MobileNets"]
 mathjax: true
 mathjax_autoNumber: true
 author: Yiming
 comment: false
 pageview: false
-aside:
-    toc: true
+sidebar:
+  nav: layouts
 ---
-
-<style>
-.center1 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 10%;
-}
-</style>
-
-<style>
-.center2 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 20%;
-}
-</style>
-
-<style>
-.center3 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 30%;
-}
-</style>
-
-<style>
-.center4 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 40%;
-}
-</style>
-
-<style>
-.center5 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-}
-</style>
-
-<style>
-.center6 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 60%;
-}
-</style>
-
-<style>
-.center7 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 70%;
-}
-</style>
-
-<style>
-.center8 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
-</style>
-
-<style>
-.center9 {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 90%;
-}
-</style>
 
 ## Introduction
 
-MobileNetV1 was proposed by Howard, Andrew G., et al. in [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861) in 2017. In this paper, **depthwise separable convolution** is used to replace standard convolution to reduce computation. Although MobileNetV1 is smaller than other families of image classifiers, such as VGGs and Inceptions, it can still achieve comparable results on [ImageNet](https://www.image-net.org/).
+MobileNetV1 was proposed by Howard, Andrew G., et al. in [*MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications*](https://arxiv.org/abs/1704.04861) in 2017. In this paper, **depthwise separable convolution** is used to replace standard convolution to reduce computation. Although MobileNetV1 is smaller than other families of image classifiers, such as VGGs and Inceptions, it can still achieve comparable results on [ImageNet](https://www.image-net.org/).
 
 ## Standard Convolution vs. Depthwise Separable Convolution
 
@@ -123,25 +43,28 @@ $$
 D_K \cdot D_K \cdot M \cdot N \cdot D_G \cdot D_G.
 $$
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="Filters of Standard Convolution" class="center5">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution_filters.png" alt="filters of standard convolution" style="width:50%">
+  <figcaption>Filters of standard convolution.</figcaption>
+</figure>
 
 For example, let $$\boldsymbol{F} \in \mathbb{R}^{3 \times 3 \times 3}$$, and its channelwise elements are given by
 
 $$
 \label{eqn3}
-\boldsymbol{F}_{:, \, :, \, 1} = 
+\boldsymbol{F}_{:, \, :, \, 1} =
 \begin{bmatrix}
     0 & 3 & 2 \\
     0 & 4 & 1 \\
     1 & 0 & 1
 \end{bmatrix}, \,
-\boldsymbol{F}_{:, \, :, \, 2} = 
+\boldsymbol{F}_{:, \, :, \, 2} =
 \begin{bmatrix}
     0 & 1 & 4 \\
     2 & 4 & 2 \\
     1 & 3 & 4
 \end{bmatrix}, \,
-\boldsymbol{F}_{:, \, :, \, 3} = 
+\boldsymbol{F}_{:, \, :, \, 3} =
 \begin{bmatrix}
     4 & 4 & 0 \\
     2 & 1 & 1 \\
@@ -152,17 +75,17 @@ $$
 Assume $$\boldsymbol{K} \in \mathbb{R}^{2 \times 2 \times 3 \times 2}$$, and the elements of its first filter are given by
 
 $$
-\boldsymbol{K}_{:, \, :, \, 1, \, 1} = 
+\boldsymbol{K}_{:, \, :, \, 1, \, 1} =
 \begin{bmatrix}
     1 & 0 \\
     0 & 0
 \end{bmatrix},
-\boldsymbol{K}_{:, \, :, \, 2, \, 1} = 
+\boldsymbol{K}_{:, \, :, \, 2, \, 1} =
 \begin{bmatrix}
     1 & 0 \\
     0 & 1
 \end{bmatrix},
-\boldsymbol{K}_{:, \, :, \, 3, \, 1} = 
+\boldsymbol{K}_{:, \, :, \, 3, \, 1} =
 \begin{bmatrix}
     0 & 0 \\
     0 & 1
@@ -172,17 +95,17 @@ $$
 and those of the second filter are given by
 
 $$
-\boldsymbol{K}_{:, \, :, \, 1, \, 2} = 
+\boldsymbol{K}_{:, \, :, \, 1, \, 2} =
 \begin{bmatrix}
     0 & 1 \\
     0 & 0
 \end{bmatrix},
-\boldsymbol{K}_{:, \, :, \, 2, \, 2} = 
+\boldsymbol{K}_{:, \, :, \, 2, \, 2} =
 \begin{bmatrix}
     0 & 1 \\
     1 & 0
 \end{bmatrix},
-\boldsymbol{K}_{:, \, :, \, 3, \, 2} = 
+\boldsymbol{K}_{:, \, :, \, 3, \, 2} =
 \begin{bmatrix}
     0 & 0 \\
     1 & 0
@@ -194,7 +117,7 @@ Using no paddings and the stride of 1, we know $$\boldsymbol{G} \in \mathbb{R}^{
 $$
 \begin{align*}
     & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 1:\,2, \, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 1} + F_{1:\,2, \, 1:\,2, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 1} + F_{1:\,2, \, 1:\,2, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 1} \right) \boldsymbol{e} \\
-    = & \boldsymbol{e}^\intercal \left( 
+    = & \boldsymbol{e}^\intercal \left(
         \begin{bmatrix}
             0 & 3 \\
             0 & 4
@@ -261,7 +184,7 @@ And similarly, $$\boldsymbol{G}_{1, \, 1, \, 2}$$ is given by
 $$
 \begin{align*}
     & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 1:\,2, \, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 2} + F_{1:\,2, \, 1:\,2, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 2} + F_{1:\,2, \, 1:\,2, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 2} \right) \boldsymbol{e} \\
-    = & \boldsymbol{e}^\intercal \left( 
+    = & \boldsymbol{e}^\intercal \left(
         \begin{bmatrix}
             0 & 3 \\
             0 & 4
@@ -328,7 +251,7 @@ As for $$\boldsymbol{G}_{1, \, 2, \, 1}$$, we need to move the first filter $$\b
 $$
 \begin{align*}
     & \boldsymbol{e}^\intercal \left( F_{1:\,2, \, 2:\,3, \, 1} \cdot \boldsymbol{K}_{:, \, :, \, 1, \, 1} + F_{1:\,2, \, 2:\,3, \, 2} \cdot \boldsymbol{K}_{:, \, :, \, 2, \, 1} + F_{1:\,2, \, 2:\,3, \, 3} \cdot \boldsymbol{K}_{:, \, :, \, 3, \, 1} \right) \boldsymbol{e} \\
-    = & \boldsymbol{e}^\intercal \left( 
+    = & \boldsymbol{e}^\intercal \left(
         \begin{bmatrix}
             3 & 2 \\
             4 & 1
@@ -412,24 +335,27 @@ $$
 
 multiplications.
 
-<u>Notice</u>: Depthwise convolution only filters input channels, so it does not combine them to create new features.
+> **Notice**: Depthwise convolution only filters input channels, so it does not combine them to create new features.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="Filters of Depthwise Convolution" class="center3">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution_filters.png" alt="filters of depthwise convolution" style="width:30%">
+  <figcaption>Filters of depthwise convolution.</figcaption>
+</figure>
 
 Let's use $$\eqref{eqn3}$$ as an example again. Recall that in $$\eqref{eqn3}$$, but now this time, assume
 
 $$
-\hat{\boldsymbol{K}}_{:, \, :, \, 1} = 
+\hat{\boldsymbol{K}}_{:, \, :, \, 1} =
 \begin{bmatrix}
     1 & 0 \\
     0 & 0
 \end{bmatrix},
-\hat{\boldsymbol{K}}_{:, \, :, \, 2} = 
+\hat{\boldsymbol{K}}_{:, \, :, \, 2} =
 \begin{bmatrix}
     1 & 0 \\
     0 & 1
 \end{bmatrix},
-\hat{\boldsymbol{K}}_{:, \, :, \, 3} = 
+\hat{\boldsymbol{K}}_{:, \, :, \, 3} =
 \begin{bmatrix}
     0 & 0 \\
     0 & 1
@@ -472,7 +398,10 @@ $$
 
 times.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="Fliters of Pointwise Convolution" class="center3">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution_filters.png" alt="filters of pointwise convolution" style="width:30%">
+  <figcaption>Filters of pointwise convolution.</figcaption>
+</figure>
 
 Thus, the overall depthwise separable convolution can be expressed as
 
@@ -492,27 +421,36 @@ which is $$\frac{1}{N} + \frac{1}{D_K^2}$$ of $$\eqref{eqn2}$$.
 
 ### Illustrations
 
-#### Standard Convolution
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution.png" alt="Standard Convolution" class="center4">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_convolution.png" alt="standard convolution" style="width:40%">
+  <figcaption>Illustration of standard convolution.</figcaption>
+</figure>
 
-#### Depthwise Separable Convolution
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution.png" alt="depthwise convolution" style="width:40%">
+  <figcaption>Illustration of depthwise convolution.</figcaption>
+</figure>
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/depthwise_convolution.png" alt="Depthwise Convolution" class="center4">
-
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution.png" alt="Pointwise Convolution" class="center4">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/pointwise_convolution.png" alt="pointwise convolution" style="width:40%">
+  <figcaption>Illustration of pointwise convolution.</figcaption>
+</figure>
 
 ## The Architecture of MobileNetV1
 
 Except that the first layer is a standard convolution, all other convolutions in MobileNetV1 are depthwise separable. Batch normalization and ReLU activation are also used after each convolution.
 
-<img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png" alt="Depthwise Convolution" class="center5">
+<figure>
+  <img src="/posts.assets/2021-10-08-introduction-to-MobileNetV1.assets/standard_conv_layer_vs_depthwise_separable_conv_layer.png" alt="standard conv layer vs depthwise seperable conv layer" style="width:40%">
+  <figcaption>The standard convolutional block and depthwise convolutional blocks used in MobileNetV1.</figcaption>
+</figure>
 
 The structure of MobileNetV1 is shown below.
 
-| Type / Stride 	                | Filter Shape 	               | Input Size 	                |
+| Type / Stride                   | Filter Shape                 | Input Size                   |
 |---------------------------------|------------------------------|------------------------------|
-| Conv / s2     	                | 3×3×3×32     	               | 224×224×3                    |
+| Conv / s2                       | 3×3×3×32                     | 224×224×3                    |
 | Conv dw / s1                    | 3×3×32 dw                    | 112×112×32                   |
 | Conv / s1                       | 1×1×32×64                    | 112×112×32                   |
 | Conv dw / s2                    | 3×3×64 dw                    | 112×112×64                   |
@@ -536,7 +474,7 @@ The structure of MobileNetV1 is shown below.
 
 ## Experiments
 
-Results from the original paper [_MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications_](https://arxiv.org/abs/1704.04861):
+Results from the original paper [*MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications*](https://arxiv.org/abs/1704.04861):
 
 | Model                                           | [ImageNet](https://www.image-net.org/) Accuracy | Mult-Adds (M) | Parameters (M) |
 | ----------------------------------------------- | ----------------- | ------------- | -------------- |
