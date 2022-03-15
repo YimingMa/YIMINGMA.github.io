@@ -75,7 +75,6 @@ First, let’s call <span style="color:RoyalBlue;">**encoder** the process that 
 <span style="color:Crimson;">The main purpose of a dimensionality reduction method is to find the best encoder & decoder pair among a given family. In other words, for a given set of possible encoders and decoders, we are looking for the pair that *keeps the maximum of information when encoding (so the reconstruction error of decoding is also minimum).*</span> If we denote respectively $\mathcal{E}$ and $\mathcal{D}$ the families of encoders and decoders we are considering, then the dimensionality reduction problem can be written
 
 $$
-\usepackage{amsmath}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \DeclareMathOperator*{\argmin}{arg\,min}
 (\hat{\boldsymbol{E}}, \, \hat{\boldsymbol{D}}) = \argmin_{(\boldsymbol{E}, \,\boldsymbol{D}) \in \boldsymbol{\mathcal{E}} \times \boldsymbol{\mathcal{D}}} \epsilon \left(\boldsymbol{X}, \, \boldsymbol{D}\left(\boldsymbol{E}(\boldsymbol{X})\right)\right), \notag
